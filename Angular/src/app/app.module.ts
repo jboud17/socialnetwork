@@ -4,14 +4,14 @@ import { RouterModule } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { LoginComponent } from './components/login/login.component';
+import { LoginComponent } from './components/login-page/login.component';
 import { PostviewComponent } from './components/postview/postview.component';
 import { NewpostComponent } from './components/newpost/newpost.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { UpdateprofileComponent } from './components/updateprofile/updateprofile.component';
-import { ProfilepageComponent } from './components/profilepage/profilepage.component';
-import { HomeComponent } from './home/home.component';
-import { ProfileheaderComponent } from './profileheader/profileheader.component';
+import { ProfilepageComponent } from './components/profile-page/profilepage.component';
+import { HomeComponent } from './components/home-page/home.component';
+import { ProfileheaderComponent } from './components/profile-header/profileheader.component';
 
 
 @NgModule({
