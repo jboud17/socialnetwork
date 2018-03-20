@@ -1,11 +1,13 @@
 package com.revature.dao;
 
+import com.revature.beans.User;
+
 public interface UserDAO {
 
 	// put sql statement check for user in db
 	
 	public boolean makeUser();
-	public boolean login(String username, String password);
+	public User login(String username, String password);
 	public void updateDetails();
 	public void resetPassword();
 	public boolean changePic();

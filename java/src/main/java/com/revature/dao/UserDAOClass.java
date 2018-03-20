@@ -4,6 +4,7 @@ import java.sql.Blob;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -23,16 +24,29 @@ public class UserDAOClass implements UserDAO{
 		
 	// search the db and login the user if account is found
 		
-	public boolean login(String username, String password) {
+	@SuppressWarnings("unused")
+	public User login(String username, String password) {
 			
 		String hql = " FROM USERS"
-				+ " WHERE USERNAME = ? AND PASS_WORD = ?";
+				+ " WHERE USERNAME = :user AND PASS_WORD = :pswd";
 		
 		Session session = HibernateUtil.getSession();
 		Query query = session.createQuery(hql);
+
+		query.setParameter("user", username);
+		query.setParameter("pswd", password);
 		
+		List<User> list = query.list();
+		
+		User a = list.get(0);
 		session.close();
-		return false;
+		
+		if(list == null) {
+			
+			return null;
+		}
+		
+		return a;
 	}
 	
 	
