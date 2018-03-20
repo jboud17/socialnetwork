@@ -22,10 +22,8 @@ public class UserDAOClass implements UserDAO{
 			
 		User user = null;
 		String sql = "SELECT *" 
-				+ " FROM ERS_USERS"
-				+ " JOIN ERS_USER_ROLES"
-				+ " ON ERS_USERS.USER_ROLE_ID = ERS_USER_ROLES.ERS_USER_ROLE_ID"
-				+ " WHERE ERS_USERNAME = ?";
+				+ " FROM USERS"
+				+ " WHERE USERNAME = ? AND PASS_WORD = ?";
 		try{
 
 			ResultSet rs = null;
