@@ -1,6 +1,9 @@
 package com.revature.dao;
 
-import org.hibernate.Session;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import com.revature.beans.User;
 import com.revature.util.HibernateUtil;
 
 public class UserDAOClass implements UserDAO{
@@ -17,10 +20,36 @@ public class UserDAOClass implements UserDAO{
 		
 	public boolean login(String username, String password) {
 			
-		Session session = HibernateUtil.getSession();
-		
+		User user = null;
+		String sql = "SELECT *" 
+				+ " FROM ERS_USERS"
+				+ " JOIN ERS_USER_ROLES"
+				+ " ON ERS_USERS.USER_ROLE_ID = ERS_USER_ROLES.ERS_USER_ROLE_ID"
+				+ " WHERE ERS_USERNAME = ?";
+		try{
+
+			ResultSet rs = null;
+			user = constructUser(rs);
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
 		
 		return false;
+	}
+	
+	private User constructUser(ResultSet rs) throws SQLException{
+		
+		if(rs.next()){
+			int id = rs.getInt("USERS_ID");
+			String username = rs.getString("USERNAME");
+			String lastName = rs.getString("LAST_NAME");
+			String firstName = rs.getString("FIRST_NAME");
+			String password = rs.getString("PASSWORD");
+			int age = rs.getInt("AGE");
+			String email = rs.getString("EMAIL");
+			return new User();
+		}
+		return null;
 	}
 	
 	
