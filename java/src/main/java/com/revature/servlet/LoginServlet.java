@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.revature.beans.User;
 import com.revature.dao.UserDAOClass;
 
 
@@ -30,9 +31,9 @@ public class LoginServlet extends HttpServlet{
 		 
 		 if(username != null && password != null) {
 			 
-			 boolean flag = a.login(username, password);
+			 User flag = a.login(username, password);
 			 
-			 if(flag) {
+			 if(flag != null) {
 		   
 				 System.out.println("You have successfully logged in.");
 				 request.setAttribute("username", username);

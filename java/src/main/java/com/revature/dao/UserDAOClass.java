@@ -14,11 +14,33 @@ import com.revature.util.HibernateUtil;
 
 public class UserDAOClass implements UserDAO{
 
-	// new user registration
+	// new user registration  ***************FIX PROFILE PIC AND BIRTHDATE************************
 	
-	public boolean makeUser() {
+	public boolean makeUser(int user_id, String first_name, String last_name, String username, String password, Blob profile_pic, String email, int age, Timestamp birthdate) {
 		
-		return false;
+		String hql = "INSERT INTO USERS(:id, :fname, :lname, :uname, :pswd, :pp, :email, :age, :bd)";
+		
+		Session session = HibernateUtil.getSession();
+		Query query = session.createQuery(hql);
+		
+		query.setParameter("id", user_id);
+		query.setParameter("fname", first_name);
+		query.setParameter("lname", last_name);
+		query.setParameter("uname", username);
+		query.setParameter("pswd", password);
+		query.setParameter("pp", null);
+		query.setParameter("email", email);
+		query.setParameter("age", age);
+		query.setParameter("bd", null);
+		
+		int result = query.executeUpdate();
+		
+		if(result == 0) {
+			
+			return false;
+		}
+		
+		return true;
 	}
 		
 		
