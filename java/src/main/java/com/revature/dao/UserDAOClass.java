@@ -5,6 +5,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 
+import org.hibernate.Query;
+import org.hibernate.Session;
+
 import com.revature.beans.User;
 import com.revature.util.HibernateUtil;
 
@@ -22,34 +25,14 @@ public class UserDAOClass implements UserDAO{
 		
 	public boolean login(String username, String password) {
 			
-		User user = null;
-		String sql = "SELECT *" 
-				+ " FROM USERS"
+		String hql = " FROM USERS"
 				+ " WHERE USERNAME = ? AND PASS_WORD = ?";
-		try{
-
-			ResultSet rs = null;
-			user = constructUser(rs);
-		}catch(SQLException e){
-			e.printStackTrace();
-		}
 		
+		Session session = HibernateUtil.getSession();
+		Query query = session.createQuery(hql);
+		
+		session.close();
 		return false;
-	}
-	
-	private User constructUser(ResultSet rs) throws SQLException{
-		
-		if(rs.next()){
-			int id = rs.getInt("USERS_ID");
-			String username = rs.getString("USERNAME");
-			String lastName = rs.getString("LAST_NAME");
-			String firstName = rs.getString("FIRST_NAME");
-			String password = rs.getString("PASSWORD");
-			int age = rs.getInt("AGE");
-			String email = rs.getString("EMAIL");
-			return new User(id, firstName, lastName, username, password, null, email, age, null);
-		}
-		return null;
 	}
 	
 	
