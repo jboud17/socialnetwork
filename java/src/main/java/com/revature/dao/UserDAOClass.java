@@ -1,7 +1,9 @@
 package com.revature.dao;
 
+import java.sql.Blob;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 
 import com.revature.beans.User;
 import com.revature.util.HibernateUtil;
@@ -45,7 +47,7 @@ public class UserDAOClass implements UserDAO{
 			String password = rs.getString("PASSWORD");
 			int age = rs.getInt("AGE");
 			String email = rs.getString("EMAIL");
-			return new User();
+			return new User(id, firstName, lastName, username, password, null, email, age, null);
 		}
 		return null;
 	}
