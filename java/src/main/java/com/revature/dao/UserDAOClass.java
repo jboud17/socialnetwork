@@ -1,6 +1,14 @@
 package com.revature.dao;
 
+import java.sql.Blob;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Timestamp;
+
+import org.hibernate.Query;
 import org.hibernate.Session;
+
+import com.revature.beans.User;
 import com.revature.util.HibernateUtil;
 
 public class UserDAOClass implements UserDAO{
@@ -17,9 +25,13 @@ public class UserDAOClass implements UserDAO{
 		
 	public boolean login(String username, String password) {
 			
+		String hql = " FROM USERS"
+				+ " WHERE USERNAME = ? AND PASS_WORD = ?";
+		
 		Session session = HibernateUtil.getSession();
+		Query query = session.createQuery(hql);
 		
-		
+		session.close();
 		return false;
 	}
 	
