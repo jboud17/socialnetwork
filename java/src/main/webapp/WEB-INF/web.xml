@@ -5,18 +5,22 @@
     <description></description>
     <display-name>LoginServlet</display-name>
     <servlet-name>LoginServlet</servlet-name>
-    <servlet-class>servlets.LoginServlet</servlet-class>
+    <servlet-class>com.revature.servlet.LoginServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>LoginServlet</servlet-name>
+<<<<<<< HEAD
     <url-pattern>/Login</url-pattern>
+=======
+    <url-pattern>/login</url-pattern>
+>>>>>>> 27efbe2a2fcc0f6240c9e70d738b558c7dc993a3
   </servlet-mapping>
-  
+
   <servlet>
     <description></description>
     <display-name>RegisterUserServlet</display-name>
     <servlet-name>RegisterUserServlet</servlet-name>
-    <servlet-class>servlets.RegisterUserServlet</servlet-class>
+    <servlet-class>com.revature.servlet.RegisterUserServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>RegisterUserServlet</servlet-name>

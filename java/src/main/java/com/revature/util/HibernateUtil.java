@@ -8,8 +8,7 @@ import org.hibernate.service.ServiceRegistry;
 
 public class HibernateUtil {
 	
-private static SessionFactory sessionFactory(String filename) {
-		
+	private static SessionFactory sessionFactory(String filename) {
 		Configuration config = new Configuration().configure(filename);
         ServiceRegistry serviceR = new StandardServiceRegistryBuilder().applySettings(config.getProperties()).build();
     
