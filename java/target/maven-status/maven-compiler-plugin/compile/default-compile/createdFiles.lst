@@ -1,8 +1,0 @@
-com\revature\beans\Post.class
-com\revature\dao\UserDAO.class
-com\revature\dao\UserDAOClass.class
-com\revature\beans\User.class
-com\revature\servlet\LoginServlet.class
-com\revature\dao\PostDAO.class
-com\revature\dao\PostDAOClass.class
-com\revature\util\HibernateUtil.class
