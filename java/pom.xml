@@ -10,7 +10,7 @@
          <groupId>org.hibernate</groupId>
          <artifactId>hibernate-core</artifactId>
          <version>4.3.11.Final</version>
-    </dependency>
+     </dependency>
  	<dependency>
 	    <groupId>commons-fileupload</groupId>
 	    <artifactId>commons-fileupload</artifactId>
