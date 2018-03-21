@@ -7,13 +7,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileHeaderComponent implements OnInit {
 
-  constructor() { }
+  public leftTabPage;
 
-  ngOnInit() {
-
+  constructor() { 
+    if(window.location.pathname == '/profile') {
+      this.leftTabPage = 'Home';
+    } else if(window.location.pathname == '/home') {
+      this.leftTabPage = 'Profile';
+    }
   }
 
-  buttonOnClick(){
+  ngOnInit() {}
+
+  leftTabClick(){
     if(window.location.pathname == '/profile'){
       window.location.pathname = '/home';
     }
