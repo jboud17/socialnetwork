@@ -3,6 +3,7 @@
   <groupId>com.revature</groupId>
   <artifactId>SocialMedia</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  <packaging>war</packaging>
   <name>SocialMedia</name>
   
   <dependencies>
