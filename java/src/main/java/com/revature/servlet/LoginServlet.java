@@ -29,11 +29,9 @@ public class LoginServlet extends HttpServlet{
 		 String page = "http://localhost:4200/login";	//	***********************************
 		 
 		 if(username != null && password != null) {
-			 
 			 User flag = a.login(username, password);
-			 
+
 			 if(flag != null) {
-		   
 				 System.out.println("You have successfully logged in.");
 				 request.setAttribute("username", username);
 				 page = "http://localhost:4200/home";			//	**************************************

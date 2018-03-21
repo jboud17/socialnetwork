@@ -50,7 +50,7 @@ public class UserDAOClass implements UserDAO{
 	@SuppressWarnings("unused")
 	public User login(String username, String password) {
 			
-		String hql = " FROM User"
+		String hql = "from User"
 				+ " WHERE USERNAME = :user AND PASS_WORD = :pswd";
 		
 		Session session = HibernateUtil.getSession();
