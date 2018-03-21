@@ -9,6 +9,7 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
+import com.revature.beans.Post;
 import com.revature.beans.User;
 import com.revature.util.HibernateUtil;
 
@@ -82,7 +83,7 @@ public class UserDAOClass implements UserDAO{
 	
 	// user wants to reset their password
 	
-	public void resetPassword() {
+	public void resetPassword(String password) {
 		
 		
 	}
@@ -98,7 +99,7 @@ public class UserDAOClass implements UserDAO{
 	
 	// user wants to create a post
 	
-	public boolean createPost() {
+	public boolean createPost(String text) {
 		
 		return false;
 	}
@@ -106,7 +107,7 @@ public class UserDAOClass implements UserDAO{
 	
 	// user wants to view their own profile
 	
-	public void viewMyProfile() {
+	public void viewMyProfile(User user) {
 		
 		
 	}
@@ -114,7 +115,7 @@ public class UserDAOClass implements UserDAO{
 	
 	// user wants to checkout another user's profile
 	
-	public void viewAProfile() {
+	public void viewAProfile(User user) {
 		
 		
 	}
@@ -130,7 +131,7 @@ public class UserDAOClass implements UserDAO{
 	
 	// user wants to like a post
 	
-	public boolean likePost() {
+	public boolean likePost(Post post) {
 		
 		return false;
 	}

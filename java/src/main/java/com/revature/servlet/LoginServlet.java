@@ -26,7 +26,7 @@ public class LoginServlet extends HttpServlet{
 		 UserDAOClass a = new UserDAOClass();
 		 
 		 System.out.println("This is the username: " + username + "\nand this is the password: " + password);
-		 String page = "Login.html";	//	***********************************
+		 String page = "http://localhost:4200/login";	//	***********************************
 		 
 		 if(username != null && password != null) {
 			 
