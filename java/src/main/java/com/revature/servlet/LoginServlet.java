@@ -40,6 +40,7 @@ public class LoginServlet extends HttpServlet{
 			 } 
 		 }
 		 
+		 	response.sendRedirect(page);
 		 	request.getRequestDispatcher(page).include(request, response);
 	 	}
 }
