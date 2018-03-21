@@ -1,4 +1,4 @@
-package com.revature.util;
+package java.src.main.java.com.revature.util;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

@@ -1,10 +1,9 @@
-package com.revature.dao;
+package java.src.main.java.com.revature.dao;
 
 import java.sql.Blob;
 import java.sql.Timestamp;
-
-import com.revature.beans.Post;
-import com.revature.beans.User;
+import java.src.main.java.com.revature.beans.Post;
+import java.src.main.java.com.revature.beans.User;
 
 public interface UserDAO {
 

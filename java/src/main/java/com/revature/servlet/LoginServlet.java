@@ -1,4 +1,4 @@
-package com.revature.servlet;
+package java.src.main.java.com.revature.servlet;
 
 import java.io.IOException;
 
@@ -7,8 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.revature.beans.User;
-import com.revature.dao.UserDAOClass;
+import java.src.main.java.com.revature.beans.User;
+import java.src.main.java.com.revature.dao.UserDAOClass;
 
 
 public class LoginServlet extends HttpServlet{
