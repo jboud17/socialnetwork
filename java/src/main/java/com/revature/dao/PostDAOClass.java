@@ -1,4 +1,4 @@
-package java.src.main.java.com.revature.dao;
+package com.revature.dao;
 
 public class PostDAOClass {
 
