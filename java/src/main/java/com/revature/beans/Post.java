@@ -1,4 +1,4 @@
-package java.src.main.java.com.revature.beans;
+package com.revature.beans;
 
 import java.sql.Blob;
 
