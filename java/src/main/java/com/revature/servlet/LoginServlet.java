@@ -16,7 +16,7 @@ public class LoginServlet extends HttpServlet{
 	 private static final long serialVersionUID = 1L;
 
 	 protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 response.sendRedirect("Login.html");		//	*******************************
+		 //do nothing, we shouldn't be calling this get
 	 }
 
 	 protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -29,11 +29,10 @@ public class LoginServlet extends HttpServlet{
 		 String page = "http://localhost:4200/login";	//	***********************************
 		 
 		 if(username != null && password != null) {
-			 
 			 User flag = a.login(username, password);
-			 
+			 System.out.println(flag.toString());
+
 			 if(flag != null) {
-		   
 				 System.out.println("You have successfully logged in.");
 				 request.setAttribute("username", username);
 				 page = "http://localhost:4200/home";			//	**************************************
@@ -41,6 +40,6 @@ public class LoginServlet extends HttpServlet{
 		 }
 		 
 		 	response.sendRedirect(page);
-		 	request.getRequestDispatcher(page).include(request, response);
+//		 	request.getRequestDispatcher(page).include(request, response);
 	 	}
 }

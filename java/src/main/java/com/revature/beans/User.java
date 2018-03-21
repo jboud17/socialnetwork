@@ -12,11 +12,11 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "User")
+@Table(name = "USERS")
 public class User {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="guiSeq")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="userSeq")
 	@SequenceGenerator(allocationSize=1, name="userSeq", sequenceName="USER_SEQ")
 
 	@Column(name="USER_ID")
@@ -138,5 +138,12 @@ public class User {
 
 	public void setBirthdate(Timestamp birthdate) {
 		this.birthdate = birthdate;
+	}
+
+	@Override
+	public String toString() {
+		return "User [user_id=" + user_id + ", hash=" + hash + ", first_name=" + first_name + ", last_name=" + last_name
+				+ ", username=" + username + ", password=" + password + ", profile_pic=" + profile_pic + ", email="
+				+ email + ", age=" + age + ", birthdate=" + birthdate + "]";
 	}
 }

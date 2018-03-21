@@ -19,7 +19,7 @@ public class UserDAOClass implements UserDAO{
 	
 	public boolean makeUser(int user_id, String first_name, String last_name, String username, String password, Blob profile_pic, String email, int age, Timestamp birthdate) {
 		
-		String hql = "INSERT INTO USERS(:id, :fname, :lname, :uname, :pswd, :pp, :email, :age, :bd)";
+		String hql = "INSERT INTO User(:id, :fname, :lname, :uname, :pswd, :pp, :email, :age, :bd)";
 		
 		Session session = HibernateUtil.getSession();
 		Query query = session.createQuery(hql);
@@ -50,7 +50,7 @@ public class UserDAOClass implements UserDAO{
 	@SuppressWarnings("unused")
 	public User login(String username, String password) {
 			
-		String hql = " FROM USERS"
+		String hql = "from User"
 				+ " WHERE USERNAME = :user AND PASS_WORD = :pswd";
 		
 		Session session = HibernateUtil.getSession();
@@ -61,13 +61,13 @@ public class UserDAOClass implements UserDAO{
 		
 		List<User> list = query.list();
 		
-		User a = list.get(0);
-		session.close();
-		
-		if(list == null) {
-			
+		if(list.isEmpty()) {
+			session.close();
 			return null;
 		}
+		
+		User a = list.get(0);
+		session.close();
 		
 		return a;
 	}
