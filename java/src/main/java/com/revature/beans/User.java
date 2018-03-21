@@ -139,4 +139,11 @@ public class User {
 	public void setBirthdate(Timestamp birthdate) {
 		this.birthdate = birthdate;
 	}
+
+	@Override
+	public String toString() {
+		return "User [user_id=" + user_id + ", hash=" + hash + ", first_name=" + first_name + ", last_name=" + last_name
+				+ ", username=" + username + ", password=" + password + ", profile_pic=" + profile_pic + ", email="
+				+ email + ", age=" + age + ", birthdate=" + birthdate + "]";
+	}
 }
