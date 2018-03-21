@@ -17,9 +17,10 @@ public class UserDAOClass implements UserDAO{
 
 	// new user registration  ***************FIX PROFILE PIC AND BIRTHDATE************************
 	
+	@SuppressWarnings("deprecation")
 	public boolean makeUser(int user_id, String first_name, String last_name, String username, String password, Blob profile_pic, String email, int age, Timestamp birthdate) {
 		
-		String hql = "INSERT INTO User(:id, :fname, :lname, :uname, :pswd, :pp, :email, :age, :bd)";
+		String hql = "INSERT INTO User VALUES(:id, :fname, :lname, :uname, :pswd, :pp, :email, :age, :bd)";
 		
 		Session session = HibernateUtil.getSession();
 		Query query = session.createQuery(hql);
@@ -54,7 +55,7 @@ public class UserDAOClass implements UserDAO{
 				+ " WHERE USERNAME = :user AND PASS_WORD = :pswd";
 		
 		Session session = HibernateUtil.getSession();
-		Query query = session.createQuery(hql);
+		Query<User> query = session.createQuery(hql);
 
 		query.setParameter("user", username);
 		query.setParameter("pswd", password);
