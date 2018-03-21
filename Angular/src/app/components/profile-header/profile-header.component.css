@@ -108,3 +108,25 @@ header {
   border: none;
   background: none;
 }
+
+.leftTab {
+  font-size:16px;
+  padding: 10px;
+  color: white;
+}
+
+.leftTab:hover {
+  background-color:#686868;
+  cursor: pointer;
+}
+
+.rightTab {
+  font-size:16px;
+  padding: 10px;
+  color: white;
+}
+
+.rightTab:hover {
+  background-color:#fc7b0a;
+  cursor: pointer;
+}
