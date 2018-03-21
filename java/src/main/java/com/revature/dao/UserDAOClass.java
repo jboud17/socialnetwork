@@ -1,4 +1,4 @@
-package com.revature.dao;
+package java.src.main.java.com.revature.dao;
 
 import java.sql.Blob;
 import java.sql.ResultSet;
@@ -9,9 +9,9 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
-import com.revature.beans.Post;
-import com.revature.beans.User;
-import com.revature.util.HibernateUtil;
+import java.src.main.java.com.revature.beans.Post;
+import java.src.main.java.com.revature.beans.User;
+import java.src.main.java.com.revature.util.HibernateUtil;
 
 public class UserDAOClass implements UserDAO{
 
