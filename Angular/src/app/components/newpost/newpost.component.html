@@ -23,7 +23,8 @@
     <div class="create-post">
       <form action="" enctype="multipart/form-data">
         <div class="form-group">
-          <input type="file" name="postImage">
+          <input name="postImage" type="file" accept="image/*" onchange="loadFile(event)">
+          <img class="img-responsive" id="output"/>
         </div>
         <div class="form-group">
           <textarea class="form-control" name="postSummary" rows="5" placeholder="Enter your post summary here..."></textarea>
