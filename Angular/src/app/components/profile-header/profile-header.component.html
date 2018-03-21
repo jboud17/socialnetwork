@@ -26,8 +26,12 @@
 </header>
 <div class="container-fluid tabStrip">
   <ul class="nav nav-tabs text-center">
-    <li class="col-md-6 grey" (click)="buttonOnClick()"><a><i class="fa fa-truck fa-2x col-sm-12"></i><span class="col-sm-12">Big button 1</span></a></li>
-    <li class="col-md-6 orange"><a href="#"><i class="fa fa-ship fa-2x col-sm-12"></i><span class="col-sm-12">Big button 2</span></a></li>
+    <li class="col-md-6 grey leftTab" (click)="leftTabClick()">
+      {{ leftTabPage }}
+    </li>
+    <li class="col-md-6 orange rightTab" (click)="rightTabClick()">
+      Right Tab
+    </li>
     <!-- <li class="col-sm-3 blue"><a href="#"><i class="fa fa-building fa-2x col-sm-12"></i><span class="col-sm-12">Warehouse</span></a></li>
     <li class="col-sm-3 green"><a href="#"><i class="fa fa-building fa-2x col-sm-12"></i><span class="col-sm-12">Transport</span></a></li> -->
   </ul>

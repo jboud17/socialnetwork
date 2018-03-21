@@ -10,12 +10,18 @@
 </head>
 <body>
   <app-root></app-root>
+  <!-- Script for image preview on create new post -->
   <script>
     var loadFile = function(event) {
       var output = document.getElementById('output');
       output.src = URL.createObjectURL(event.target.files[0]);
       output.setAttribute('style', 'margin-top:10px');
     };
+  </script>
+  <!-- Script for wysidwyg text editor -->
+  <script>
+    var wysiwyg = require('wysiwyg');
+    var editor = wysiwyg(document.querySelector('textarea'));
   </script>
 </body>
 </html>
