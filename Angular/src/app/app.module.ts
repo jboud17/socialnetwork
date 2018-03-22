@@ -42,8 +42,8 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
       {path: 'profile', component: ProfilepageComponent},
       //{path: 'home', component: HomeComponent, canActivate: [LoggedInGuard]},
       //{path: 'profile', component: ProfilepageComponent, canActivate: [LoggedInGuard]},
-      {path: '**', pathMatch: 'full', component: PageNotFoundComponent},
-      {path: '', component: LoginComponent}
+      {path: '', component: LoginComponent},
+      {path: '**', pathMatch: 'full', component: PageNotFoundComponent}
     ])
   ],
   providers: [
