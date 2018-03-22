@@ -1,21 +1,15 @@
-package java.src.main.java.com.revature.servlet;
+package com.revature.servlet;
 
 import java.io.IOException;
 import java.sql.Blob;
 import java.sql.Timestamp;
-import java.src.main.java.com.revature.dao.UserDAOClass;
+import com.revature.dao.UserDAOClass;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-/**
- * Servlet implementation class InsertReimbServlet
- */
-@WebServlet("/RegisterUserServlet")
 public class RegisterUserServlet {
 
 		private static final long serialVersionUID = 1L;
