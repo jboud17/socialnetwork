@@ -12,10 +12,7 @@ import com.revature.beans.Post;
 import com.revature.beans.User;
 import com.revature.util.HibernateUtil;
 
-import java.util.*;
-import javax.mail.*;
-import javax.mail.internet.*;
-import javax.activation.*;
+import javax.mail.Session;
 
 public class UserDAOClass implements UserDAO{
 
@@ -149,7 +146,7 @@ public class UserDAOClass implements UserDAO{
 	
 	public void emailUser(String email, String password) {
 		
-		// Recipient's email ID needs to be mentioned.
+	/*	// Recipient's email ID needs to be mentioned.
 	      String to = email;
 
 	      // Sender's email ID needs to be mentioned
@@ -163,7 +160,7 @@ public class UserDAOClass implements UserDAO{
 
 	      // Setup mail server
 	      properties.setProperty("mail.smtp.host", host);
-
+	      
 	      // Get the default Session object.
 	      Session session = Session.getDefaultInstance(properties);
 
@@ -189,7 +186,7 @@ public class UserDAOClass implements UserDAO{
 	      } catch (MessagingException mex) {
 	         mex.printStackTrace();
 	      }
-	   }	
+	   }	*/
 	}
 	
 	
