@@ -82,9 +82,9 @@ public class UserDAOClass implements UserDAO{
 	
 	// user wants to update their personal details
 	
-	public void updateDetails(int user_id, String first_name, String last_name, String email, Timestamp birthdate) {
+	public void updateDetails(String username, String first_name, String last_name, String email, Timestamp birthdate) {
 		
-		String hql = "UPDATE User SET FIRST_NAME = :fname, LAST_NAME = :lname, EMAIL = :email, BIRTHDATE = :bd WHERE USER_ID = :user_id";
+		String hql = "UPDATE User SET FIRST_NAME = :fname, LAST_NAME = :lname, EMAIL = :email, BIRTHDATE = :bd WHERE USERNAME = :uname";
 		
 		Session session = HibernateUtil.getSession();
 		Query query = session.createQuery(hql);
@@ -216,9 +216,9 @@ public class UserDAOClass implements UserDAO{
 	
 	// user wants to view their own profile
 	
-	public void viewMyProfile(User user) {
+	public User viewMyProfile(String username) {
 		
-		
+		return null;
 	}
 	
 	

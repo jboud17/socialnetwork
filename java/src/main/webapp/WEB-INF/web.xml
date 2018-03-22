@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
   <display-name>SocialMedia</display-name>
-  
   <servlet>
     <servlet-name>AllPostsServlet</servlet-name>
     <servlet-class>com.revature.servlet.AllPostsServlet</servlet-class>
@@ -59,5 +58,15 @@
   <servlet-mapping>
     <servlet-name>ResetUserPasswordServlet</servlet-name>
     <url-pattern>/ResetUserPasswordServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ViewMyProfileServlet</display-name>
+    <servlet-name>ViewMyProfileServlet</servlet-name>
+    <servlet-class>com.revature.servlet.ViewMyProfileServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewMyProfileServlet</servlet-name>
+    <url-pattern>/ViewMyProfileServlet</url-pattern>
   </servlet-mapping>
 </web-app>
