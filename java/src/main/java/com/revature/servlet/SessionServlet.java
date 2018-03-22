@@ -24,6 +24,22 @@ public class SessionServlet extends HttpServlet {
 		if(session!=null){
 			resp.setContentType("application/json");
 			resp.getWriter().write("{\"uid\":\""+session.getAttribute("uid")+"\",");
+			resp.getWriter().write("\"username\":\""+session.getAttribute("username")+"\",");
+			resp.getWriter().write("\"password\":\""+session.getAttribute("password")+"\",");
+			resp.getWriter().write("\"firstname\":\""+session.getAttribute("firstname")+"\",");
+			resp.getWriter().write("\"lastname\":\""+session.getAttribute("lastname")+"\",");
+			if(session.getAttribute("pic") != null) {
+				resp.getWriter().write("\"pic\":\""+session.getAttribute("pic")+"\",");
+			}
+			else if(session.getAttribute("pic") == null) {
+				resp.getWriter().write("\"pic\":null,");
+			}
+			if(session.getAttribute("birthdate") != null) {
+				resp.getWriter().write("\"birthdate\":\""+session.getAttribute("birthdate")+"\"}");
+			}
+			else if(session.getAttribute("birthdate") == null) {
+				resp.getWriter().write("\"birthdate\":null}");
+			}
 		} else {
 			resp.setContentType("application/json");
 			resp.getWriter().write("{\"uid\":null}");

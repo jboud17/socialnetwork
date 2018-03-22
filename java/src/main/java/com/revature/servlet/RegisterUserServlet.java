@@ -34,7 +34,6 @@ public class RegisterUserServlet extends HttpServlet{
 			a.makeUser(user_id, fname, lname, uname, password, pp, email, age, bd);
 			
 			try {
-
 				resp.sendRedirect("http://localhost:4200/home");	//*************************************
 			} catch (Exception e) {
 				e.printStackTrace();
