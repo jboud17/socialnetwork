@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.revature.dao.UserDAOClass;
+
 /**
  * Servlet implementation class ResetUserPasswordServlet
  */
@@ -24,8 +26,19 @@ public class ResetUserPasswordServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		
+		UserDAOClass a = new UserDAOClass();
+		a.resetPassword(username, password);
+		
+		try {
+
+			response.sendRedirect("http://localhost:4200/update");	//*************************************
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
