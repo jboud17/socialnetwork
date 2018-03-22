@@ -11,14 +11,14 @@ public interface UserDAO {
 	
 	public boolean makeUser(int user_id, String first_name, String last_name, String username, String password, Blob profile_pic, String email, int age, Timestamp birthdate);
 	public User login(String username, String password);
-	public void updateDetails(int user_id, String first_name, String last_name, String username, String password, Blob profile_pic, String email, int age, Timestamp birthdate);
-	public void resetPassword(String password);
-	public void emailUser(String password);
-	public void changePic(Blob new_pic);
+	public void updateDetails(int user_id, String first_name, String last_name, String username, Blob profile_pic, String email, int age, Timestamp birthdate);
+	public void resetPassword(String username, String password);
+	public void emailUser(String email, String password);
+	public void changePic(int user_id, Blob new_pic);
 	public boolean createPost(String text);
-	public void viewMyProfile(int user_id);
-	public void viewAProfile(int user_id);
+	public void viewMyProfile(User user);
+	public void viewAProfile(User user);
 	public void viewFeed();
-	public boolean likePost(int post_id);
+	public boolean likePost(Post post);
 	public boolean logout();
 }
