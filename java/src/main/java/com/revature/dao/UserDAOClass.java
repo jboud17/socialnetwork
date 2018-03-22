@@ -53,7 +53,7 @@ public class UserDAOClass implements UserDAO{
 				+ " WHERE USERNAME = :user AND PASS_WORD = :pswd";
 		
 		Session session = HibernateUtil.getSession();
-		Query<User> query = session.createQuery(hql);
+		Query query = session.createQuery(hql);
 
 		query.setParameter("user", username);
 		query.setParameter("pswd", password);
