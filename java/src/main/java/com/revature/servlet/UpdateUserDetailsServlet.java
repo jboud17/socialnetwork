@@ -44,7 +44,7 @@ public class UpdateUserDetailsServlet extends HttpServlet {
 		
 		UserDAOClass a = new UserDAOClass();
 		
-		a.updateDetails(user_id, fname, lname, uname, pp, email, age, bd);
+		a.updateDetails(user_id, fname, lname, email, bd);
 
 		try {
 

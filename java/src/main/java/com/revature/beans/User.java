@@ -1,6 +1,5 @@
 package com.revature.beans;
 
-import java.sql.Blob;
 import java.sql.Timestamp;
 
 import javax.persistence.Column;
@@ -18,11 +17,10 @@ public class User {
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="userSeq")
 	@SequenceGenerator(allocationSize=1, name="userSeq", sequenceName="USER_SEQ")
-
 	@Column(name="USER_ID")
 	int user_id;
 
-	@Column(name="HASH")
+	@Column(name="IMG_HASH")
 	String hash;
 	
 	@Column(name="FIRST_NAME")
@@ -34,17 +32,11 @@ public class User {
 	@Column(name="USERNAME")
     String username;
 	
-	@Column(name="PASS_WORD")
+	@Column(name="PASSWORD")
     String password;
-	
-	@Column(name="PROFILE_PIC")
-    Blob profile_pic; //blob
 	
 	@Column(name="EMAIL")
     String email;
-	
-	@Column(name="AGE")
-    int age;
 	
 	@Column(name="BIRTHDATE")
     Timestamp birthdate; //timestamp
@@ -54,17 +46,15 @@ public class User {
 		// TODO Auto-generated constructor stub
 	}
 
-	public User(int user_id, String first_name, String last_name, String username, String password, Blob profile_pic,
-			String email, int age, Timestamp birthdate) {
+	public User(String first_name, String last_name, String username, String password, String hash,
+			String email, Timestamp birthdate) {
 		super();
-		this.user_id = user_id;
 		this.first_name = first_name;
 		this.last_name = last_name;
 		this.username = username;
 		this.password = password;
-		this.profile_pic = profile_pic;
+		this.hash = hash;
 		this.email = email;
-		this.age = age;
 		this.birthdate = birthdate;
 	}
 
@@ -108,12 +98,12 @@ public class User {
 		this.password = password;
 	}
 
-	public Blob getProfile_pic() {
-		return profile_pic;
+	public String getHash() {
+		return hash;
 	}
 
-	public void setProfile_pic(Blob profile_pic) {
-		this.profile_pic = profile_pic;
+	public void setHash(String hash) {
+		this.hash = hash;
 	}
 
 	public String getEmail() {
@@ -122,14 +112,6 @@ public class User {
 
 	public void setEmail(String email) {
 		this.email = email;
-	}
-
-	public int getAge() {
-		return age;
-	}
-
-	public void setAge(int age) {
-		this.age = age;
 	}
 
 	public Timestamp getBirthdate() {
@@ -143,7 +125,7 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [user_id=" + user_id + ", hash=" + hash + ", first_name=" + first_name + ", last_name=" + last_name
-				+ ", username=" + username + ", password=" + password + ", profile_pic=" + profile_pic + ", email="
-				+ email + ", age=" + age + ", birthdate=" + birthdate + "]";
+				+ ", username=" + username + ", password=" + password + ", email="
+				+ email + ", birthdate=" + birthdate + "]";
 	}
 }

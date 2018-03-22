@@ -31,7 +31,7 @@ public class RegisterUserServlet extends HttpServlet{
 			
 			UserDAOClass a = new UserDAOClass();
 			
-			a.makeUser(user_id, fname, lname, uname, password, pp, email, age, bd);
+			a.makeUser(user_id, fname, lname, uname, password, email, bd);
 			
 			try {
 				resp.sendRedirect("http://localhost:4200/home");	//*************************************
