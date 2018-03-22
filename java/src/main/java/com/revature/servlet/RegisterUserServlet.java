@@ -18,10 +18,6 @@ public class RegisterUserServlet extends HttpServlet{
 	
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		//Set session and transaction objects
 		Session session= HibernateUtil.getSession();
@@ -35,13 +31,17 @@ public class RegisterUserServlet extends HttpServlet{
 		String email = req.getParameter("email");
 		String date = req.getParameter("birthdate");
 		
+		//sysout date
+		System.out.println(date);
+		String[] split = date.split("/");
+		
 		//Create timestamp object
 		Timestamp birthdate = null;
 		
 		//Parse the date
 		try {
-			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-		    Date parsedDate = (Date) dateFormat.parse(date);
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
+		    Date parsedDate = (Date) dateFormat.parse(split[2]+"-"+split[1]+"-"+split[0]+" 10:10:10:100");
 		    birthdate = new Timestamp(parsedDate.getTime());
 		} catch(Exception e) {
 			System.out.println("Date formatting failed");
@@ -51,8 +51,11 @@ public class RegisterUserServlet extends HttpServlet{
 		User user = new User(fname, lname, uname, pword, null, email, birthdate);
 		session.save(user);
 		
-		// transaction commit and session close
+		//Transaction commit and session close
 		tx.commit();
 		session.close();
+		
+		//Redirect back
+		resp.sendRedirect("http://localhost:4200/login");
 	}
 }
