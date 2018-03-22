@@ -82,12 +82,12 @@ public class UserDAOClass implements UserDAO{
 	// user wants to update their personal details
 	
 	public void updateDetails(int userID, String username, String first_name, String last_name, String email, Timestamp birthdate) {
-		String hql = "UPDATE User SET FIRST_NAME = :fname, LAST_NAME = :lname, EMAIL = :email, BIRTHDATE = :bd WHERE USER_ID = :uid";
+		String hql = "UPDATE User SET FIRST_NAME = :fname, LAST_NAME = :lname, EMAIL = :email, BIRTHDATE = :bd WHERE USERNAME = :uname";
 		
 		Session session = HibernateUtil.getSession();
 		Query query = session.createQuery(hql);
 
-		query.setParameter("uid", userID);
+		query.setParameter("uname", username);
 		query.setParameter("fname", first_name);
 		query.setParameter("lname", last_name);
 		query.setParameter("email", email);
@@ -259,14 +259,6 @@ public class UserDAOClass implements UserDAO{
 	// user wants to like a post
 	
 	public boolean likePost(Post post) {
-		
-		return false;
-	}
-	
-	
-	// user wants to logout
-	
-	public boolean logout() {
 		
 		return false;
 	}
