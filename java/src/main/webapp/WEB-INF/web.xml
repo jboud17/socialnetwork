@@ -77,4 +77,14 @@
     <servlet-name>ViewMyProfileServlet</servlet-name>
     <url-pattern>/ViewMyProfileServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ViewAProfileServlet</display-name>
+    <servlet-name>ViewAProfileServlet</servlet-name>
+    <servlet-class>com.revature.servlet.ViewAProfileServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewAProfileServlet</servlet-name>
+    <url-pattern>/ViewAProfileServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

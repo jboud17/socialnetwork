@@ -15,23 +15,22 @@ import com.revature.dao.PostDAOClass;
 import com.revature.dao.UserDAOClass;
 
 /**
- * Servlet implementation class ViewMyProfileServlet
+ * Servlet implementation class ViewAProfileServlet
  */
-public class ViewMyProfileServlet extends HttpServlet {
-
+public class ViewAProfileServlet extends HttpServlet {
+	
 	private static final long serialVersionUID = 1L;
        
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		String username = request.getParameter("username");
-		String id = request.getParameter("user_id");
-		int user_id = Integer.parseInt(id);
+		
+		String fname = request.getParameter("first_name");
+		String lname = request.getParameter("last_name");
 		
 		UserDAOClass user = new UserDAOClass();
-		User a = user.viewMyProfile(username);
+		User a = user.viewAProfile(fname, lname);
 		
 		request.setAttribute("first_name", a.getFirst_name());
 		request.setAttribute("last_name", a.getLast_name());
@@ -42,10 +41,10 @@ public class ViewMyProfileServlet extends HttpServlet {
 		
 		
 		PostDAOClass post = new PostDAOClass();
-		List<Post> posts = post.getPostsByUserID(user_id);
+		List<Post> posts = post.getPostsByUserID(a.getUser_id());
 		
 		request.setAttribute("listOfPosts", posts);
-		response.sendRedirect("http://localhost:4200/userpage");		//*******************************
+		response.sendRedirect("http://localhost:4200/someonespage");		//**********************************
 	}
 
 	/**

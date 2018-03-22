@@ -16,7 +16,7 @@ public interface UserDAO {
 	public void emailUser(String email, String password);
 	public void changePic(int user_id, Blob new_pic);
 	public User viewMyProfile(String username);
-	public void viewAProfile(User user);
+	public User viewAProfile(String fname, String lname);
 	public void viewFeed();
 	public boolean likePost(Post post);
 	public boolean logout();

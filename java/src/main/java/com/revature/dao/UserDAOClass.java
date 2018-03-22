@@ -133,9 +133,12 @@ public class UserDAOClass implements UserDAO{
 			Query query2 = session.createQuery(hql);
 
 			query2.setParameter("uname", username);
+			
 			List<String> email_list = query2.list();
 			String email = email_list.get(0);
+			System.out.println("This is before we email user.");
 			emailUser(email, password);
+			System.out.println("This is after we email user.");
 		}
 		session.close();
 	}
@@ -215,15 +218,30 @@ public class UserDAOClass implements UserDAO{
 	
 	public User viewMyProfile(String username) {
 		
+		String hql = "FROM User WHERE USERNAME = :uname";
+
+		Session session = HibernateUtil.getSession();
+		Query query = session.createQuery(hql);
+
+		query.setParameter("uname", username);
+
 		return null;
 	}
 	
 	
 	// user wants to checkout another user's profile
 	
-	public void viewAProfile(User user) {
+	public User viewAProfile(String fname, String lname) {
+
+		String hql = "FROM User WHERE FIRST_NAME = :fname AND LAST_NAME = :lname";
+
+		Session session = HibernateUtil.getSession();
+		Query query = session.createQuery(hql);
+
+		query.setParameter("fname", fname);
+		query.setParameter("lname", lname);
 		
-		
+		return null;
 	}
 	
 	
@@ -231,7 +249,11 @@ public class UserDAOClass implements UserDAO{
 	
 	public void viewFeed() {
 		
-		
+		String hql = "SELECT POST_TEXT FROM Post";
+
+		Session session = HibernateUtil.getSession();
+		Query query = session.createQuery(hql);
+
 	}
 	
 	
