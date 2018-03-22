@@ -65,12 +65,14 @@ public class UserDAOClass implements UserDAO{
 		
 		if(list.isEmpty()) {
 			
-			System.out.println("User was not able to login.");
+			System.out.println("Error. User was not able to login.");
 			session.close();
 			return null;
 		}
 		
 		User a = list.get(0);
+
+		System.out.println("User is logged in.");
 		session.close();
 		
 		return a;
@@ -177,9 +179,31 @@ public class UserDAOClass implements UserDAO{
 	
 	// user wants to create a post
 	
-	public boolean createPost(String text) {
+	public boolean createPost(int post_id, String hash, String user_text, Blob profile_pic, int user_id) {
 		
-		return false;
+		String hql = "INSERT INTO Post VALUES(:id, :hash, :text, :pic, :u_id)";
+		
+		Session session = HibernateUtil.getSession();
+		Query query = session.createQuery(hql);
+		
+		query.setParameter("id", post_id);
+		query.setParameter("hash", hash);
+		query.setParameter("text", user_text);
+		query.setParameter("pic", profile_pic);
+		query.setParameter("u_id", user_id);
+		
+		
+		int result = query.executeUpdate();
+		session.close();
+		
+		if(result == 0) {
+			
+			System.out.println("Error. Was not able to create post.");
+			return false;
+		}
+		
+		System.out.println("Post was created successfully.");
+		return true;
 	}
 	
 	
