@@ -81,22 +81,21 @@ public class UserDAOClass implements UserDAO{
 	
 	// user wants to update their personal details
 	
-	public void updateDetails(String username, String first_name, String last_name, String email, Timestamp birthdate) {
-		
-		String hql = "UPDATE User SET FIRST_NAME = :fname, LAST_NAME = :lname, EMAIL = :email, BIRTHDATE = :bd WHERE USERNAME = :uname";
+	public void updateDetails(int userID, String username, String first_name, String last_name, String email, Timestamp birthdate) {
+		String hql = "UPDATE User SET FIRST_NAME = :fname, LAST_NAME = :lname, EMAIL = :email, BIRTHDATE = :bd WHERE USER_ID = :uid";
 		
 		Session session = HibernateUtil.getSession();
 		Query query = session.createQuery(hql);
 
+		query.setParameter("uid", userID);
 		query.setParameter("fname", first_name);
 		query.setParameter("lname", last_name);
 		query.setParameter("email", email);
-		query.setParameter("bd", null);
+		query.setParameter("bd", birthdate);
 		
 		int result = query.executeUpdate();
 		
 		if(result == 0) {
-			
 			System.out.println("Update failed.");
 			return;
 		}else

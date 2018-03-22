@@ -58,6 +58,14 @@
     <url-pattern>/session</url-pattern>
   </servlet-mapping>
   <servlet>
+    <servlet-name>NewPostServlet</servlet-name>
+    <servlet-class>com.revature.servlet.NewPostServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>NewPostServlet</servlet-name>
+    <url-pattern>/newPost</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <description></description>
     <display-name>ResetUserPasswordServlet</display-name>
     <servlet-name>ResetUserPasswordServlet</servlet-name>
