@@ -32,7 +32,7 @@ public class LoginServlet extends HttpServlet{
 		 
 		 if(username != null && password != null) {
 			 User flag = a.login(username, password);
-			 System.out.println(flag.toString());
+//			 System.out.println(flag.toString());
 
 			 if(flag != null) {
 				 session.setAttribute("uid", flag.getUser_id());
