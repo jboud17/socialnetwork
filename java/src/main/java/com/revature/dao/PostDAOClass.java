@@ -8,7 +8,7 @@ import org.hibernate.Session;
 import com.revature.beans.Post;
 import com.revature.util.HibernateUtil;
 
-public class PostDAOClass {
+public class PostDAOClass implements PostDAO{
 
 	// get all users posts
 	
