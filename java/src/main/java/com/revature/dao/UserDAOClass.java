@@ -34,6 +34,7 @@ public class UserDAOClass implements UserDAO{
 		query.setParameter("bd", null);
 		
 		int result = query.executeUpdate();
+		session.close();
 		
 		if(result == 0) {
 			
@@ -74,9 +75,25 @@ public class UserDAOClass implements UserDAO{
 	
 	// user wants to update their personal details
 	
-	public void updateDetails() {
+	public void updateDetails(int user_id, String first_name, String last_name, String username, String password, Blob profile_pic, String email, int age, Timestamp birthdate) {
 		
+		String hql = "UPDATE User SET FIRST_NAME = :fname, LAST_NAME = :lname, USERNAME = :uname, PASS_WORD = :pswd, PROFILE_PIC = :pp, EMAIL = :email, AGE = :age, BIRTHDATE = :bd WHERE USER_ID = :user_id";
 		
+		Session session = HibernateUtil.getSession();
+		Query query = session.createQuery(hql);
+
+		query.setParameter("user_id", user_id);
+		query.setParameter("fname", first_name);
+		query.setParameter("lname", last_name);
+		query.setParameter("uname", username);
+		query.setParameter("pswd", password);
+		query.setParameter("pp", null);
+		query.setParameter("email", email);
+		query.setParameter("age", age);
+		query.setParameter("bd", null);
+		
+		query.executeUpdate();
+		session.close();
 	}
 	
 	

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
   <display-name>SocialMedia</display-name>
-  
   <servlet>
     <servlet-name>AllPostsServlet</servlet-name>
     <servlet-class>com.revature.servlet.AllPostsServlet</servlet-class>
@@ -10,7 +9,6 @@
     <servlet-name>AllPostsServlet</servlet-name>
     <url-pattern>/allposts</url-pattern>
   </servlet-mapping>
-  
   <servlet>
     <servlet-name>LoginServlet</servlet-name>
     <servlet-class>com.revature.servlet.LoginServlet</servlet-class>
@@ -19,7 +17,6 @@
     <servlet-name>LoginServlet</servlet-name>
     <url-pattern>/login</url-pattern>
   </servlet-mapping>
-
   <servlet>
     <servlet-name>RegisterUserServlet</servlet-name>
     <servlet-class>com.revature.servlet.RegisterUserServlet</servlet-class>
@@ -27,5 +24,15 @@
   <servlet-mapping>
     <servlet-name>RegisterUserServlet</servlet-name>
     <url-pattern>/registerUser</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpdateUserDetailsServlet</display-name>
+    <servlet-name>UpdateUserDetailsServlet</servlet-name>
+    <servlet-class>com.revature.servlet.UpdateUserDetailsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateUserDetailsServlet</servlet-name>
+    <url-pattern>/UpdateUserDetailsServlet</url-pattern>
   </servlet-mapping>
 </web-app>
