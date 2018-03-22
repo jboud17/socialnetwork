@@ -11,7 +11,7 @@ public interface UserDAO {
 	
 	public boolean makeUser(int user_id, String first_name, String last_name, String username, String password, Blob profile_pic, String email, int age, Timestamp birthdate);
 	public User login(String username, String password);
-	public void updateDetails();
+	public void updateDetails(int user_id, String first_name, String last_name, String username, String password, Blob profile_pic, String email, int age, Timestamp birthdate);
 	public void resetPassword(String password);
 	public boolean changePic();
 	public boolean createPost(String text);
