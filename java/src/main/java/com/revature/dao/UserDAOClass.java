@@ -141,4 +141,5 @@ public class UserDAOClass implements UserDAO{
 	public boolean logout() {
 		
 		return false;
-	}}
+	}
+}
