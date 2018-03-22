@@ -1,5 +1,6 @@
 package com.revature.dao;
 
+import java.sql.Blob;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -44,4 +45,33 @@ public class PostDAOClass implements PostDAO{
 		
 		return query.list();
 	}
+	
+	// user wants to create a post
+	
+	public boolean createPost(int post_id, String img_hash, String user_text, int user_id) {
+		
+		String hql = "INSERT INTO Post VALUES(:id, :hash, :text, :u_id)";
+		
+		Session session = HibernateUtil.getSession();
+		Query query = session.createQuery(hql);
+		
+		query.setParameter("id", post_id);
+		query.setParameter("hash", img_hash);
+		query.setParameter("text", user_text);
+		query.setParameter("u_id", user_id);
+		
+		
+		int result = query.executeUpdate();
+		session.close();
+		
+		if(result == 0) {
+			
+			System.out.println("Error. Was not able to create post.");
+			return false;
+		}
+		
+		System.out.println("Post was created successfully.");
+		return true;
+	}
+
 }

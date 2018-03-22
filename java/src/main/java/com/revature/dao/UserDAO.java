@@ -15,7 +15,6 @@ public interface UserDAO {
 	public void resetPassword(String username, String password);
 	public void emailUser(String email, String password);
 	public void changePic(int user_id, Blob new_pic);
-	public boolean createPost(String text);
 	public void viewMyProfile(User user);
 	public void viewAProfile(User user);
 	public void viewFeed();

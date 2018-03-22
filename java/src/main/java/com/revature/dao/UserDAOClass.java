@@ -175,37 +175,7 @@ public class UserDAOClass implements UserDAO{
 		
 		System.out.println("The pic has been changed");
 	}
-	
-	
-	// user wants to create a post
-	
-	public boolean createPost(int post_id, String hash, String user_text, Blob profile_pic, int user_id) {
 		
-		String hql = "INSERT INTO Post VALUES(:id, :hash, :text, :pic, :u_id)";
-		
-		Session session = HibernateUtil.getSession();
-		Query query = session.createQuery(hql);
-		
-		query.setParameter("id", post_id);
-		query.setParameter("hash", hash);
-		query.setParameter("text", user_text);
-		query.setParameter("pic", profile_pic);
-		query.setParameter("u_id", user_id);
-		
-		
-		int result = query.executeUpdate();
-		session.close();
-		
-		if(result == 0) {
-			
-			System.out.println("Error. Was not able to create post.");
-			return false;
-		}
-		
-		System.out.println("Post was created successfully.");
-		return true;
-	}
-	
 	
 	// user wants to view their own profile
 	

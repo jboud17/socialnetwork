@@ -28,5 +28,13 @@
       <artifactId>log4j</artifactId>
       <version>1.2.17</version>
     </dependency>
+<<<<<<< HEAD
+=======
+	 <dependency>
+	    <groupId>com.revature</groupId>
+	    <artifactId>Driver</artifactId>
+	    <version>1.0</version>
+	</dependency>
+>>>>>>> 6e0385f70c6dc79d53e9482a9c80c11565cd4701
   </dependencies>
 </project>
