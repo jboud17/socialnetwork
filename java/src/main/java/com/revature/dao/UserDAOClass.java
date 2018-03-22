@@ -38,9 +38,11 @@ public class UserDAOClass implements UserDAO{
 		
 		if(result == 0) {
 			
+			System.out.println("Error. Was not able to register user.");
 			return false;
 		}
 		
+		System.out.println("Registered user successfully.");
 		return true;
 	}
 		
@@ -62,6 +64,8 @@ public class UserDAOClass implements UserDAO{
 		List<User> list = query.list();
 		
 		if(list.isEmpty()) {
+			
+			System.out.println("User was not able to login.");
 			session.close();
 			return null;
 		}
@@ -95,9 +99,10 @@ public class UserDAOClass implements UserDAO{
 		
 		if(result == 0) {
 			
-			System.out.println("Update successful.");
+			System.out.println("Update failed.");
+			return;
 		}else
-			System.out.println("Update failed");
+			System.out.println("Update successful");
 		session.close();
 	}
 	
@@ -118,18 +123,55 @@ public class UserDAOClass implements UserDAO{
 		
 		if(result == 0) {
 			
-			System.out.println("Password has been reset");
-		} else
 			System.out.println("Error. Password has not been reset.");
+			return;
+		} else {
+			
+			System.out.println("Password has been reset");
+			
+			hql = "SELECT EMAIL FROM User WHERE USERNAME = :uname";
+
+			session = HibernateUtil.getSession();
+			Query query2 = session.createQuery(hql);
+
+			query2.setParameter("uname", username);
+			List<String> email_list = query2.list();
+			String email = email_list.get(0);
+			emailUser(email, password);
+		}
 		session.close();
+	}
+	
+	
+	// user must be emailed once they reset their password
+	
+	public void emailUser(String email, String password) {
+		
+		
 	}
 	
 	
 	// user wants to put up a profile picture
 	
-	public boolean changePic() {
+	public void changePic(int user_id, Blob new_pic) {
 		
-		return false;
+		String hql = "UPDATE User SET PROFILE_PIC = :np WHERE USER_ID = :id";
+		
+		Session session = HibernateUtil.getSession();
+		Query query = session.createQuery(hql);
+
+		query.setParameter("np", new_pic);
+		query.setParameter("id", user_id);
+
+		int result = query.executeUpdate();
+
+		if(result == 0) {
+			
+			System.out.println("Error. The pic has not been changed");
+			return;
+		}
+		
+		System.out.println("The pic has been changed");
 	}
 	
 	
