@@ -60,7 +60,6 @@ public class PostDAOClass implements PostDAO{
 		query.setParameter("text", user_text);
 		query.setParameter("u_id", user_id);
 		
-		
 		int result = query.executeUpdate();
 		session.close();
 		

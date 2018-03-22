@@ -16,9 +16,9 @@ public class UserDAOClass implements UserDAO{
 	// new user registration  ***************FIX PROFILE PIC AND BIRTHDATE************************
 	
 	@SuppressWarnings("deprecation")
-	public boolean makeUser(int user_id, String first_name, String last_name, String username, String password, Blob profile_pic, String email, int age, Timestamp birthdate) {
+	public boolean makeUser(int user_id, String first_name, String last_name, String username, String password, String email, Timestamp birthdate) {
 		
-		String hql = "INSERT INTO User VALUES(:id, :fname, :lname, :uname, :pswd, :pp, :email, :age, :bd)";
+		String hql = "INSERT INTO User VALUES(:id, :fname, :lname, :uname, :pswd, :email, :bd)";
 		
 		Session session = HibernateUtil.getSession();
 		Query query = session.createQuery(hql);
@@ -28,9 +28,7 @@ public class UserDAOClass implements UserDAO{
 		query.setParameter("lname", last_name);
 		query.setParameter("uname", username);
 		query.setParameter("pswd", password);
-		query.setParameter("pp", null);
 		query.setParameter("email", email);
-		query.setParameter("age", age);
 		query.setParameter("bd", null);
 		
 		int result = query.executeUpdate();
@@ -81,20 +79,16 @@ public class UserDAOClass implements UserDAO{
 	
 	// user wants to update their personal details
 	
-	public void updateDetails(int user_id, String first_name, String last_name, String username, Blob profile_pic, String email, int age, Timestamp birthdate) {
+	public void updateDetails(int user_id, String first_name, String last_name, String email, Timestamp birthdate) {
 		
-		String hql = "UPDATE User SET FIRST_NAME = :fname, LAST_NAME = :lname, USERNAME = :uname, PROFILE_PIC = :pp, EMAIL = :email, AGE = :age, BIRTHDATE = :bd WHERE USER_ID = :user_id";
+		String hql = "UPDATE User SET FIRST_NAME = :fname, LAST_NAME = :lname, EMAIL = :email, BIRTHDATE = :bd WHERE USER_ID = :user_id";
 		
 		Session session = HibernateUtil.getSession();
 		Query query = session.createQuery(hql);
 
-		query.setParameter("user_id", user_id);
 		query.setParameter("fname", first_name);
 		query.setParameter("lname", last_name);
-		query.setParameter("uname", username);
-		query.setParameter("pp", null);
 		query.setParameter("email", email);
-		query.setParameter("age", age);
 		query.setParameter("bd", null);
 		
 		int result = query.executeUpdate();
@@ -157,7 +151,7 @@ public class UserDAOClass implements UserDAO{
 	
 	public void changePic(int user_id, Blob new_pic) {
 		
-		String hql = "UPDATE User SET PROFILE_PIC = :np WHERE USER_ID = :id";
+/*		String hql = "UPDATE User SET PROFILE_PIC = :np WHERE USER_ID = :id";
 		
 		Session session = HibernateUtil.getSession();
 		Query query = session.createQuery(hql);
@@ -173,7 +167,7 @@ public class UserDAOClass implements UserDAO{
 			return;
 		}
 		
-		System.out.println("The pic has been changed");
+		System.out.println("The pic has been changed");*/
 	}
 		
 	
