@@ -12,10 +12,6 @@ import com.revature.beans.Post;
 import com.revature.beans.User;
 import com.revature.util.HibernateUtil;
 
-import java.util.*;
-import javax.mail.*;
-import javax.mail.internet.*;
-import javax.activation.*;
 
 public class UserDAOClass implements UserDAO{
 
@@ -189,9 +185,7 @@ public class UserDAOClass implements UserDAO{
 //		} catch (MessagingException mex) {
 //		    mex.printStackTrace();
 //		}
-	}	
-	
-	
+	}		
 	
 	// user wants to put up a profile picture
 	
