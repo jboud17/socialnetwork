@@ -12,6 +12,7 @@ import { UpdateprofileComponent } from './components/updateprofile/updateprofile
 import { ProfilepageComponent } from './components/profile-page/profilepage.component';
 import { HomeComponent } from './components/home-page/home.component';
 import { ProfileHeaderComponent } from './components/profile-header/profile-header.component';
+import { RegisterComponent } from './components/register-page/register.component';
 import { LoggedInGuard } from './logged-in-guard/logged-in.guard';
 import { CurrentUserService } from './services/current-user.service';
 
@@ -26,12 +27,14 @@ import { CurrentUserService } from './services/current-user.service';
     UpdateprofileComponent,
     ProfilepageComponent,
     HomeComponent,
-    ProfileHeaderComponent
+    ProfileHeaderComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot([
+      {path: 'register', component: RegisterComponent},
       {path: 'login', component: LoginComponent},
       {path: 'home', component: HomeComponent},
       {path: 'profile', component: ProfilepageComponent},
