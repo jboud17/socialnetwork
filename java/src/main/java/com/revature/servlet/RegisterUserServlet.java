@@ -23,10 +23,8 @@ public class RegisterUserServlet extends HttpServlet{
 			String lname = req.getParameter("last_name");
 			String uname = req.getParameter("username");
 			String password = req.getParameter("pswd");
-			Blob pp = null;
 			String email = req.getParameter("email");
-			String age_s = req.getParameter("age");
-			int age = Integer.parseInt(age_s);
+
 			Timestamp bd = null;
 			
 			UserDAOClass a = new UserDAOClass();
