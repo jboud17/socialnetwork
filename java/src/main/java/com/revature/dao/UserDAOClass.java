@@ -104,14 +104,14 @@ public class UserDAOClass implements UserDAO{
 	
 	// user wants to reset their password			***********CALL EMAIL METHOD AND EMAIL ALERT TO USER*************
 	
-	public void resetPassword(int user_id, String password) {
+	public void resetPassword(String username, String password) {
 		
-		String hql = "UPDATE User SET PASS_WORD = :pswd WHERE USER_ID = :id";
+		String hql = "UPDATE User SET PASS_WORD = :pswd WHERE USERNAME = :uname";
 		
 		Session session = HibernateUtil.getSession();
 		Query query = session.createQuery(hql);
 
-		query.setParameter("id", user_id);
+		query.setParameter("uname", username);
 		query.setParameter("pswd", password);
 
 		int result = query.executeUpdate();
