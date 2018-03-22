@@ -15,6 +15,7 @@ import { ProfileHeaderComponent } from './components/profile-header/profile-head
 import { RegisterComponent } from './components/register-page/register.component';
 import { LoggedInGuard } from './logged-in-guard/logged-in.guard';
 import { CurrentUserService } from './services/current-user.service';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { CurrentUserService } from './services/current-user.service';
     ProfilepageComponent,
     HomeComponent,
     ProfileHeaderComponent,
-    RegisterComponent
+    RegisterComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +42,7 @@ import { CurrentUserService } from './services/current-user.service';
       {path: 'profile', component: ProfilepageComponent},
       //{path: 'home', component: HomeComponent, canActivate: [LoggedInGuard]},
       //{path: 'profile', component: ProfilepageComponent, canActivate: [LoggedInGuard]},
-      {path: '**', pathMatch: 'full', redirectTo:'login'},
+      {path: '**', pathMatch: 'full', component: PageNotFoundComponent},
       {path: '', component: LoginComponent}
     ])
   ],
