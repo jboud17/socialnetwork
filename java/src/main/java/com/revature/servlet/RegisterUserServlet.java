@@ -33,18 +33,29 @@ public class RegisterUserServlet extends HttpServlet{
 		
 		//sysout date
 		System.out.println(date);
-		String[] split = date.split("/");
+		
+		//split the date
+		String[] split = date.split("-");
+		int[] splitInNums = new int[3];
+		int x = 0;
+		for(String s:split) {
+			splitInNums[x] = Integer.parseInt(s);
+			x++;
+		}
 		
 		//Create timestamp object
 		Timestamp birthdate = null;
 		
 		//Parse the date
 		try {
-			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss.SSS");
-		    Date parsedDate = (Date) dateFormat.parse(split[2]+"-"+split[1]+"-"+split[0]+" 10:10:10:100");
+			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss:SSS");
+		    @SuppressWarnings("deprecation")
+			Date parsedDate = new Date(splitInNums[0], splitInNums[1], splitInNums[2]);
 		    birthdate = new Timestamp(parsedDate.getTime());
 		} catch(Exception e) {
-			System.out.println("Date formatting failed");
+			System.out.println("date format failed");
+			System.out.println("Attempted date: " + date);
+			e.printStackTrace();
 		}
 
 		//Create new user and save in db
