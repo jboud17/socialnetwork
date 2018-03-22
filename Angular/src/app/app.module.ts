@@ -12,6 +12,7 @@ import { UpdateprofileComponent } from './components/updateprofile/updateprofile
 import { ProfilepageComponent } from './components/profile-page/profilepage.component';
 import { HomeComponent } from './components/home-page/home.component';
 import { ProfileHeaderComponent } from './components/profile-header/profile-header.component';
+import { RegisterComponent } from './components/register-page/register.component';
 
 
 @NgModule({
@@ -24,12 +25,14 @@ import { ProfileHeaderComponent } from './components/profile-header/profile-head
     UpdateprofileComponent,
     ProfilepageComponent,
     HomeComponent,
-    ProfileHeaderComponent
+    ProfileHeaderComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot([
+      {path: 'register', component: RegisterComponent},
       {path: 'login', component: LoginComponent},
       {path: 'home', component: HomeComponent},
       {path: 'profile', component: ProfilepageComponent},
