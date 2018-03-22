@@ -12,10 +12,6 @@ import com.revature.beans.Post;
 import com.revature.beans.User;
 import com.revature.util.HibernateUtil;
 
-import java.util.*;
-import javax.mail.*;
-import javax.mail.internet.*;
-import javax.activation.*;
 
 public class UserDAOClass implements UserDAO{
 
@@ -85,9 +81,9 @@ public class UserDAOClass implements UserDAO{
 	
 	// user wants to update their personal details
 	
-	public void updateDetails(int user_id, String first_name, String last_name, String email, Timestamp birthdate) {
+	public void updateDetails(String username, String first_name, String last_name, String email, Timestamp birthdate) {
 		
-		String hql = "UPDATE User SET FIRST_NAME = :fname, LAST_NAME = :lname, EMAIL = :email, BIRTHDATE = :bd WHERE USER_ID = :user_id";
+		String hql = "UPDATE User SET FIRST_NAME = :fname, LAST_NAME = :lname, EMAIL = :email, BIRTHDATE = :bd WHERE USERNAME = :uname";
 		
 		Session session = HibernateUtil.getSession();
 		Query query = session.createQuery(hql);
@@ -150,48 +146,46 @@ public class UserDAOClass implements UserDAO{
 	public void emailUser(String email, String password) {
 		
 		// Recipient's email ID needs to be mentioned.
-	      String to = email;
+		String to = email;
 
-	      // Sender's email ID needs to be mentioned
-	      String from = "NigelTheBird@gmail.com";
-
-	      // Assuming you are sending email from localhost
-	      String host = "localhost";
-
-	      // Get system properties
-	      Properties properties = System.getProperties();
-
-	      // Setup mail server
-	      properties.setProperty("mail.smtp.host", host);
-
-	      // Get the default Session object.
-	      Session session = Session.getDefaultInstance(properties);
-
-	      try {
-	         // Create a default MimeMessage object.
-	         MimeMessage message = new MimeMessage(session);
-
-	         // Set From: header field of the header.
-	         message.setFrom(new InternetAddress(from));
-
-	         // Set To: header field of the header.
-	         message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-
-	         // Set Subject: header field
-	         message.setSubject("This is the Subject Line!");
-
-	         // Now set the actual message
-	         message.setText("This is actual message");
-
-	         // Send message
-	         Transport.send(message);
-	         System.out.println("Sent message successfully....");
-	      } catch (MessagingException mex) {
-	         mex.printStackTrace();
-	      }
-	   }	
-	}
+		// Sender's email ID needs to be mentioned
+		String from = "NigelTheBird@gmail.com";
+		
+		// Assuming you are sending email from localhost
+		String host = "localhost";
+		
+		// Get system properties
+		Properties properties = System.getProperties();
+		
+		// Setup mail server
+		properties.setProperty("mail.smtp.host", host);
+		
+		// Get the default Session object.
+//		Session session = Session.getDefaultInstance(properties);
 	
+//		try {
+			// Create a default MimeMessage object.
+//		    MimeMessage message = new MimeMessage(session);
+		
+		    // Set From: header field of the header.
+//		    message.setFrom(new InternetAddress(from));
+		
+		    // Set To: header field of the header.
+//		    message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+		
+		    // Set Subject: header field
+//		    message.setSubject("This is the Subject Line!");
+		
+		    // Now set the actual message
+//		    message.setText("This is actual message");
+		
+		    // Send message
+//		    Transport.send(message);
+		    System.out.println("Sent message successfully....");
+//		} catch (MessagingException mex) {
+//		    mex.printStackTrace();
+//		}
+	}		
 	
 	// user wants to put up a profile picture
 	
@@ -219,9 +213,9 @@ public class UserDAOClass implements UserDAO{
 	
 	// user wants to view their own profile
 	
-	public void viewMyProfile(User user) {
+	public User viewMyProfile(String username) {
 		
-		
+		return null;
 	}
 	
 	

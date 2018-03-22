@@ -30,9 +30,7 @@ public class UpdateUserDetailsServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		String id = req.getParameter("id");
-		int user_id = Integer.parseInt(id);
-
+		String username = req.getParameter("uname");
 		String fname = req.getParameter("first_name");
 		String lname = req.getParameter("last_name");
 		String uname = req.getParameter("username");
@@ -41,7 +39,7 @@ public class UpdateUserDetailsServlet extends HttpServlet {
 		
 		UserDAOClass a = new UserDAOClass();
 		
-		a.updateDetails(user_id, fname, lname, email, bd);
+		a.updateDetails(username, fname, lname, email, bd);
 
 		try {
 

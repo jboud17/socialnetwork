@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
+
 import com.revature.beans.User;
 import com.revature.util.HibernateUtil;
 import javax.servlet.ServletException;
@@ -37,10 +40,8 @@ public class RegisterUserServlet extends HttpServlet{
 		//split the date
 		String[] split = date.split("-");
 		int[] splitInNums = new int[3];
-		int x = 0;
-		for(String s:split) {
-			splitInNums[x] = Integer.parseInt(s);
-			x++;
+		for(int i=0; i<3; i++) {
+			splitInNums[i] = Integer.parseInt(split[i]);
 		}
 		
 		//Create timestamp object
@@ -49,9 +50,9 @@ public class RegisterUserServlet extends HttpServlet{
 		//Parse the date
 		try {
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss:SSS");
-		    @SuppressWarnings("deprecation")
-			Date parsedDate = new Date(splitInNums[0], splitInNums[1], splitInNums[2]);
-		    birthdate = new Timestamp(parsedDate.getTime());
+			Calendar parsedDate = new GregorianCalendar(splitInNums[0], splitInNums[1], splitInNums[2]);
+		    birthdate = new Timestamp(parsedDate.getTimeInMillis());
+		    System.out.println(birthdate);
 		} catch(Exception e) {
 			System.out.println("date format failed");
 			System.out.println("Attempted date: " + date);
