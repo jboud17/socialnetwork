@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
   <display-name>SocialMedia</display-name>
+  
   <servlet>
     <servlet-name>AllPostsServlet</servlet-name>
     <servlet-class>com.revature.servlet.AllPostsServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>AllPostsServlet</servlet-name>
-    <url-pattern>/allposts</url-pattern>
+    <url-pattern>/allPosts</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>LoginServlet</servlet-name>
@@ -26,13 +27,27 @@
     <url-pattern>/registerUser</url-pattern>
   </servlet-mapping>
   <servlet>
-    <description></description>
-    <display-name>UpdateUserDetailsServlet</display-name>
     <servlet-name>UpdateUserDetailsServlet</servlet-name>
     <servlet-class>com.revature.servlet.UpdateUserDetailsServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>UpdateUserDetailsServlet</servlet-name>
-    <url-pattern>/UpdateUserDetailsServlet</url-pattern>
+    <url-pattern>/updateUser</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>SingleUserPostsServlet</servlet-name>
+    <servlet-class>com.revature.servlet.SingleUserPostsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SingleUserPostsServlet</servlet-name>
+    <url-pattern>/singleUserPosts</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>SessionServlet</servlet-name>
+    <servlet-class>com.revature.servlet.SessionServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SessionServlet</servlet-name>
+    <url-pattern>/session</url-pattern>
   </servlet-mapping>
 </web-app>

@@ -6,6 +6,7 @@ import javax.servlet.*;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.revature.beans.User;
 import com.revature.dao.UserDAOClass;
@@ -20,7 +21,8 @@ public class LoginServlet extends HttpServlet{
 	 }
 
 	 protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		 HttpSession session = request.getSession();
+			
 		 String username = request.getParameter("username");
 		 String password = request.getParameter("password");
 		 UserDAOClass a = new UserDAOClass();
@@ -33,6 +35,7 @@ public class LoginServlet extends HttpServlet{
 			 System.out.println(flag.toString());
 
 			 if(flag != null) {
+				 session.setAttribute("uid", flag.getUser_id());
 				 System.out.println("You have successfully logged in.");
 				 request.setAttribute("username", username);
 				 page = "http://localhost:4200/home";			//	**************************************
