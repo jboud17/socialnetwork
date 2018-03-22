@@ -223,8 +223,21 @@ public class UserDAOClass implements UserDAO{
 		Query query = session.createQuery(hql);
 
 		query.setParameter("uname", username);
+		List<User> list = query.list();
+		
+		if(list.isEmpty()) {
+			
+			System.out.println("Error. User was not able to view their profile.");
+			session.close();
+			return null;
+		}
+		
+		User a = list.get(0);
 
-		return null;
+		System.out.println("User is logged in.");
+		session.close();
+		
+		return a;
 	}
 	
 	
@@ -240,7 +253,21 @@ public class UserDAOClass implements UserDAO{
 		query.setParameter("fname", fname);
 		query.setParameter("lname", lname);
 		
-		return null;
+		List<User> list = query.list();
+		
+		if(list.isEmpty()) {
+			
+			System.out.println("Error. User was not able to login.");
+			session.close();
+			return null;
+		}
+		
+		User a = list.get(0);
+
+		System.out.println("User is logged in.");
+		session.close();
+		
+		return a;
 	}
 	
 	
