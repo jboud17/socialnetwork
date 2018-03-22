@@ -35,4 +35,14 @@
     <servlet-name>UpdateUserDetailsServlet</servlet-name>
     <url-pattern>/UpdateUserDetailsServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ResetUserPasswordServlet</display-name>
+    <servlet-name>ResetUserPasswordServlet</servlet-name>
+    <servlet-class>com.revature.servlet.ResetUserPasswordServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ResetUserPasswordServlet</servlet-name>
+    <url-pattern>/ResetUserPasswordServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
