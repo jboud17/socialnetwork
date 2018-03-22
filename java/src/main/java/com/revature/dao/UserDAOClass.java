@@ -75,9 +75,9 @@ public class UserDAOClass implements UserDAO{
 	
 	// user wants to update their personal details
 	
-	public void updateDetails(int user_id, String first_name, String last_name, String username, String password, Blob profile_pic, String email, int age, Timestamp birthdate) {
+	public void updateDetails(int user_id, String first_name, String last_name, String username, Blob profile_pic, String email, int age, Timestamp birthdate) {
 		
-		String hql = "UPDATE User SET FIRST_NAME = :fname, LAST_NAME = :lname, USERNAME = :uname, PASS_WORD = :pswd, PROFILE_PIC = :pp, EMAIL = :email, AGE = :age, BIRTHDATE = :bd WHERE USER_ID = :user_id";
+		String hql = "UPDATE User SET FIRST_NAME = :fname, LAST_NAME = :lname, USERNAME = :uname, PROFILE_PIC = :pp, EMAIL = :email, AGE = :age, BIRTHDATE = :bd WHERE USER_ID = :user_id";
 		
 		Session session = HibernateUtil.getSession();
 		Query query = session.createQuery(hql);
@@ -86,22 +86,42 @@ public class UserDAOClass implements UserDAO{
 		query.setParameter("fname", first_name);
 		query.setParameter("lname", last_name);
 		query.setParameter("uname", username);
-		query.setParameter("pswd", password);
 		query.setParameter("pp", null);
 		query.setParameter("email", email);
 		query.setParameter("age", age);
 		query.setParameter("bd", null);
 		
-		query.executeUpdate();
+		int result = query.executeUpdate();
+		
+		if(result == 0) {
+			
+			System.out.println("Update successful.");
+		}else
+			System.out.println("Update failed");
 		session.close();
 	}
 	
 	
-	// user wants to reset their password
+	// user wants to reset their password			***********CALL EMAIL METHOD AND EMAIL ALERT TO USER*************
 	
-	public void resetPassword(String password) {
+	public void resetPassword(int user_id, String password) {
 		
+		String hql = "UPDATE User SET PASS_WORD = :pswd WHERE USER_ID = :id";
 		
+		Session session = HibernateUtil.getSession();
+		Query query = session.createQuery(hql);
+
+		query.setParameter("id", user_id);
+		query.setParameter("pswd", password);
+
+		int result = query.executeUpdate();
+		
+		if(result == 0) {
+			
+			System.out.println("Password has been reset");
+		} else
+			System.out.println("Error. Password has not been reset.");
+		session.close();
 	}
 	
 	
