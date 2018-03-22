@@ -51,7 +51,7 @@ public class UserDAOClass implements UserDAO{
 	public User login(String username, String password) {
 			
 		String hql = "from User"
-				+ " WHERE USERNAME = :user AND PASS_WORD = :pswd";
+				+ " WHERE USERNAME = :user AND PASSWORD = :pswd";
 		
 		Session session = HibernateUtil.getSession();
 		Query query = session.createQuery(hql);
