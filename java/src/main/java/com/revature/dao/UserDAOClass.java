@@ -1,8 +1,6 @@
 package com.revature.dao;
 
 import java.sql.Blob;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -17,9 +15,10 @@ public class UserDAOClass implements UserDAO{
 
 	// new user registration  ***************FIX PROFILE PIC AND BIRTHDATE************************
 	
+	@SuppressWarnings("deprecation")
 	public boolean makeUser(int user_id, String first_name, String last_name, String username, String password, Blob profile_pic, String email, int age, Timestamp birthdate) {
 		
-		String hql = "INSERT INTO User(:id, :fname, :lname, :uname, :pswd, :pp, :email, :age, :bd)";
+		String hql = "INSERT INTO User VALUES(:id, :fname, :lname, :uname, :pswd, :pp, :email, :age, :bd)";
 		
 		Session session = HibernateUtil.getSession();
 		Query query = session.createQuery(hql);
@@ -35,6 +34,7 @@ public class UserDAOClass implements UserDAO{
 		query.setParameter("bd", null);
 		
 		int result = query.executeUpdate();
+		session.close();
 		
 		if(result == 0) {
 			
@@ -75,17 +75,53 @@ public class UserDAOClass implements UserDAO{
 	
 	// user wants to update their personal details
 	
-	public void updateDetails() {
+	public void updateDetails(int user_id, String first_name, String last_name, String username, Blob profile_pic, String email, int age, Timestamp birthdate) {
 		
+		String hql = "UPDATE User SET FIRST_NAME = :fname, LAST_NAME = :lname, USERNAME = :uname, PROFILE_PIC = :pp, EMAIL = :email, AGE = :age, BIRTHDATE = :bd WHERE USER_ID = :user_id";
 		
+		Session session = HibernateUtil.getSession();
+		Query query = session.createQuery(hql);
+
+		query.setParameter("user_id", user_id);
+		query.setParameter("fname", first_name);
+		query.setParameter("lname", last_name);
+		query.setParameter("uname", username);
+		query.setParameter("pp", null);
+		query.setParameter("email", email);
+		query.setParameter("age", age);
+		query.setParameter("bd", null);
+		
+		int result = query.executeUpdate();
+		
+		if(result == 0) {
+			
+			System.out.println("Update successful.");
+		}else
+			System.out.println("Update failed");
+		session.close();
 	}
 	
 	
-	// user wants to reset their password
+	// user wants to reset their password			***********CALL EMAIL METHOD AND EMAIL ALERT TO USER*************
 	
-	public void resetPassword(String password) {
+	public void resetPassword(int user_id, String password) {
 		
+		String hql = "UPDATE User SET PASS_WORD = :pswd WHERE USER_ID = :id";
 		
+		Session session = HibernateUtil.getSession();
+		Query query = session.createQuery(hql);
+
+		query.setParameter("id", user_id);
+		query.setParameter("pswd", password);
+
+		int result = query.executeUpdate();
+		
+		if(result == 0) {
+			
+			System.out.println("Password has been reset");
+		} else
+			System.out.println("Error. Password has not been reset.");
+		session.close();
 	}
 	
 	

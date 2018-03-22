@@ -13,6 +13,8 @@ import { ProfilepageComponent } from './components/profile-page/profilepage.comp
 import { HomeComponent } from './components/home-page/home.component';
 import { ProfileHeaderComponent } from './components/profile-header/profile-header.component';
 import { RegisterComponent } from './components/register-page/register.component';
+import { LoggedInGuard } from './logged-in-guard/logged-in.guard';
+import { CurrentUserService } from './services/current-user.service';
 
 
 @NgModule({
@@ -36,12 +38,16 @@ import { RegisterComponent } from './components/register-page/register.component
       {path: 'login', component: LoginComponent},
       {path: 'home', component: HomeComponent},
       {path: 'profile', component: ProfilepageComponent},
-      //{path: 'reimbursements', component: ReimbursementsAllComponent, canActivate: [LoggedInGuard, ManagerGuard]},
+      //{path: 'home', component: HomeComponent, canActivate: [LoggedInGuard]},
+      //{path: 'profile', component: ProfilepageComponent, canActivate: [LoggedInGuard]},
       {path: '**', pathMatch: 'full', redirectTo:'login'},
       {path: '', component: LoginComponent}
     ])
   ],
-  providers: [],
+  providers: [
+    LoggedInGuard,
+    CurrentUserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,4 +1,7 @@
-*
+/*
+/*/
 !.gitignore
-!Angular
-!java
+!/Angular/
+!/Angular/*
+!/java/
+!/java/*
