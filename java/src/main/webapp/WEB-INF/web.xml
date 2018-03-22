@@ -43,6 +43,14 @@
     <url-pattern>/singleUserPosts</url-pattern>
   </servlet-mapping>
   <servlet>
+    <servlet-name>LogoutServlet</servlet-name>
+    <servlet-class>com.revature.servlet.LogoutServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LogoutServlet</servlet-name>
+    <url-pattern>/logout</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>SessionServlet</servlet-name>
     <servlet-class>com.revature.servlet.SessionServlet</servlet-class>
   </servlet>
