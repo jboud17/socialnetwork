@@ -36,15 +36,12 @@ public class UpdateUserDetailsServlet extends HttpServlet {
 		String fname = req.getParameter("first_name");
 		String lname = req.getParameter("last_name");
 		String uname = req.getParameter("username");
-		Blob pp = null;
 		String email = req.getParameter("email");
-		String age_s = req.getParameter("age");
-		int age = Integer.parseInt(age_s);
 		Timestamp bd = null;
 		
 		UserDAOClass a = new UserDAOClass();
 		
-		a.updateDetails(user_id, fname, lname, uname, pp, email, age, bd);
+		a.updateDetails(user_id, fname, lname, email, bd);
 
 		try {
 
