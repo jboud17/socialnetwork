@@ -1,0 +1,41 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+<header>
+  <div class="container header inner">
+    <nav class="navbar">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand">Profile name</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav navbar-right masthead-nav">
+            <li><a>Personal info 1?</a></li>
+            <li><a>Personal info 2?</a></li>
+          </ul>
+        </div>
+      </div>
+      </nav>
+  </div>
+</header>
+<div class="container-fluid tabStrip">
+  <ul class="nav nav-tabs text-center">
+    <li class="col-sm-4 grey leftTab" (click)="leftTabClick()">
+      {{ leftTabPage }}
+    </li>
+    <li class="col-sm-4 blue middleTab" (click)="middleTabClick()">
+      {{ middleTabPage }}
+    </li>
+    <li class="col-sm-4 orange rightTab" (click)="logout()">
+      Log out
+    </li>
+    <!-- <li class="col-sm-3 blue"><a href="#"><i class="fa fa-building fa-2x col-sm-12"></i><span class="col-sm-12">Warehouse</span></a></li>
+    <li class="col-sm-3 green"><a href="#"><i class="fa fa-building fa-2x col-sm-12"></i><span class="col-sm-12">Transport</span></a></li> -->
+  </ul>
+</div>
