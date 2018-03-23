@@ -16,10 +16,12 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import com.revature.beans.Post;
 import com.revature.util.FrontController;
 import com.revature.util.HibernateUtil;
+import com.revature.util.S3Bucket;
 
 public class NewPostServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -52,19 +54,26 @@ public class NewPostServlet extends HttpServlet {
 			}
 			else {
 				byte[] fileByteArray = result.get();
-				
-//				fileByteArray is the file as bytes, can we upload to S3 from here?
-//				create the hash and save it for the new post
-//				imgHash = //new hash
+				S3Bucket s3 = new S3Bucket();
+				imgHash = s3.uploadToS3(fileByteArray);
 			}
 		}
 		
+		//create post object
 		Post postToInsert = new Post(imgHash, posttext, userID);
 		
+		//instantiate hibernate session and transaction objects 
 		Session hibSession = HibernateUtil.getSession();
+		Transaction tx = hibSession.beginTransaction();
+		
+		//insert new post
 		hibSession.save(postToInsert);
 		
+		//Transaction commit and hibSession close
+		tx.commit();
+		hibSession.close();
+		
 		log.info("User "+userID+" created a new post with text "+posttext);
-		resp.sendRedirect("http://localhost:4200/employeeHome");	
+		resp.sendRedirect("http://localhost:4200/profile");	
 	}
 }

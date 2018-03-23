@@ -18,6 +18,14 @@
     <url-pattern>/login</url-pattern>
   </servlet-mapping>
   <servlet>
+    <servlet-name>LogoutServlet</servlet-name>
+    <servlet-class>com.revature.servlet.LogoutServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LogoutServlet</servlet-name>
+    <url-pattern>/logout</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>RegisterUserServlet</servlet-name>
     <servlet-class>com.revature.servlet.RegisterUserServlet</servlet-class>
   </servlet>
@@ -88,5 +96,15 @@
   <servlet-mapping>
     <servlet-name>EmailUser</servlet-name>
     <url-pattern>/EmailUser</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>NewPostServlet</display-name>
+    <servlet-name>NewPostServlet</servlet-name>
+    <servlet-class>com.revature.servlet.NewPostServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>NewPostServlet</servlet-name>
+    <url-pattern>/NewPostServlet</url-pattern>
   </servlet-mapping>
 </web-app>
