@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.revature.dao.UserDAOClass;
 
@@ -29,11 +30,17 @@ public class UpdateUserDetailsServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		int userID = (Integer) req.getSession().getAttribute("uid");
+		HttpSession hsession = req.getSession();
+		
+		int userID = (Integer) hsession.getAttribute("uid");
 		
 		String fname = req.getParameter("firstname");
 		String lname = req.getParameter("lastname");
 		String email = req.getParameter("email");
+		
+		hsession.setAttribute("firstname", fname);
+		hsession.setAttribute("lastname", lname);
+		hsession.setAttribute("email", email);
 		
 		UserDAOClass userDao = new UserDAOClass();
 		
