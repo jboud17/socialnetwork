@@ -95,4 +95,14 @@
     <servlet-name>ViewAProfileServlet</servlet-name>
     <url-pattern>/ViewAProfileServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ViewFeedServlet</display-name>
+    <servlet-name>ViewFeedServlet</servlet-name>
+    <servlet-class>com.revature.servlet.ViewFeedServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewFeedServlet</servlet-name>
+    <url-pattern>/ViewFeedServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

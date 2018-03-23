@@ -2,6 +2,8 @@ package com.revature.dao;
 
 import java.sql.Blob;
 import java.sql.Timestamp;
+import java.util.List;
+
 import com.revature.beans.Post;
 import com.revature.beans.User;
 
@@ -17,7 +19,7 @@ public interface UserDAO {
 	public void changePic(int user_id, Blob new_pic);
 	public User viewMyProfile(String username);
 	public User viewAProfile(String fname, String lname);
-	public void viewFeed();
+	public List<Post> viewFeed();
 	public boolean likePost(Post post);
 	public boolean logout();
 }

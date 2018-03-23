@@ -97,6 +97,7 @@ public class UserDAOClass implements UserDAO{
 		
 		if(result == 0) {
 			System.out.println("Update failed.");
+			session.close();
 			return;
 		}else
 			System.out.println("Update successful");
@@ -273,13 +274,26 @@ public class UserDAOClass implements UserDAO{
 	
 	// user wants to see everyones posts
 	
-	public void viewFeed() {
+	public List<Post> viewFeed() {
 		
 		String hql = "SELECT POST_TEXT FROM Post";
 
 		Session session = HibernateUtil.getSession();
 		Query query = session.createQuery(hql);
+		
+		List<Post> list = query.list();
+		
+		if(list.isEmpty()) {
+			
+			System.out.println("Error. Posts could not assemble.");
+			session.close();
+			return null;
+		}
+	
+		System.out.println("Posts have been gathered together!!");
+		session.close();
 
+		return list;
 	}
 	
 	
