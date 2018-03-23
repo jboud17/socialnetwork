@@ -177,16 +177,17 @@ public class UserDAOClass implements UserDAO{
 		try {
 
 			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress("from@no-spam.com"));
+			message.setFrom(new InternetAddress("NigelTheBird@findingNemo.com"));
 			message.setRecipients(Message.RecipientType.TO,
 					InternetAddress.parse("to@no-spam.com"));
-			message.setSubject("Testing Subject");
-			message.setText("Dear Mail Crawler," +
-					"\n\n No spam to my email, please!");
+			message.setSubject("Password has been reset.");
+			message.setText("Hi User!" +
+					"\n\n Your password has been reset to "+password+". "
+							+ "Let us know if you did not make this change!");
 
 			Transport.send(message);
 
-			System.out.println("Done");
+			System.out.println("User has been emailed.");
 
 		} catch (MessagingException e) {
 			throw new RuntimeException(e);
@@ -343,13 +344,5 @@ public class UserDAOClass implements UserDAO{
 		System.out.println("Posts have been gathered together!!");
 		session.close();
 		return list;
-	}
-	
-	
-	// user wants to like a post
-	
-	public boolean likePost(Post post) {
-		
-		return false;
 	}
 }
