@@ -87,6 +87,7 @@ public class UserDAOClass implements UserDAO{
 	// user wants to update their personal details
 	
 	public void updateDetails(int userID, String first_name, String last_name, String email) {
+		
 		String hql = "UPDATE User SET FIRST_NAME = :fname, LAST_NAME = :lname, EMAIL = :email WHERE USER_ID = :uid";
 		
 		Session session = HibernateUtil.getSession();
@@ -124,16 +125,20 @@ public class UserDAOClass implements UserDAO{
 		String hql = "UPDATE User SET PASS_WORD = :pswd WHERE USERNAME = :uname";
 		
 		Session session = HibernateUtil.getSession();
+		Transaction tx = session.beginTransaction();
+		
 		Query query = session.createQuery(hql);
 
 		query.setParameter("uname", username);
 		query.setParameter("pswd", password);
 
 		int result = query.executeUpdate();
+		tx.commit();
 		
 		if(result == 0) {
 			
 			System.out.println("Error. Password has not been reset.");
+			session.close();
 			return;
 		} else {
 			
@@ -196,6 +201,7 @@ public class UserDAOClass implements UserDAO{
 	// user wants to put up a profile picture
 	
 	public void changePic(int user_id) {
+		
 		String hql = "UPDATE User SET PROFILE_PIC = :np WHERE USER_ID = :id";
 		
 		Session session = HibernateUtil.getSession();
@@ -218,6 +224,7 @@ public class UserDAOClass implements UserDAO{
 	// user wants to view their own profile
 	
 	public User viewMyProfile(String username) {
+
 		String hql = "FROM User WHERE USERNAME = :uname";
 		
 		Session session = HibernateUtil.getSession();
