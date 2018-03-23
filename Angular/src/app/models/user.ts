@@ -2,11 +2,13 @@ export class User {
     'id': number;
     'firstName': string;
     'lastName': string;
+    'email': string;
     
-    constructor (id: number, firstName: string, lastName: string){
+    constructor (id: number, firstName: string, lastName: string, email: string){
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.email = email;
     }
 
     getId(): number{
@@ -19,5 +21,9 @@ export class User {
 
     getLastName(): string{
         return this.lastName;
+    }
+
+    getEmail(): string{
+        return this.email;
     }
 }

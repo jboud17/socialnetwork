@@ -40,6 +40,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
       {path: 'login', component: LoginComponent},
       {path: 'home', component: HomeComponent},
       {path: 'profile', component: ProfilepageComponent},
+      {path: 'updateInfo', component: UpdateprofileComponent},
       //{path: 'home', component: HomeComponent, canActivate: [LoggedInGuard]},
       //{path: 'profile', component: ProfilepageComponent, canActivate: [LoggedInGuard]},
       {path: '', component: LoginComponent},

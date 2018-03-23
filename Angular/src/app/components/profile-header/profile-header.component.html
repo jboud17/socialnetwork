@@ -26,11 +26,14 @@
 </header>
 <div class="container-fluid tabStrip">
   <ul class="nav nav-tabs text-center">
-    <li class="col-md-6 grey leftTab" (click)="leftTabClick()">
+    <li class="col-sm-4 grey leftTab" (click)="leftTabClick()">
       {{ leftTabPage }}
     </li>
-    <li class="col-md-6 orange rightTab" (click)="rightTabClick()">
-      Right Tab
+    <li class="col-sm-4 blue middleTab" (click)="updateInfo()">
+      Update Info
+    </li>
+    <li class="col-sm-4 orange rightTab" (click)="logout()">
+      Log out
     </li>
     <!-- <li class="col-sm-3 blue"><a href="#"><i class="fa fa-building fa-2x col-sm-12"></i><span class="col-sm-12">Warehouse</span></a></li>
     <li class="col-sm-3 green"><a href="#"><i class="fa fa-building fa-2x col-sm-12"></i><span class="col-sm-12">Transport</span></a></li> -->

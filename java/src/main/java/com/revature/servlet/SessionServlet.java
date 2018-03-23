@@ -28,11 +28,12 @@ public class SessionServlet extends HttpServlet {
 			resp.getWriter().write("\"password\":\""+session.getAttribute("password")+"\",");
 			resp.getWriter().write("\"firstname\":\""+session.getAttribute("firstname")+"\",");
 			resp.getWriter().write("\"lastname\":\""+session.getAttribute("lastname")+"\",");
-			if(session.getAttribute("pic") != null) {
-				resp.getWriter().write("\"pic\":\""+session.getAttribute("pic")+"\",");
+			resp.getWriter().write("\"email\":\""+session.getAttribute("email")+"\",");
+			if(session.getAttribute("imgHash") != null) {
+				resp.getWriter().write("\"imgHash\":\""+session.getAttribute("imgHash")+"\",");
 			}
-			else if(session.getAttribute("pic") == null) {
-				resp.getWriter().write("\"pic\":null,");
+			else if(session.getAttribute("imgHash") == null) {
+				resp.getWriter().write("\"imgHash\":null,");
 			}
 			if(session.getAttribute("birthdate") != null) {
 				resp.getWriter().write("\"birthdate\":\""+session.getAttribute("birthdate")+"\"}");

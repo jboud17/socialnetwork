@@ -120,6 +120,17 @@ header {
   cursor: pointer;
 }
 
+.middleTab {
+  font-size:16px;
+  padding: 10px;
+  color: white;
+}
+
+.middleTab:hover {
+  background-color: #00a6dd;
+  cursor: pointer;
+}
+
 .rightTab {
   font-size:16px;
   padding: 10px;

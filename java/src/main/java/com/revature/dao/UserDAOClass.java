@@ -6,7 +6,6 @@ import java.util.Properties;
 import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.PasswordAuthentication;
-import javax.mail.Session;
 import javax.mail.Transport;
 
 import java.sql.Blob;
@@ -14,14 +13,12 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import com.revature.beans.Post;
 import com.revature.beans.User;
 import com.revature.util.HibernateUtil;
-
-import java.util.*;
-import javax.activation.*;
-
 
 public class UserDAOClass implements UserDAO{
 
@@ -32,7 +29,7 @@ public class UserDAOClass implements UserDAO{
 		
 		String hql = "INSERT INTO User VALUES(:id, :fname, :lname, :uname, :pswd, :email, :bd)";
 		
-		org.hibernate.Session session = HibernateUtil.getSession();
+		Session session = HibernateUtil.getSession();
 		Query query = session.createQuery(hql);
 		
 		query.setParameter("id", user_id);
@@ -65,7 +62,7 @@ public class UserDAOClass implements UserDAO{
 		String hql = "from User"
 				+ " WHERE USERNAME = :user AND PASSWORD = :pswd";
 		
-		org.hibernate.Session session = HibernateUtil.getSession();
+		Session session = HibernateUtil.getSession();
 		Query query = session.createQuery(hql);
 
 		query.setParameter("user", username);
@@ -91,23 +88,30 @@ public class UserDAOClass implements UserDAO{
 	
 	// user wants to update their personal details
 	
-	public void updateDetails(int user_id, String first_name, String last_name, String email, Timestamp birthdate) {
+	public void updateDetails(int userID, String first_name, String last_name, String email) {
+		String hql = "UPDATE User SET FIRST_NAME = :fname, LAST_NAME = :lname, EMAIL = :email WHERE USER_ID = :uid";
 		
-		String hql = "UPDATE User SET FIRST_NAME = :fname, LAST_NAME = :lname, EMAIL = :email, BIRTHDATE = :bd WHERE USER_ID = :user_id";
+		Session session = HibernateUtil.getSession();
+		Transaction tx = session.beginTransaction();
 		
-		org.hibernate.Session session = HibernateUtil.getSession();
 		Query query = session.createQuery(hql);
 
 		query.setParameter("fname", first_name);
 		query.setParameter("lname", last_name);
 		query.setParameter("email", email);
-		query.setParameter("bd", null);
+		query.setParameter("uid", userID);
+		
+		System.out.println("uid = "+userID);
+		System.out.println("fname = "+first_name);
+		System.out.println("lname = "+last_name);
+		System.out.println("email = "+email);
 		
 		int result = query.executeUpdate();
+		tx.commit();
 		
 		if(result == 0) {
-			
 			System.out.println("Update failed.");
+			session.close();
 			return;
 		}else
 			System.out.println("Update successful");
@@ -121,7 +125,7 @@ public class UserDAOClass implements UserDAO{
 		
 		String hql = "UPDATE User SET PASS_WORD = :pswd WHERE USERNAME = :uname";
 		
-		org.hibernate.Session session = HibernateUtil.getSession();
+		Session session = HibernateUtil.getSession();
 		Query query = session.createQuery(hql);
 
 		query.setParameter("uname", username);
@@ -163,7 +167,7 @@ public class UserDAOClass implements UserDAO{
 		props.put("mail.smtp.auth", "true");
 		props.put("mail.smtp.port", "465");
 
-		Session session = Session.getDefaultInstance(props,
+		javax.mail.Session session = javax.mail.Session.getDefaultInstance(props,
 			new javax.mail.Authenticator() {
 				protected PasswordAuthentication getPasswordAuthentication() {
 					return new PasswordAuthentication(email,password);
@@ -264,39 +268,87 @@ public class UserDAOClass implements UserDAO{
 	
 	// user wants to view their own profile
 	
-	public void viewMyProfile(User user) {
+	public User viewMyProfile(String username) {
+		String hql = "FROM User WHERE USERNAME = :uname";
 		
+		Session session = HibernateUtil.getSession();
+		Query query = session.createQuery(hql);
+		
+		query.setParameter("uname", username);
+		List<User> list = query.list();
+			
+		if(list.isEmpty()) {
+			System.out.println("Error. User was not able to view their profile.");
+			session.close();
+			return null;
+		}
+			
+		User a = list.get(0);
+		
+		System.out.println("User is logged in.");
+		session.close();
+		
+		return a;
 		
 	}
 	
 	
 	// user wants to checkout another user's profile
 	
-	public void viewAProfile(User user) {
+	public User viewAProfile(String fname, String lname) {
+		String hql = "FROM User WHERE FIRST_NAME = :fname AND LAST_NAME = :lname";
 		
+		Session session = HibernateUtil.getSession();
+		Query query = session.createQuery(hql);
 		
+		query.setParameter("fname", fname);
+		query.setParameter("lname", lname);
+			
+		List<User> list = query.list();
+			
+		if(list.isEmpty()) {
+				
+			System.out.println("Error. User was not able to login.");
+			session.close();
+			return null;
+		}
+		 		
+		User a = list.get(0);
+		
+		System.out.println("User is logged in.");
+		session.close();
+		 		
+		return a;
 	}
 	
 	
 	// user wants to see everyones posts
 	
-	public void viewFeed() {
+	public List<Post> viewFeed() {
 		
+		String hql = "SELECT POST_TEXT FROM Post";
 		
+		Session session = HibernateUtil.getSession();
+		Query query = session.createQuery(hql);
+				
+		List<Post> list = query.list();
+			
+		if(list.isEmpty()) {
+			
+			System.out.println("Error. Posts could not assemble.");
+			session.close();
+			return null;
+		}
+			
+		System.out.println("Posts have been gathered together!!");
+		session.close();
+		return list;
 	}
 	
 	
 	// user wants to like a post
 	
 	public boolean likePost(Post post) {
-		
-		return false;
-	}
-	
-	
-	// user wants to logout
-	
-	public boolean logout() {
 		
 		return false;
 	}

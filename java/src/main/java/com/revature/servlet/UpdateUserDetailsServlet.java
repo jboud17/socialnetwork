@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.revature.dao.UserDAOClass;
 
@@ -28,36 +29,28 @@ public class UpdateUserDetailsServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-		String id = req.getParameter("id");
-		int user_id = Integer.parseInt(id);
-
-		String fname = req.getParameter("first_name");
-		String lname = req.getParameter("last_name");
-		String uname = req.getParameter("username");
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		HttpSession hsession = req.getSession();
+		
+		int userID = (Integer) hsession.getAttribute("uid");
+				
+		String fname = req.getParameter("firstname");
+		String lname = req.getParameter("lastname");
 		String email = req.getParameter("email");
-		Timestamp bd = null;
 		
-		UserDAOClass a = new UserDAOClass();
+		hsession.setAttribute("firstname", fname);
+		hsession.setAttribute("lastname", lname);
+		hsession.setAttribute("email", email);
 		
-		a.updateDetails(user_id, fname, lname, email, bd);
+		UserDAOClass userDao = new UserDAOClass();
+		
+		userDao.updateDetails(userID, fname, lname, email);
 
 		try {
-
-			resp.sendRedirect("http://localhost:4200/update");	//*************************************
+			resp.sendRedirect("http://localhost:4200/home");	//*************************************
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }

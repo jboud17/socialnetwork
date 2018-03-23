@@ -28,4 +28,11 @@ export class ProfileHeaderComponent implements OnInit {
     }
   }
 
+  updateInfo(){
+    window.location.href = 'http://localhost:4200/updateInfo';
+  }
+
+  logout(){
+    window.location.href = 'http://localhost:8080/SocialMedia/logout';
+  }
 }

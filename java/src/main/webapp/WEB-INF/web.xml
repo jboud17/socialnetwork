@@ -31,7 +31,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>UpdateUserDetailsServlet</servlet-name>
-    <url-pattern>/updateUser</url-pattern>
+    <url-pattern>/updateInfo</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>SingleUserPostsServlet</servlet-name>
@@ -58,6 +58,26 @@
   <servlet-mapping>
     <servlet-name>ResetUserPasswordServlet</servlet-name>
     <url-pattern>/ResetUserPasswordServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ViewAProfileServlet</display-name>
+    <servlet-name>ViewAProfileServlet</servlet-name>
+    <servlet-class>com.revature.servlet.ViewAProfileServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewAProfileServlet</servlet-name>
+    <url-pattern>/ViewAProfileServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ViewFeedServlet</display-name>
+    <servlet-name>ViewFeedServlet</servlet-name>
+    <servlet-class>com.revature.servlet.ViewFeedServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewFeedServlet</servlet-name>
+    <url-pattern>/ViewFeedServlet</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
