@@ -1,7 +1,7 @@
 <div class="row" style="margin-top:40px">
   <div class="col-lg-8 col-lg-offset-2">
     <div class="create-post">
-      <form action="" enctype="multipart/form-data">
+      <form action="http://localhost:8080/SocialMedia/NewPostServlet" method="post" enctype="multipart/form-data">
         <div class="form-group">
           <input name="postImage" type="file" accept="image/*" onchange="loadFile(event)">
           <img class="img-responsive" id="output"/>

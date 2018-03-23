@@ -54,5 +54,14 @@
 	  <artifactId>commons-codec</artifactId>
 	  <version>1.9</version>
 	</dependency>
-  </dependencies>
+	<dependency>
+		<groupId>com.amazonaws</groupId>
+		<artifactId>aws-java-sdk</artifactId>
+		<version>1.11.106</version>
+	</dependency>
+   </dependencies>
+   <properties>
+    <maven.compiler.source>1.6</maven.compiler.source>
+    <maven.compiler.target>1.6</maven.compiler.target>
+  </properties>
 </project>
