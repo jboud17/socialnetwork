@@ -1,5 +1,6 @@
 package com.revature.dao;
 
+import java.sql.Blob;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -71,4 +72,5 @@ public class PostDAOClass implements PostDAO{
 		System.out.println("Post was created successfully.");
 		return true;
 	}
+
 }

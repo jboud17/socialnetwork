@@ -42,28 +42,12 @@
     <url-pattern>/singleUserPosts</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>LogoutServlet</servlet-name>
-    <servlet-class>com.revature.servlet.LogoutServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>LogoutServlet</servlet-name>
-    <url-pattern>/logout</url-pattern>
-  </servlet-mapping>
-  <servlet>
     <servlet-name>SessionServlet</servlet-name>
     <servlet-class>com.revature.servlet.SessionServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>SessionServlet</servlet-name>
     <url-pattern>/session</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>NewPostServlet</servlet-name>
-    <servlet-class>com.revature.servlet.NewPostServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>NewPostServlet</servlet-name>
-    <url-pattern>/newPost</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -77,32 +61,12 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>ViewMyProfileServlet</display-name>
-    <servlet-name>ViewMyProfileServlet</servlet-name>
-    <servlet-class>com.revature.servlet.ViewMyProfileServlet</servlet-class>
+    <display-name>EmailUser</display-name>
+    <servlet-name>EmailUser</servlet-name>
+    <servlet-class>com.revature.servlet.EmailUser</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>ViewMyProfileServlet</servlet-name>
-    <url-pattern>/ViewMyProfileServlet</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>ViewAProfileServlet</display-name>
-    <servlet-name>ViewAProfileServlet</servlet-name>
-    <servlet-class>com.revature.servlet.ViewAProfileServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ViewAProfileServlet</servlet-name>
-    <url-pattern>/ViewAProfileServlet</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>ViewFeedServlet</display-name>
-    <servlet-name>ViewFeedServlet</servlet-name>
-    <servlet-class>com.revature.servlet.ViewFeedServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ViewFeedServlet</servlet-name>
-    <url-pattern>/ViewFeedServlet</url-pattern>
+    <servlet-name>EmailUser</servlet-name>
+    <url-pattern>/EmailUser</url-pattern>
   </servlet-mapping>
 </web-app>

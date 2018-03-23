@@ -28,8 +28,4 @@ export class ProfileHeaderComponent implements OnInit {
     }
   }
 
-  logout(){
-    window.location.href = 'http://localhost:8080/SocialMedia/logout';
-  }
-
 }

@@ -29,20 +29,23 @@ public class UpdateUserDetailsServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		int userID = (Integer) req.getSession().getAttribute("uid");
-		
-		String username = req.getParameter("username");
-		String fname = req.getParameter("firstname");
-		String lname = req.getParameter("lastname");
+
+		String id = req.getParameter("id");
+		int user_id = Integer.parseInt(id);
+
+		String fname = req.getParameter("first_name");
+		String lname = req.getParameter("last_name");
+		String uname = req.getParameter("username");
 		String email = req.getParameter("email");
 		Timestamp bd = null;
 		
-		UserDAOClass userDao = new UserDAOClass();
+		UserDAOClass a = new UserDAOClass();
 		
-		userDao.updateDetails(userID, username, fname, lname, email, bd);
+		a.updateDetails(user_id, fname, lname, email, bd);
 
 		try {
-			resp.sendRedirect("http://localhost:4200/home");	//*************************************
+
+			resp.sendRedirect("http://localhost:4200/update");	//*************************************
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
