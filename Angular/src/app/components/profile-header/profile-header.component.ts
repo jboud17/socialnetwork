@@ -7,13 +7,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileHeaderComponent implements OnInit {
 
-  public leftTabPage;
+  private leftTabPage;
+  private middleTabPage;
 
   constructor() { 
     if(window.location.pathname == '/profile') {
       this.leftTabPage = 'Home';
     } else if(window.location.pathname == '/home') {
       this.leftTabPage = 'Profile';
+    }
+    else{
+      this.leftTabPage = 'Home';
+    }
+
+    if(window.location.pathname == '/updateInfo'){
+      this.middleTabPage = 'Profile';
+    }
+    else{
+      this.middleTabPage = 'Update Info'
     }
   }
 
@@ -26,10 +37,18 @@ export class ProfileHeaderComponent implements OnInit {
     else if(window.location.pathname == '/home'){
       window.location.pathname = '/profile';
     }
+    else{
+      window.location.pathname = '/home';
+    }
   }
 
-  updateInfo(){
-    window.location.href = 'http://localhost:4200/updateInfo';
+  middleTabClick(){
+    if(window.location.pathname == '/updateInfo'){
+      window.location.pathname = '/profile';
+    }
+    else{
+      window.location.pathname = '/updateInfo';
+    }
   }
 
   logout(){

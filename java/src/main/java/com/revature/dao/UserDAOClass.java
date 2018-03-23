@@ -3,12 +3,10 @@ package com.revature.dao;
 import javax.mail.*;
 import javax.mail.internet.*;
 import java.util.Properties;
-import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Transport;
 
-import java.sql.Blob;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -283,7 +281,6 @@ public class UserDAOClass implements UserDAO{
 	// user wants to see everyones posts
 	
 	public List<Post> viewFeed() {
-		
 		String hql = "SELECT POST_TEXT FROM Post";
 		
 		Session session = HibernateUtil.getSession();
