@@ -85,4 +85,24 @@
     <servlet-name>ViewMyProfileServlet</servlet-name>
     <url-pattern>/ViewMyProfileServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ViewAProfileServlet</display-name>
+    <servlet-name>ViewAProfileServlet</servlet-name>
+    <servlet-class>com.revature.servlet.ViewAProfileServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewAProfileServlet</servlet-name>
+    <url-pattern>/ViewAProfileServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ViewFeedServlet</display-name>
+    <servlet-name>ViewFeedServlet</servlet-name>
+    <servlet-class>com.revature.servlet.ViewFeedServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewFeedServlet</servlet-name>
+    <url-pattern>/ViewFeedServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

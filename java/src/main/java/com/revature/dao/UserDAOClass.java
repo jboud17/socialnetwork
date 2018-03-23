@@ -18,7 +18,6 @@ public class UserDAOClass implements UserDAO{
 
 	// new user registration  ***************FIX PROFILE PIC AND BIRTHDATE************************
 	
-	@SuppressWarnings("deprecation")
 	public boolean makeUser(int user_id, String first_name, String last_name, String username, String password, String email, Timestamp birthdate) {
 		
 		String hql = "INSERT INTO User VALUES(:id, :fname, :lname, :uname, :pswd, :email, :bd)";
@@ -90,7 +89,6 @@ public class UserDAOClass implements UserDAO{
 		
 		Query query = session.createQuery(hql);
 
-		query.setParameter("uid", userID);
 		query.setParameter("fname", first_name);
 		query.setParameter("lname", last_name);
 		query.setParameter("email", email);
@@ -105,6 +103,7 @@ public class UserDAOClass implements UserDAO{
 		
 		if(result == 0) {
 			System.out.println("Update failed.");
+			session.close();
 			return;
 		}else
 			System.out.println("Update successful");
@@ -140,9 +139,12 @@ public class UserDAOClass implements UserDAO{
 			Query query2 = session.createQuery(hql);
 
 			query2.setParameter("uname", username);
+			
 			List<String> email_list = query2.list();
 			String email = email_list.get(0);
+			System.out.println("This is before we email user.");
 			emailUser(email, password);
+			System.out.println("This is after we email user.");
 		}
 		session.close();
 	}
@@ -222,37 +224,88 @@ public class UserDAOClass implements UserDAO{
 	
 	public User viewMyProfile(String username) {
 		
-		return null;
+		String hql = "FROM User WHERE USERNAME = :uname";
+
+		Session session = HibernateUtil.getSession();
+		Query query = session.createQuery(hql);
+
+		query.setParameter("uname", username);
+		List<User> list = query.list();
+		
+		if(list.isEmpty()) {
+			
+			System.out.println("Error. User was not able to view their profile.");
+			session.close();
+			return null;
+		}
+		
+		User a = list.get(0);
+
+		System.out.println("User is logged in.");
+		session.close();
+		
+		return a;
 	}
 	
 	
 	// user wants to checkout another user's profile
 	
-	public void viewAProfile(User user) {
+	public User viewAProfile(String fname, String lname) {
+
+		String hql = "FROM User WHERE FIRST_NAME = :fname AND LAST_NAME = :lname";
+
+		Session session = HibernateUtil.getSession();
+		Query query = session.createQuery(hql);
+
+		query.setParameter("fname", fname);
+		query.setParameter("lname", lname);
 		
+		List<User> list = query.list();
 		
+		if(list.isEmpty()) {
+			
+			System.out.println("Error. User was not able to login.");
+			session.close();
+			return null;
+		}
+		
+		User a = list.get(0);
+
+		System.out.println("User is logged in.");
+		session.close();
+		
+		return a;
 	}
 	
 	
 	// user wants to see everyones posts
 	
-	public void viewFeed() {
+	public List<Post> viewFeed() {
 		
+		String hql = "SELECT POST_TEXT FROM Post";
+
+		Session session = HibernateUtil.getSession();
+		Query query = session.createQuery(hql);
 		
+		List<Post> list = query.list();
+		
+		if(list.isEmpty()) {
+			
+			System.out.println("Error. Posts could not assemble.");
+			session.close();
+			return null;
+		}
+	
+		System.out.println("Posts have been gathered together!!");
+		session.close();
+
+		return list;
 	}
 	
 	
 	// user wants to like a post
 	
 	public boolean likePost(Post post) {
-		
-		return false;
-	}
-	
-	
-	// user wants to logout
-	
-	public boolean logout() {
 		
 		return false;
 	}
