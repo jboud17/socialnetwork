@@ -48,6 +48,8 @@ public class ViewFeedServlet extends HttpServlet {
 				obj2.append("text", posts.get(i).getPost_text());
 				obj2.append("user", posts.get(i).getUser_id());
 				obj2.append("hash", posts.get(i).getHash());
+		
+				user_info.put(obj2);
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -55,7 +57,6 @@ public class ViewFeedServlet extends HttpServlet {
 			i++;
 		}
 		
-		user_info.put(obj2);
 //		response.setContentType("application/json");
 		response.getWriter().print(user_info.toString());
 		response.sendRedirect("http://localhost:4200/newsfeed");			//**********************************
