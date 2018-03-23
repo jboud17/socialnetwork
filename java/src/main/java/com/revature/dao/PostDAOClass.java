@@ -48,9 +48,9 @@ public class PostDAOClass implements PostDAO{
 	
 	// user wants to create a post
 	
-	public boolean createPost(int post_id, String img_hash, String user_text, int user_id) {
+	public boolean createPost(int post_id, String img_hash, String user_text, String title, int user_id) {
 		
-		String hql = "INSERT INTO Post VALUES(:id, :hash, :text, :u_id)";
+		String hql = "INSERT INTO Post VALUES(:id, :hash, :text, :ttl :u_id)";
 		
 		Session session = HibernateUtil.getSession();
 		Query query = session.createQuery(hql);
@@ -58,6 +58,7 @@ public class PostDAOClass implements PostDAO{
 		query.setParameter("id", post_id);
 		query.setParameter("hash", img_hash);
 		query.setParameter("text", user_text);
+		query.setParameter("ttl", title);
 		query.setParameter("u_id", user_id);
 		
 		int result = query.executeUpdate();

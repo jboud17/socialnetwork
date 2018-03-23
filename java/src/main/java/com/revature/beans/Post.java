@@ -23,7 +23,10 @@ public class Post {
 	
 	@Column(name="POST_TEXT")
 	String post_text;	// what is the text of the post
-
+	
+	@Column(name="TITLE")
+	String title;
+	
 	@Column(name="USER_ID")
 	int user_id;	// who made this post
 
@@ -32,11 +35,20 @@ public class Post {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Post(String imgHash, String post_text, int user_id) {
+	public Post(String title, String imgHash, String post_text, int user_id) {
 		super();
+		this.title = title;
 		this.hash = imgHash;
 		this.post_text = post_text;
 		this.user_id = user_id;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 	public int getPost_id() {
