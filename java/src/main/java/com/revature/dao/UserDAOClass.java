@@ -92,6 +92,7 @@ public class UserDAOClass implements UserDAO{
 		query.setParameter("fname", first_name);
 		query.setParameter("lname", last_name);
 		query.setParameter("email", email);
+		query.setParameter("uid", userID);
 		
 		System.out.println("uid = "+userID);
 		System.out.println("fname = "+first_name);
