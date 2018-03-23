@@ -191,61 +191,12 @@ public class UserDAOClass implements UserDAO{
 		} catch (MessagingException e) {
 			throw new RuntimeException(e);
 		}
-		  //test2
-		  //final String host = "localhost";
-	      //try {
-	
-	    	  //Create session
-	 
-//	          Properties props = System.getProperties();
-//	          props.put("mail.smtp.user", email);
-//	          props.put("mail.smtp.password", password);
-//	          props.put("mail.smtp.auth", "true");
-//	          props.put("mail.smtp.ssl.enable", "true");
-//	          props.put("mail.smtp.com" , "smtp.gmail.com");
-//	          props.put("mail.transport.protocol", "smtp");
-//	          props.put("mail.smtp.host", "smtp.gmail.com"); // smtp.gmail.com?
-//	          props.put("mail.smtp.port", "587");
-//
-//
-//	          javax.mail.Authenticator auth = null;
-//	          auth = new javax.mail.Authenticator() {
-//	              @Override
-//	              public javax.mail.PasswordAuthentication getPasswordAuthentication() {
-//	                  return new javax.mail.PasswordAuthentication(email, password);
-//	              }
-//	          };
-//	          Session session = Session.getDefaultInstance(props, auth);
-//	          //get transport object from session and connect to mail server
-//	          Transport tr = session.getTransport("smtp");
-//	          tr.connect(session.getProperty("mail.smtp.host"),  session.getProperty("mail.smtp.user"), session.getProperty("mail.smtp.password"));
-//
-//	          //create message  and set from,recipients,content and other stuff here on the message object.
-//	          Message msg = new MimeMessage(session);
-//	         //..................
-//	         //...................
-//
-//	         //Save and send the message
-//	          msg.saveChanges();
-//	          tr.sendMessage(msg, msg.getAllRecipients());
-//	          tr.close();
-//	      }
-//	      catch(Exception e)
-//	      {
-//	    	  e.printStackTrace();
-//	      }
 	}
 	      
-	   
-	
-
-	
-	
 	
 	// user wants to put up a profile picture
 	
 	public void changePic(int user_id) {
-		
 		String hql = "UPDATE User SET PROFILE_PIC = :np WHERE USER_ID = :id";
 		
 		Session session = HibernateUtil.getSession();
@@ -257,7 +208,6 @@ public class UserDAOClass implements UserDAO{
 		int result = query.executeUpdate();
 
 		if(result == 0) {
-			
 			System.out.println("Error. The pic has not been changed");
 			return;
 		}
