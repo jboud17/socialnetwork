@@ -1,6 +1,5 @@
 package com.revature.dao;
 
-import java.sql.Blob;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -20,5 +19,4 @@ public interface UserDAO {
 	public User viewMyProfile(String username);
 	public User viewAProfile(String fname, String lname);
 	public List<Post> viewFeed();
-	public boolean likePost(Post post);
 }
