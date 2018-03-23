@@ -31,7 +31,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>UpdateUserDetailsServlet</servlet-name>
-    <url-pattern>/updateUser</url-pattern>
+    <url-pattern>/updateInfo</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>SingleUserPostsServlet</servlet-name>

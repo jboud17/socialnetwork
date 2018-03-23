@@ -7,6 +7,7 @@ import java.util.Properties;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import com.revature.beans.Post;
 import com.revature.beans.User;
@@ -81,19 +82,26 @@ public class UserDAOClass implements UserDAO{
 	
 	// user wants to update their personal details
 	
-	public void updateDetails(int userID, String username, String first_name, String last_name, String email, Timestamp birthdate) {
-		String hql = "UPDATE User SET FIRST_NAME = :fname, LAST_NAME = :lname, EMAIL = :email, BIRTHDATE = :bd WHERE USER_ID = :uid";
+	public void updateDetails(int userID, String first_name, String last_name, String email) {
+		String hql = "UPDATE User SET FIRST_NAME = :fname, LAST_NAME = :lname, EMAIL = :email WHERE USER_ID = :uid";
 		
 		Session session = HibernateUtil.getSession();
+		Transaction tx = session.beginTransaction();
+		
 		Query query = session.createQuery(hql);
 
 		query.setParameter("uid", userID);
 		query.setParameter("fname", first_name);
 		query.setParameter("lname", last_name);
 		query.setParameter("email", email);
-		query.setParameter("bd", birthdate);
+		
+		System.out.println("uid = "+userID);
+		System.out.println("fname = "+first_name);
+		System.out.println("lname = "+last_name);
+		System.out.println("email = "+email);
 		
 		int result = query.executeUpdate();
+		tx.commit();
 		
 		if(result == 0) {
 			System.out.println("Update failed.");

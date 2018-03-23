@@ -40,6 +40,7 @@ public class LoginServlet extends HttpServlet{
 				 session.setAttribute("password", flag.getPassword());
 				 session.setAttribute("firstname", flag.getFirst_name());
 				 session.setAttribute("lastname", flag.getLast_name());
+				 session.setAttribute("email", flag.getEmail());
 				 session.setAttribute("imgHash", flag.getHash());
 				 session.setAttribute("birthdate", flag.getBirthdate());
 				 System.out.println("You have successfully logged in.");
