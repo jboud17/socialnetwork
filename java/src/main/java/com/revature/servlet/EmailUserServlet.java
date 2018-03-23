@@ -12,13 +12,13 @@ import com.revature.dao.UserDAOClass;
 /**
  * Servlet implementation class EmailUser
  */
-public class EmailUser extends HttpServlet {
+public class EmailUserServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EmailUser() {
+    public EmailUserServlet() {
         super();
         // TODO Auto-generated constructor stub
     }

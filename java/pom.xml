@@ -34,10 +34,10 @@
 	    <artifactId>mail</artifactId>
 	    <version>1.4</version>
 	</dependency>
-	<dependency>
-		<groupId>com.oracle</groupId>
-	    <artifactId>ojdbc8</artifactId>
-	    <version>12.2.0.1</version>
+	 <dependency>
+	    <groupId>com.revature</groupId>
+	    <artifactId>Driver</artifactId>
+	    <version>1.0</version>
 	</dependency>
 	<dependency>
 		<groupId>org.json</groupId>
