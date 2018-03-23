@@ -19,5 +19,9 @@ public interface UserDAO {
 	public User viewMyProfile(String username);
 	public User viewAProfile(String fname, String lname);
 	public List<Post> viewFeed();
+<<<<<<< HEAD
 	
+=======
+	public List<User> allUsers();
+>>>>>>> 6ffa9c7881a98f270eafdad3e2a82e923794abe8
 }

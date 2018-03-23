@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile-header',
@@ -9,8 +11,9 @@ export class ProfileHeaderComponent implements OnInit {
 
   private leftTabPage;
   private middleTabPage;
+  private allUsers: any = [];
 
-  constructor() { 
+  constructor(private client: HttpClient, private router: Router) { 
     if(window.location.pathname == '/profile') {
       this.leftTabPage = 'Home';
     } else if(window.location.pathname == '/home') {
@@ -28,7 +31,16 @@ export class ProfileHeaderComponent implements OnInit {
     }
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.client.get('http://localhost:8080/SocialMedia/allUsers', { withCredentials: true }).subscribe(
+      (succ: any) => {
+        this.allUsers = succ;
+        console.log(this.allUsers);
+      },
+    err => {
+        alert('failed to retrieve user list');
+    });
+  }
 
   leftTabClick(){
     if(window.location.pathname == '/profile'){
@@ -53,5 +65,9 @@ export class ProfileHeaderComponent implements OnInit {
 
   logout(){
     window.location.href = 'http://localhost:8080/SocialMedia/logout';
+  }
+
+  searchUsers(username: string){
+
   }
 }

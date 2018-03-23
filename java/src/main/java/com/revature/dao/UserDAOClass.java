@@ -196,6 +196,32 @@ public class UserDAOClass implements UserDAO{
 			throw new RuntimeException(e);
 		}
 	}
+	
+	
+	// returns all users in DB
+	
+	public List<User> allUsers() {
+		
+		String hql = "FROM User";
+		
+		Session session = HibernateUtil.getSession();
+		Query query = session.createQuery(hql);
+		
+		@SuppressWarnings("unchecked")
+		List<User> list = query.list();
+		
+		if(list.isEmpty()) {
+			
+			System.out.println("Error. Users have not been assembled.");
+			session.close();
+			return null;
+		}
+
+		System.out.println("Users are listed!");
+		session.close();
+		
+		return list;
+	}
 	      
 	
 	// user wants to put up a profile picture
