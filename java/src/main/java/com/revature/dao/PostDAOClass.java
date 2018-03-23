@@ -77,7 +77,7 @@ public class PostDAOClass implements PostDAO{
 	{
 		
 	    String hql = "SELECT COUNT(USER_ID) FROM USERS INNER JOIN ON POST_LIKES WHERE USERS.USER_ID = POST_LIKES.USER_ID"
-		+ "INNER JOIN ON POSTS WHERE POSTS.POST_ID = POST_LIKES_POST_ID";
+		+ "INNER JOIN ON POSTS WHERE POSTS.POST_ID = POST_LIKES.POST_ID";
 		
 		Session session = HibernateUtil.getSession();
 		Query query = session.createQuery(hql);
