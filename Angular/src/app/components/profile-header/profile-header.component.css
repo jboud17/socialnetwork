@@ -51,6 +51,10 @@ header {
   color: black; /*why did i have to specify this to show the text lol*/
 /* }  */
 
+#searchbar {
+  font-size: 14px;
+}
+
 .navbar-brand {
   font-size: 24px;
   font-weight: bold;
