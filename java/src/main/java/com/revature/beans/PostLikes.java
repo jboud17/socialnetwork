@@ -9,16 +9,19 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 public class PostLikes {
-	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="post_likesSeq")
-	@SequenceGenerator(allocationSize=1, name="post_likesSeq", sequenceName="POST_LIKES_SEQ")
 	
-	//both keys into a composite key
+	@Id
+	@Column(name="POST_ID")
+	int post_id;
+
 	@Column(name="USER_ID")
 	int user_id;
 	
-	@Column(name="POST_ID")
-	int post_id;
+	public PostLikes(int post_id, int user_id) {
+		super();
+		this.post_id = post_id;
+		this.user_id = user_id;
+	}
 
 	public PostLikes() {
 		super();

@@ -73,10 +73,11 @@ public class PostDAOClass implements PostDAO{
 		System.out.println("Post was created successfully.");
 		return true;
 	}
-	public int postLikes()
-	{
-		
-	    String hql = "SELECT COUNT(USER_ID) FROM USERS INNER JOIN ON POST_LIKES WHERE USERS.USER_ID = POST_LIKES.USER_ID"
+	
+	public int postLikes() { 
+		//this should probably take in an int for post id to count how many likes a post has
+	    
+		String hql = "SELECT COUNT(USER_ID) FROM USERS INNER JOIN ON POST_LIKES WHERE USERS.USER_ID = POST_LIKES.USER_ID"
 		+ "INNER JOIN ON POSTS WHERE POSTS.POST_ID = POST_LIKES.POST_ID";
 		
 		Session session = HibernateUtil.getSession();
@@ -86,7 +87,6 @@ public class PostDAOClass implements PostDAO{
 		session.close();
 		
 		return result;
-		
 	}
 
 }
