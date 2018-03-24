@@ -45,6 +45,7 @@ public class NewPostServlet extends HttpServlet {
 			e1.printStackTrace();
 		}
 		String posttext = "";
+		String posttitle = "";
 		String imgHash = "";
 		String title = "";
 		
