@@ -11,7 +11,6 @@ export class ProfilepageComponent implements OnInit {
   constructor(private title: Title) { }
 
   ngOnInit() {
-    this.title.setTitle('Profile Page');
+    this.title.setTitle("Profile page");
   }
-
 }

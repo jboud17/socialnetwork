@@ -16,8 +16,6 @@ import { RegisterComponent } from './components/register-page/register.component
 import { LoggedInGuard } from './logged-in-guard/logged-in.guard';
 import { CurrentUserService } from './services/current-user.service';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-import { ViewedUserService } from './services/viewed-user.service';
-
 
 @NgModule({
   declarations: [
@@ -55,8 +53,7 @@ import { ViewedUserService } from './services/viewed-user.service';
   ],
   providers: [
     LoggedInGuard,
-    CurrentUserService,
-    ViewedUserService
+    CurrentUserService
   ],
   bootstrap: [AppComponent]
 })

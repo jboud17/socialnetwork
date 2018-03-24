@@ -11,6 +11,14 @@
     <url-pattern>/allPosts</url-pattern>
   </servlet-mapping>
   <servlet>
+    <servlet-name>PostsByUIDServlet</servlet-name>
+    <servlet-class>com.revature.servlet.PostsByUIDServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PostsByUIDServlet</servlet-name>
+    <url-pattern>/postsById</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>AllUsersServlet</servlet-name>
     <servlet-class>com.revature.servlet.AllUsersServlet</servlet-class>
   </servlet>

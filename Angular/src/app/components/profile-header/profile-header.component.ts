@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ViewedUserService } from '../../services/viewed-user.service';
 import { User } from '../../models/User';
 
 @Component({
@@ -18,7 +17,7 @@ export class ProfileHeaderComponent implements OnInit {
   private currentPath = "";
   private viewedUser = {};
 
-  constructor(private client: HttpClient, private viewedService: ViewedUserService) { 
+  constructor(private client: HttpClient) { 
     if(window.location.pathname == '/profile') {
       this.leftTabPage = 'Home';
     } else if(window.location.pathname == '/home') {
@@ -43,22 +42,6 @@ export class ProfileHeaderComponent implements OnInit {
         this.allUsers = succ;
         console.log(this.allUsers);
         this.textBoxPlaceholder = "Search for someone by first name, last name, or username";    //once it's done loading, change the placeholder text in the search bar
-        
-
-        if(this.currentPath != ""){
-          for(var i=0; i<this.allUsers.length; i++){
-            if(this.allUsers[i].username == this.currentPath.substring(1)){
-              var viewedUser = this.allUsers[i];
-              this.viewedUser = this.allUsers[i];
-              var u : User = new User(viewedUser.user_id, viewedUser.first_name, viewedUser.last_name, viewedUser.email);
-
-              this.viewedService.setUser(u);
-            }
-          }
-        }
-        else{
-          this.viewedService.setUser(undefined);
-        }
       },
     err => {
         alert('failed to retrieve user list');
