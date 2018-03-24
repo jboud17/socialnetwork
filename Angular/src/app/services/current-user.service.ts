@@ -12,7 +12,7 @@ export class CurrentUserService {
 
     sessionStorage.setItem("user", JSON.stringify(this.user));
 
-    console.log("user set to: {id:"+this.user.id+",first name:"+this.user.firstName+",last name:"+this.user.lastName+",email:"+this.user.email+"}");
+    console.log("user set to: {id:"+this.user.id+",first name:"+this.user.firstName+",last name:"+this.user.lastName+",email:"+this.user.email+",imgHash:"+this.user.imgHash+"}");
   }
 
   getCurrentUser(): User{

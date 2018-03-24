@@ -25,7 +25,6 @@ public class SessionServlet extends HttpServlet {
 			resp.setContentType("application/json");
 			resp.getWriter().write("{\"uid\":\""+session.getAttribute("uid")+"\",");
 			resp.getWriter().write("\"username\":\""+session.getAttribute("username")+"\",");
-			resp.getWriter().write("\"password\":\""+session.getAttribute("password")+"\",");
 			resp.getWriter().write("\"firstname\":\""+session.getAttribute("firstname")+"\",");
 			resp.getWriter().write("\"lastname\":\""+session.getAttribute("lastname")+"\",");
 			resp.getWriter().write("\"email\":\""+session.getAttribute("email")+"\",");

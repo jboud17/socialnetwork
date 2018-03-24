@@ -3,12 +3,14 @@ export class User {
     'firstName': string;
     'lastName': string;
     'email': string;
+    'imgHash': string;
     
-    constructor (id: number, firstName: string, lastName: string, email: string){
+    constructor (id: number, firstName: string, lastName: string, email: string, imgHash: string){
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
+        this.imgHash = imgHash;
     }
 
     getId(): number{
@@ -25,5 +27,9 @@ export class User {
 
     getEmail(): string{
         return this.email;
+    }
+
+    getImgHash(): string{
+        return this.imgHash;
     }
 }

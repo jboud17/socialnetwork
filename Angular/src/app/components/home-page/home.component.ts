@@ -12,6 +12,8 @@ import { User } from '../../models/User';
 })
 export class HomeComponent implements OnInit {
 
+  private displayModal: boolean = false;
+
   constructor(private client: HttpClient, private router: Router, private currUser: CurrentUserService, private title: Title) { }
 
   ngOnInit() {
@@ -24,8 +26,13 @@ export class HomeComponent implements OnInit {
         }
         else{
           sessionStorage.removeItem("user");
-          const user = new User(succ.uid, succ.firstname, succ.lastname, succ.email);
+          
+          const user = new User(succ.uid, succ.firstname, succ.lastname, succ.email, succ.imgHash);
           this.currUser.setUser(user);
+
+          if(succ.imgHash == null){
+            this.displayModal = true;
+          }
            
           return succ;
         }

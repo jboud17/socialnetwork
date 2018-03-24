@@ -27,7 +27,7 @@ export class PostviewComponent implements OnInit {
             if(succ[i].username == this.currentPath.substring(1)){
               var viewedUser = succ[i]; //not using this.viewedUser to not have to cast it
               this.viewedUser = succ[i];
-              var u : User = new User(viewedUser.user_id, viewedUser.first_name, viewedUser.last_name, viewedUser.email);
+              var u : User = new User(viewedUser.user_id, viewedUser.first_name, viewedUser.last_name, viewedUser.email, viewedUser.imgHash);
 
               this.client.get('http://localhost:8080/SocialMedia/postsById?'+u.id, { withCredentials: true }).subscribe(
                 (succ: any) => {
