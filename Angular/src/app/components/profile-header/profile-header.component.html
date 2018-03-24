@@ -12,16 +12,19 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand">Profile name</a>
+          <a class="navbar-brand" *ngIf="this.viewedUser != undefined">{{this.viewedUser.first_name}} {{this.viewedUser.last_name}}</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav navbar-right masthead-nav">
             <li><a>Personal info 1?</a></li>
-            <li><a>Personal info 2?</a></li>
           </ul>
         </div>
       </div>
-      </nav>
+      <input type="text" id="searchbar" placeholder={{textBoxPlaceholder}} (keyup)="this.filterSearch()">
+    </nav>
+    <tr *ngFor="let u of usersForSearch" class="ontop">
+      <td (click)="this.routeForUser(u.username)">Username: {{u.username}}, Name: {{u.first_name}} {{u.last_name}}</td>
+    </tr>
   </div>
 </header>
 <div class="container-fluid tabStrip">
@@ -35,7 +38,5 @@
     <li class="col-sm-4 orange rightTab" (click)="logout()">
       Log out
     </li>
-    <!-- <li class="col-sm-3 blue"><a href="#"><i class="fa fa-building fa-2x col-sm-12"></i><span class="col-sm-12">Warehouse</span></a></li>
-    <li class="col-sm-3 green"><a href="#"><i class="fa fa-building fa-2x col-sm-12"></i><span class="col-sm-12">Transport</span></a></li> -->
   </ul>
 </div>

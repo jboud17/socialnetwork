@@ -9,9 +9,13 @@
     margin-bottom: 10px;
 }
 
+#registerbtn {
+  margin-bottom: -5px;
+}
+
 .login-form {
   width: 350px;
-  padding: 40px 30px;
+  padding: 30px 30px 20px 30px;
   background: #fff;  /* Change this for background of login form */
   -moz-border-radius: 15px;
   -webkit-border-radius: 15px;

@@ -325,4 +325,5 @@ public class UserDAOClass implements UserDAO{
 		session.close();
 		return list;
 	}
+	
 }

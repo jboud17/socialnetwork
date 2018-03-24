@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+/bin/
+=======
 /*
 /*/
 !.gitignore
@@ -5,3 +8,4 @@
 !/Angular/*
 !/java/
 !/java/*
+>>>>>>> f81f54dea68a30d343a47396fab0620de60ef6ad
