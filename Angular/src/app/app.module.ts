@@ -16,6 +16,7 @@ import { RegisterComponent } from './components/register-page/register.component
 import { LoggedInGuard } from './logged-in-guard/logged-in.guard';
 import { CurrentUserService } from './services/current-user.service';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { ViewedUserService } from './services/viewed-user.service';
 
 
 @NgModule({
@@ -39,7 +40,12 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
       {path: 'register', component: RegisterComponent},
       {path: 'login', component: LoginComponent},
       {path: 'home', component: HomeComponent},
-      {path: 'profile', component: ProfilepageComponent},
+      {path: 'profile', component: ProfilepageComponent, 
+        children: [
+          {path: '', redirectTo: '/profile', pathMatch: 'full'},
+          {path: '**', component: LoginComponent}
+        ]
+      },
       {path: 'updateInfo', component: UpdateprofileComponent},
       //{path: 'home', component: HomeComponent, canActivate: [LoggedInGuard]},
       //{path: 'profile', component: ProfilepageComponent, canActivate: [LoggedInGuard]},
@@ -49,7 +55,8 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
   ],
   providers: [
     LoggedInGuard,
-    CurrentUserService
+    CurrentUserService,
+    ViewedUserService
   ],
   bootstrap: [AppComponent]
 })
