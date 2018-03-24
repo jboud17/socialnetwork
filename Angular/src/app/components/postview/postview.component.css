@@ -115,3 +115,9 @@
     overflow-y: scroll;
     height: 300px;
 }
+
+.post-title {
+    margin-bottom: 0px;
+    font-size: 20px;
+    font-weight: 300;
+}
