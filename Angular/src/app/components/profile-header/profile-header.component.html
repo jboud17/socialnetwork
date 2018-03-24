@@ -1,7 +1,3 @@
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
-
 <header>
   <div class="container header inner">
     <nav class="navbar">
@@ -16,17 +12,15 @@
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav navbar-right masthead-nav">
-            <li><a>Personal info 1?</a></li>
+            <!-- <li><a>Personal info 1?</a></li> -->
           </ul>
         </div>
+
       </div>
-      <input type="text" id="searchbar" placeholder={{textBoxPlaceholder}} (keyup)="this.filterSearch()">
     </nav>
-    <tr *ngFor="let u of usersForSearch" class="ontop">
-      <td (click)="this.routeForUser(u.username)">Username: {{u.username}}, Name: {{u.first_name}} {{u.last_name}}</td>
-    </tr>
   </div>
 </header>
+
 <div class="container-fluid tabStrip">
   <ul class="nav nav-tabs text-center">
     <li class="col-sm-4 grey leftTab" (click)="leftTabClick()">
@@ -36,7 +30,18 @@
       {{ middleTabPage }}
     </li>
     <li class="col-sm-4 orange rightTab" (click)="logout()">
-      Log out
+      Logout
     </li>
   </ul>
+</div>
+
+<div class="container-fluid search-container">
+  <div class="container">
+    <div class="col-xs-12 col-md-offset-2 col-lg-offset-2 col-md-8 col-lg-8">
+      <input class="form-control" type="text" id="searchbar" placeholder={{textBoxPlaceholder}} (keyup)="this.filterSearch()">
+      <tr *ngFor="let u of usersForSearch" class="ontop">
+        <td (click)="this.routeForUser(u.username)">Username: {{u.username}}, Name: {{u.first_name}} {{u.last_name}}</td>
+      </tr>
+    </div>
+  </div>
 </div>
