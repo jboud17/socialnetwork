@@ -43,7 +43,11 @@ public class PostDAOClass implements PostDAO{
 
 		query.setParameter("uid", userId);
 		
-		return query.list();
+		List<Post> listToReturn = query.list();
+
+		session.close();
+		
+		return listToReturn;
 	}
 	
 	// user wants to create a post

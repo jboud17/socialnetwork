@@ -14,7 +14,6 @@ export class ProfileHeaderComponent implements OnInit {
   private allUsers: any = [];
   private usersForSearch: any = [];
   private textBoxPlaceholder: string = 'Loading...';
-  private currentPath = "";
   private viewedUser = {};
 
   constructor(private client: HttpClient) { 
@@ -36,12 +35,19 @@ export class ProfileHeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.currentPath = window.location.pathname.substring(8);
     this.client.get('http://localhost:8080/SocialMedia/allUsers', { withCredentials: true }).subscribe(
       (succ: any) => {
         this.allUsers = succ;
         console.log(this.allUsers);
         this.textBoxPlaceholder = "Search users"; //once it's done loading, change the placeholder text in the search bar
+
+        if(window.location.pathname.substring(8) != ""){  //if there's more than just "/profile"
+          for(var i=0; i<this.allUsers.length; i++){
+            if(this.allUsers[i].username == window.location.pathname.substring(9)){
+              this.viewedUser = this.allUsers[i];
+            }
+          }
+        }
       },
     err => {
         alert('failed to retrieve user list');

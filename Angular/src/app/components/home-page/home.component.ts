@@ -42,4 +42,16 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  onClick() {
+    document.getElementById("modal01").style.display = "block";
+  }
+
+  escPress(e: KeyboardEvent){
+    console.log(e.keyCode);
+    if(e.keyCode == 27){
+      document.getElementById("modal01").style.display = 'none';
+    }
+  }
+
+
 }
