@@ -46,11 +46,14 @@ public class NewPostServlet extends HttpServlet {
 		}
 		String posttext = "";
 		String imgHash = "";
+		String title = "";
 		
 		for(FileItem result : formresults) {
 			if(result.isFormField()) {
 				if(result.getFieldName().equals("postSummary"))
 					posttext = result.getString();
+				if(result.getFieldName().equals("title"))
+					title = result.getString();
 			}
 			else {
 				byte[] fileByteArray = result.get();
@@ -60,7 +63,7 @@ public class NewPostServlet extends HttpServlet {
 		}
 		
 		//create post object
-		Post postToInsert = new Post(imgHash, posttext, userID);
+		Post postToInsert = new Post(title, imgHash, posttext, userID);
 		
 		//instantiate hibernate session and transaction objects 
 		Session hibSession = HibernateUtil.getSession();
