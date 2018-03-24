@@ -41,7 +41,7 @@ export class ProfileHeaderComponent implements OnInit {
       (succ: any) => {
         this.allUsers = succ;
         console.log(this.allUsers);
-        this.textBoxPlaceholder = "Search for someone by first name, last name, or username";    //once it's done loading, change the placeholder text in the search bar
+        this.textBoxPlaceholder = "Search users"; //once it's done loading, change the placeholder text in the search bar
       },
     err => {
         alert('failed to retrieve user list');
