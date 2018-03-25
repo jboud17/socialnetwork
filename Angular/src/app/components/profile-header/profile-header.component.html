@@ -39,9 +39,13 @@
   <div class="container">
     <div class="col-xs-12 col-md-offset-2 col-lg-offset-2 col-md-8 col-lg-8 col-padding">
       <input class="form-control" type="text" id="searchbar" placeholder={{textBoxPlaceholder}} (keyup)="this.filterSearch()">
-      <tr *ngFor="let u of usersForSearch" class="ontop">
-        <td (click)="this.routeForUser(u.username)">Username: {{u.username}}, Name: {{u.first_name}} {{u.last_name}}</td>
-      </tr>
+      <table>
+        <tbody class="search-results">
+          <tr *ngFor="let u of usersForSearch" class="ontop">
+            <td class="search-col" (click)="this.routeForUser(u.username)">Username: {{u.username}}, Name: {{u.first_name}} {{u.last_name}}</td>
+          </tr>
+        </tbody>
+    </table>
     </div>
   </div>
 </div>

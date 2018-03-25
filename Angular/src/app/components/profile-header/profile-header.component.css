@@ -27,11 +27,11 @@ header {
 
 .ontop td{
   color: black;
-  font-size: 12px;
-  position: relative;
+  font-size: 14px;
+  /* position: relative; */
   /* left: -89px;
   top: -26px; */
-  padding-bottom: 3px;
+  padding: 4px;
   background-color: white;
   width:800px;
   border: 1px solid lightgray;
@@ -40,6 +40,7 @@ header {
 
 .ontop td:hover{
   background-color: gainsboro;
+  cursor: pointer;
 }
 
 /*#searchbar {
@@ -178,3 +179,15 @@ header {
   background-color:#fc7b0a;
   cursor: pointer;
 }
+.col-padding {
+  padding: 0;
+}
+.search-results {
+  position: absolute;
+  z-index: 999;
+}
+.search-col {
+  padding: 4px;
+  font-size: 14px;
+}
+
