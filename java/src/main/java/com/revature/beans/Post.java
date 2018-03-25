@@ -5,6 +5,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -29,6 +31,10 @@ public class Post {
 	
 	@Column(name="USER_ID")
 	int user_id;	// who made this post
+	
+	@ManyToOne(targetEntity=User.class)
+    @JoinColumn(name="user_id", referencedColumnName="user_id")
+    private User user;
 
 	public Post() {
 		super();
@@ -82,4 +88,13 @@ public class Post {
 	public void setUser_id(int user_id) {
 		this.user_id = user_id;
 	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
 }

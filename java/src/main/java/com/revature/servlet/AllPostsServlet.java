@@ -22,7 +22,7 @@ public class AllPostsServlet extends HttpServlet{
 		
 		response.setContentType("application/json");
 		PostDAO postDao = new PostDAOClass();
-		List<Post> allPosts = postDao.getAllPosts();
+		List<Object> allPosts = postDao.getAllPosts();
 		
 		Gson gson = new Gson();
 		String json = gson.toJson(allPosts);

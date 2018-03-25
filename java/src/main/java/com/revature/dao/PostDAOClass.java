@@ -1,6 +1,6 @@
 package com.revature.dao;
 
-import java.sql.Blob;
+import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.Query;
@@ -13,14 +13,15 @@ public class PostDAOClass implements PostDAO{
 
 	// get all users posts
 	
-	public List<Post> getAllPosts() {
-		String hql = "from Post";
+	public List<Object> getAllPosts() {
+		String hql = "SELECT p.post_id, p.title, p.hash, p.post_text, u.first_name, u.last_name, u.username "
+				   + "FROM Post p LEFT JOIN p.user u";
 		
 		Session session = HibernateUtil.getSession();
 		Query query = session.createQuery(hql);
-		
-		List<Post> list = query.list();
-		
+
+        List list = query.list();
+        
 		if(list.isEmpty()) {
 			session.close();
 			return null;
@@ -80,9 +81,8 @@ public class PostDAOClass implements PostDAO{
 	
 	public int postLikes() { 
 		//this should probably take in an int for post id to count how many likes a post has
-	    
-		String hql = "SELECT COUNT(USER_ID) FROM USERS INNER JOIN ON POST_LIKES WHERE USERS.USER_ID = POST_LIKES.USER_ID"
-		+ "INNER JOIN ON POSTS WHERE POSTS.POST_ID = POST_LIKES.POST_ID";
+		
+		String hql = "SELECT COUNT(user_id) FROM PostLikes p WHERE p.user_id = :id";
 		
 		Session session = HibernateUtil.getSession();
 		Query query = session.createQuery(hql);

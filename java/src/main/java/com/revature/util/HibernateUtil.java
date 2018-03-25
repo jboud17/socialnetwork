@@ -18,4 +18,9 @@ public class HibernateUtil {
 	public static Session getSession() {
 		return sessionFactory("hibernate.config.xml").openSession();
 	}
+	
+	@Override
+    protected Object clone() throws CloneNotSupportedException {
+        return new RuntimeException("Clone not Supported");
+    }
 }

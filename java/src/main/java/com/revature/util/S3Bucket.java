@@ -21,7 +21,7 @@ import com.revature.beans.Post;
 public class S3Bucket {
 	
 	private static String bucketName = "rev-grouptwo";
-	private static BasicAWSCredentials creds = new BasicAWSCredentials("AKIAJRE2T7ORFR7PXP2A", "Ldwz9T9+4CXgoJs/3RN3UDqCf8aEY3vSjKhbnrKB");
+	private static BasicAWSCredentials creds = new BasicAWSCredentials("AKIAJHTF5L4KYOB6WFHQ", "8dLIp29fkIcz58CniH75nK3wnTYdzxHmkCBtb/Xs");
 	private static AmazonS3 s3 = AmazonS3Client
 					.builder()
 					.withRegion("us-east-1")
@@ -39,8 +39,8 @@ public class S3Bucket {
 		String filePath = "images/"+hash;
 		
         try {
-	    	//create a temp file
-	    	File tf = File.createTempFile("image", ".png"); 
+		    	//create a temp file
+		    	File tf = File.createTempFile("image", ".png"); 
 	    		
 		    //write image to temp file
 	    	    BufferedImage img = ImageIO.read(new ByteArrayInputStream(fileByteArray));
@@ -81,7 +81,7 @@ public class S3Bucket {
 				buffer.append((char) randomLimitedInt);
 			}
 			generatedString = buffer.toString();
-			query = session.createQuery("FROM " + Post.class.getName() + " p WHERE p.hash = :hash");
+			query = session.createQuery("FROM Post p WHERE p.hash = :hash");
 			query.setString("hash", generatedString+".png");	
 		} while(query.uniqueResult() != null);
 		

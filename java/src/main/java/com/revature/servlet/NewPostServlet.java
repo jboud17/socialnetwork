@@ -19,6 +19,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import com.revature.beans.Post;
+import com.revature.dao.PostDAOClass;
 import com.revature.util.FrontController;
 import com.revature.util.HibernateUtil;
 import com.revature.util.S3Bucket;
@@ -45,7 +46,6 @@ public class NewPostServlet extends HttpServlet {
 			e1.printStackTrace();
 		}
 		String posttext = "";
-		String posttitle = "";
 		String imgHash = "";
 		String title = "";
 		

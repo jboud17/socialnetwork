@@ -14,6 +14,7 @@ export class PostviewComponent implements OnInit {
   private currentPath: string = "";
   private viewedUser;
   private postsToDisplay;
+  public s3: string = "https://s3.amazonaws.com/rev-grouptwo/images/";
 
   constructor(private client: HttpClient, private currUser: CurrentUserService) { }
 
