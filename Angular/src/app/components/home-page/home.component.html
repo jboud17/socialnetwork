@@ -1,1 +1,20 @@
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
 <app-profile-header></app-profile-header>
+<div class="container">
+    <a (click)="onClick()">@@@@@@@@@@@@@@@@@@</a>
+    <app-newpost></app-newpost>
+    <app-postview></app-postview>
+</div>
+
+<div id="modal01" class="w3-modal w3-animate-opacity" onclick="this.style.display='none'" ng-keydown="escPress($event)">
+    <span class="w3-button w3-red w3-xlarge w3-display-topright">&times;</span>
+    <div class="w3-modal-content w3-animate-zoom">
+        <form class="text-center" action="">
+            <h1 style="color:rgb(153, 0, 0)">Please upload a profile image before continuing</h1>
+            <input class="text-center" type="file" name="profilepic" id="profilepic"><br>
+            <button type="submit">Submit new profile pic</button>
+        </form>
+    </div>
+</div>
+    

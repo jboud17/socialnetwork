@@ -14,21 +14,17 @@ import com.revature.dao.PostDAO;
 import com.revature.dao.PostDAOClass;
 import com.revature.util.FrontController;
 
-public class SingleUserPostsServlet extends HttpServlet{
+public class PostsByUIDServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		FrontController.addHeader(response);
 		
-		int uid = (Integer) request.getAttribute("uid");
+		int userID = Integer.parseInt(request.getQueryString());
 		
 		response.setContentType("application/json");
 		PostDAO postDao = new PostDAOClass();
-		List<Post> allPostsByUser = postDao.getPostsByUserID(uid);
+		List<Post> allPostsByUser = postDao.getPostsByUserID(userID);
 		
 		Gson gson = new Gson();
 		String json = gson.toJson(allPostsByUser);

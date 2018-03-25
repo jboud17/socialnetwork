@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { User } from '../../models/User';
 
 @Component({
   selector: 'app-profile-header',
@@ -12,8 +12,11 @@ export class ProfileHeaderComponent implements OnInit {
   private leftTabPage;
   private middleTabPage;
   private allUsers: any = [];
+  private usersForSearch: any = [];
+  private textBoxPlaceholder: string = 'Loading...';
+  private viewedUser = {};
 
-  constructor(private client: HttpClient, private router: Router) { 
+  constructor(private client: HttpClient) { 
     if(window.location.pathname == '/profile') {
       this.leftTabPage = 'Home';
     } else if(window.location.pathname == '/home') {
@@ -36,6 +39,15 @@ export class ProfileHeaderComponent implements OnInit {
       (succ: any) => {
         this.allUsers = succ;
         console.log(this.allUsers);
+        this.textBoxPlaceholder = "Search users"; //once it's done loading, change the placeholder text in the search bar
+
+        if(window.location.pathname.substring(8) != ""){  //if there's more than just "/profile"
+          for(var i=0; i<this.allUsers.length; i++){
+            if(this.allUsers[i].username == window.location.pathname.substring(9)){
+              this.viewedUser = this.allUsers[i];
+            }
+          }
+        }
       },
     err => {
         alert('failed to retrieve user list');
@@ -67,7 +79,32 @@ export class ProfileHeaderComponent implements OnInit {
     window.location.href = 'http://localhost:8080/SocialMedia/logout';
   }
 
-  searchUsers(username: string){
+  filterSearch(){
+    var input, filter, i;
+    input = document.getElementById("searchbar");
+    filter = input.value.toUpperCase();
+    this.usersForSearch = []; //clear it from the last time this was run
 
+    if(filter !== ""){
+      for (i = 0; i < this.allUsers.length; i++) {
+        if (this.allUsers[i].username.toUpperCase().indexOf(filter) == 0) { 
+          //if the username starts with the input into the text field...
+          this.usersForSearch.push(this.allUsers[i]);
+        }
+        else if (this.allUsers[i].first_name.toUpperCase().indexOf(filter) == 0) { 
+          //if the first name starts with the input into the text field...
+          this.usersForSearch.push(this.allUsers[i]);
+        }
+        else if (this.allUsers[i].last_name.toUpperCase().indexOf(filter) == 0) { 
+          //if the last name starts with the input into the text field...
+          this.usersForSearch.push(this.allUsers[i]);
+        }
+      }
+      console.log(this.usersForSearch);
+    }
+  }
+
+  routeForUser(username: string){
+    window.location.pathname = "/profile/"+username;
   }
 }

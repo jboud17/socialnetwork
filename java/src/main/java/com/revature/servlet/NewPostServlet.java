@@ -19,6 +19,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import com.revature.beans.Post;
+import com.revature.dao.PostDAOClass;
 import com.revature.util.FrontController;
 import com.revature.util.HibernateUtil;
 import com.revature.util.S3Bucket;
@@ -46,11 +47,14 @@ public class NewPostServlet extends HttpServlet {
 		}
 		String posttext = "";
 		String imgHash = "";
+		String title = "";
 		
 		for(FileItem result : formresults) {
 			if(result.isFormField()) {
 				if(result.getFieldName().equals("postSummary"))
 					posttext = result.getString();
+				if(result.getFieldName().equals("title"))
+					title = result.getString();
 			}
 			else {
 				byte[] fileByteArray = result.get();
@@ -60,7 +64,7 @@ public class NewPostServlet extends HttpServlet {
 		}
 		
 		//create post object
-		Post postToInsert = new Post(imgHash, posttext, userID);
+		Post postToInsert = new Post(title, imgHash, posttext, userID);
 		
 		//instantiate hibernate session and transaction objects 
 		Session hibSession = HibernateUtil.getSession();

@@ -240,9 +240,11 @@ public class UserDAOClass implements UserDAO{
 
 		if(result == 0) {
 			System.out.println("Error. The pic has not been changed");
+			session.close();
 			return;
 		}
 		
+		session.close();
 		System.out.println("The pic has been changed");
 	}
 		
