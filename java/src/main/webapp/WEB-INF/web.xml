@@ -19,6 +19,14 @@
     <url-pattern>/postsById</url-pattern>
   </servlet-mapping>
   <servlet>
+    <servlet-name>CurrUserPostsServlet</servlet-name>
+    <servlet-class>com.revature.servlet.CurrUserPostsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CurrUserPostsServlet</servlet-name>
+    <url-pattern>/currUserPosts</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>AllUsersServlet</servlet-name>
     <servlet-class>com.revature.servlet.AllUsersServlet</servlet-class>
   </servlet>

@@ -8,9 +8,13 @@ import { Title } from '@angular/platform-browser';
 })
 export class ProfilepageComponent implements OnInit {
 
+  private urlPath: string;
+
   constructor(private title: Title) { }
 
   ngOnInit() {
     this.title.setTitle("Profile page");
+
+    this.urlPath = window.location.pathname;
   }
 }

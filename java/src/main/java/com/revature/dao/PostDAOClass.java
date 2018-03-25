@@ -3,6 +3,8 @@ package com.revature.dao;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -43,6 +45,24 @@ public class PostDAOClass implements PostDAO{
 		Query query = session.createQuery(hql);
 
 		query.setParameter("uid", userId);
+		
+		List<Post> listToReturn = query.list();
+
+		session.close();
+		
+		return listToReturn;
+	}
+	
+	public List<Post> getPostsOfLoggedInUser(HttpSession httpSession) {
+		String hql = "from Post"
+				+ " WHERE USER_ID = :uid";
+		
+		int userID = (Integer) httpSession.getAttribute("uid");
+		
+		Session session = HibernateUtil.getSession();
+		Query query = session.createQuery(hql);
+
+		query.setParameter("uid", userID);
 		
 		List<Post> listToReturn = query.list();
 

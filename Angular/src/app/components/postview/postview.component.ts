@@ -20,6 +20,8 @@ export class PostviewComponent implements OnInit {
 
   ngOnInit() {
     this.currentPath = window.location.pathname.substring(8);
+
+    console.log(this.viewedUser);
       
     this.client.get('http://localhost:8080/SocialMedia/allUsers', { withCredentials: true }).subscribe(
       (succ: any) => {
@@ -42,10 +44,11 @@ export class PostviewComponent implements OnInit {
           }
         }
         else if(window.location.pathname == '/profile'){
-          this.client.get('http://localhost:8080/SocialMedia/postsById?'+this.currUser.getCurrentUser().id, { withCredentials: true }).subscribe(
+          this.client.get('http://localhost:8080/SocialMedia/currUserPosts', { withCredentials: true }).subscribe(
             (succ: any) => {
               console.log(succ);
               this.postsToDisplay = succ;
+              console.log(this.viewedUser);
             },
             err => {
                 alert('Error loading your post list');
@@ -61,5 +64,4 @@ export class PostviewComponent implements OnInit {
         }
       });
   }
-
 }
