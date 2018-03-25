@@ -15,8 +15,9 @@ export class PostviewComponent implements OnInit {
   private viewedUser;
   private postsToDisplay;
   public s3: string = "https://s3.amazonaws.com/rev-grouptwo/images/";
+  public path: string = location.pathname;
 
-  constructor(private client: HttpClient, private currUser: CurrentUserService) { }
+  constructor(private client: HttpClient, private currUser: CurrentUserService) {console.log(this.path)}
 
   ngOnInit() {
     this.currentPath = window.location.pathname.substring(8);

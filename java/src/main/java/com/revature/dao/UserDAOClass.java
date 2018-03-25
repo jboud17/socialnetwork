@@ -328,4 +328,21 @@ public class UserDAOClass implements UserDAO{
 		return list;
 	}
 	
+	public User getUserById(int userId) {
+		String hql = "FROM User WHERE user_id = :id";
+		
+		Session session = HibernateUtil.getSession();
+		Query query = session.createQuery(hql);
+		query.setParameter("id", userId);
+		List<User> list = query.list();
+		session.close();
+
+		if(list.isEmpty()) {
+			System.out.println("Error finding user");
+			return null;
+		}
+		
+		return list.get(0);
+	}
+	
 }

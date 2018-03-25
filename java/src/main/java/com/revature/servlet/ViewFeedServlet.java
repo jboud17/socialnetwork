@@ -46,7 +46,7 @@ public class ViewFeedServlet extends HttpServlet {
 			
 			try {
 				obj2.append("text", posts.get(i).getPost_text());
-				obj2.append("user", posts.get(i).getUser_id());
+				obj2.append("user", posts.get(i).getUser().getUser_id());
 				obj2.append("hash", posts.get(i).getHash());
 		
 				user_info.put(obj2);

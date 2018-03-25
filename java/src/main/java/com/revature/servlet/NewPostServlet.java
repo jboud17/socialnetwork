@@ -19,7 +19,9 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import com.revature.beans.Post;
+import com.revature.beans.User;
 import com.revature.dao.PostDAOClass;
+import com.revature.dao.UserDAOClass;
 import com.revature.util.FrontController;
 import com.revature.util.HibernateUtil;
 import com.revature.util.S3Bucket;
@@ -36,7 +38,8 @@ public class NewPostServlet extends HttpServlet {
 		FrontController.addHeader(resp);
 		resp.setContentType("text/html");
 		
-		int userID = (Integer) session.getAttribute("uid");		
+		int userID = (Integer) session.getAttribute("uid");
+		User user = new UserDAOClass().getUserById(userID);
 		FileItemFactory fileFact = new DiskFileItemFactory();
 		ServletFileUpload servfileup = new ServletFileUpload(fileFact);
 		List<FileItem> formresults = null;
@@ -64,7 +67,7 @@ public class NewPostServlet extends HttpServlet {
 		}
 		
 		//create post object
-		Post postToInsert = new Post(title, imgHash, posttext, userID);
+		Post postToInsert = new Post(title, imgHash, posttext, user);
 		
 		//instantiate hibernate session and transaction objects 
 		Session hibSession = HibernateUtil.getSession();
