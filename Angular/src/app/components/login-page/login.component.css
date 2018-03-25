@@ -11,6 +11,11 @@
 
 #registerbtn {
   margin-bottom: -5px;
+  font-size: 15px;
+}
+
+input {
+  font-size: 15px;
 }
 
 .login-form {
