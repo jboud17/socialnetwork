@@ -1,5 +1,6 @@
 package com.revature.dao;
 
+<<<<<<< HEAD
 /**
  * 
  * Post related methods are implemented here.
@@ -9,6 +10,9 @@ package com.revature.dao;
  */
 
 import java.sql.Blob;
+=======
+import java.util.Iterator;
+>>>>>>> df5c73526b5fa0b6322dfd7ddf17bf60dc2bbde1
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -28,13 +32,14 @@ public class PostDAOClass implements PostDAO{
 	// get all users posts
 	
 	public List<Post> getAllPosts() {
-		String hql = "from Post";
+		String hql = "FROM Post ORDER BY post_id DESC";
 		
 		Session session = HibernateUtil.getSession();
 		Query query = session.createQuery(hql);
-		
+
+//        List list = query.list();
 		List<Post> list = query.list();
-		
+        
 		if(list.isEmpty()) {
 			session.close();
 			return null;
@@ -50,7 +55,7 @@ public class PostDAOClass implements PostDAO{
 	
 	public List<Post> getPostsByUserID(int userId) {
 		String hql = "from Post"
-				+ " WHERE USER_ID = :uid";
+				+ " WHERE USER_ID = :uid ORDER BY post_id DESC";
 		
 		Session session = HibernateUtil.getSession();
 		Query query = session.createQuery(hql);
@@ -66,7 +71,7 @@ public class PostDAOClass implements PostDAO{
 	
 	public List<Post> getPostsOfLoggedInUser(HttpSession httpSession) {
 		String hql = "from Post"
-				+ " WHERE USER_ID = :uid";
+				+ " WHERE USER_ID = :uid ORDER BY post_id DESC";
 		
 		int userID = (Integer) httpSession.getAttribute("uid");
 		
@@ -110,18 +115,27 @@ public class PostDAOClass implements PostDAO{
 		return true;
 	}
 	
-	public int postLikes() { 
-		//this should probably take in an int for post id to count how many likes a post has
-	    
-		String hql = "SELECT COUNT(USER_ID) FROM USERS INNER JOIN ON POST_LIKES WHERE USERS.USER_ID = POST_LIKES.USER_ID"
-		+ "INNER JOIN ON POSTS WHERE POSTS.POST_ID = POST_LIKES.POST_ID";
+	public int postLikes(int postId) { 
+		//create hql statement
+		String hql = "SELECT COUNT(*) FROM Post p WHERE p.post_id = :id";
 		
+		//create session object and execute query
 		Session session = HibernateUtil.getSession();
-		Query query = session.createQuery(hql);
+		int likes = ((Long) session.createQuery(hql)
+						.setParameter("id", postId)
+						.iterate()
+						.next()).intValue();
 		
-		int result = query.executeUpdate();
+		// close session and print out post id with likes
 		session.close();
+		System.out.println("Post with post_id: " + postId + " has " + likes + " likes");
 		
-		return result;
+		//return the number of likes for the post
+		return likes;
 	}
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> df5c73526b5fa0b6322dfd7ddf17bf60dc2bbde1
 }

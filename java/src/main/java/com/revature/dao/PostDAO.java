@@ -18,5 +18,5 @@ public interface PostDAO {
 	public List<Post> getAllPosts();
 	public List<Post> getPostsByUserID(int userId);
 	public List<Post> getPostsOfLoggedInUser(HttpSession httpSession);
-	public int postLikes();
+	public int postLikes(int postId);
 }

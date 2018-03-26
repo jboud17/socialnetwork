@@ -20,7 +20,7 @@ export class UpdateprofileComponent implements OnInit {
     this.title.setTitle('Update Info');
     
     this.user = this.currUser.getCurrentUser();
-
+    
     document.getElementById("firstname").setAttribute("value", this.user.firstName);
     document.getElementById("lastname").setAttribute("value", this.user.lastName);
     document.getElementById("email").setAttribute("value", this.user.email);

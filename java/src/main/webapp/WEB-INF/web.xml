@@ -2,6 +2,16 @@
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
   <display-name>SocialMedia</display-name>
   
+ <security-constraint>
+  <web-resource-collection>
+        <web-resource-name>EmailUser</web-resource-name>
+        <url-pattern>/EmailUser</url-pattern>
+    </web-resource-collection>
+  <user-data-constraint>
+        <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+  </user-data-constraint>
+</security-constraint>
+
   <servlet>
     <servlet-name>AllPostsServlet</servlet-name>
     <servlet-class>com.revature.servlet.AllPostsServlet</servlet-class>
@@ -90,7 +100,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>ResetUserPasswordServlet</servlet-name>
-    <url-pattern>/ResetUserPasswordServlet</url-pattern>
+    <url-pattern>/resetPassword</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -111,16 +121,6 @@
   <servlet-mapping>
     <servlet-name>ViewFeedServlet</servlet-name>
     <url-pattern>/ViewFeedServlet</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
-    <display-name>EmailUser</display-name>
-    <servlet-name>EmailUser</servlet-name>
-    <servlet-class>com.revature.servlet.EmailUser</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>EmailUser</servlet-name>
-    <url-pattern>/EmailUser</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>

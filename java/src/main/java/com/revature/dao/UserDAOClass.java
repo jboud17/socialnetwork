@@ -132,17 +132,17 @@ public class UserDAOClass implements UserDAO{
 	
 	// user wants to reset their password			***********CALL EMAIL METHOD AND EMAIL ALERT TO USER*************
 	
-	public void resetPassword(String username, String password) {
+	public void resetPassword(int userID, String newPassword, String emailPassword) {
 		
-		String hql = "UPDATE User SET PASS_WORD = :pswd WHERE USERNAME = :uname";
+		String hql = "UPDATE User SET PASSWORD = :pswd WHERE USER_ID = :uid";
 		
 		Session session = HibernateUtil.getSession();
 		Transaction tx = session.beginTransaction();
 		
 		Query query = session.createQuery(hql);
 
-		query.setParameter("uname", username);
-		query.setParameter("pswd", password);
+		query.setParameter("uid", userID);
+		query.setParameter("pswd", newPassword);
 
 		int result = query.executeUpdate();
 		tx.commit();
@@ -156,15 +156,15 @@ public class UserDAOClass implements UserDAO{
 			
 			System.out.println("Password has been reset");
 			
-			hql = "SELECT EMAIL FROM User WHERE USERNAME = :uname";
+			hql = "SELECT email FROM User WHERE user_id = :uid";
 
 			session = HibernateUtil.getSession();
 			Query query2 = session.createQuery(hql);
 
-			query2.setParameter("uname", username);
+			query2.setParameter("uid", userID);
 			List<String> email_list = query2.list();
 			String email = email_list.get(0);
-			emailUser(email, password);
+			emailUser(email, emailPassword, newPassword);
 		}
 		session.close();
 	}
@@ -172,7 +172,7 @@ public class UserDAOClass implements UserDAO{
 	
 	// user must be emailed once they reset their password
 	
-	public void emailUser(final String email, final String password) {
+	public void emailUser(final String email, final String emailPassword, String newPassword) {
 		 //test1 works with SSL encryption!
 		Properties props = new Properties();
 		props.put("mail.smtp.host", "smtp.gmail.com");
@@ -185,7 +185,7 @@ public class UserDAOClass implements UserDAO{
 		javax.mail.Session session = javax.mail.Session.getDefaultInstance(props,
 			new javax.mail.Authenticator() {
 				protected PasswordAuthentication getPasswordAuthentication() {
-					return new PasswordAuthentication(email,password);
+					return new PasswordAuthentication(email,emailPassword);
 				}
 			});
 
@@ -197,7 +197,7 @@ public class UserDAOClass implements UserDAO{
 					InternetAddress.parse("to@no-spam.com"));
 			message.setSubject("Password has been reset.");
 			message.setText("Hi User!" +
-					"\n\n Your password has been reset to "+password+". "
+					"\n\n Your password has been reset to "+newPassword+". "
 							+ "Let us know if you did not make this change!");
 
 			Transport.send(message);
@@ -338,6 +338,23 @@ public class UserDAOClass implements UserDAO{
 		System.out.println("Posts have been gathered together!!");
 		session.close();
 		return list;
+	}
+	
+	public User getUserById(int userId) {
+		String hql = "FROM User WHERE user_id = :id";
+		
+		Session session = HibernateUtil.getSession();
+		Query query = session.createQuery(hql);
+		query.setParameter("id", userId);
+		List<User> list = query.list();
+		session.close();
+
+		if(list.isEmpty()) {
+			System.out.println("Error finding user");
+			return null;
+		}
+		
+		return list.get(0);
 	}
 	
 }
