@@ -1,10 +1,12 @@
 package com.revature.servlet;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.revature.dao.UserDAOClass;
 
@@ -21,21 +23,27 @@ public class ResetUserPasswordServlet extends HttpServlet {
         super();
         // TODO Auto-generated constructor stub
     }
+    
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		doPut(request, response);
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-		String username = request.getParameter("username");
+	protected void doPut(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		
+		int userID = (Integer) session.getAttribute("uid");
 		String password = request.getParameter("password");
 		
 		UserDAOClass a = new UserDAOClass();
-		a.resetPassword(username, password);
+		a.resetPassword(userID, password);
 		
 		try {
 
-			response.sendRedirect("http://localhost:4200/update");	//*************************************
+			response.sendRedirect("http://localhost:4200/home");	//*************************************
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -46,7 +54,7 @@ public class ResetUserPasswordServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		doPut(request, response);
 	}
 
 }
