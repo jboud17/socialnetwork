@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../../models/User';
+import { CurrentUserService } from '../../services/current-user.service';
 
 @Component({
   selector: 'app-profile-header',
@@ -15,8 +16,10 @@ export class ProfileHeaderComponent implements OnInit {
   private usersForSearch: any = [];
   private textBoxPlaceholder: string = 'Loading...';
   private viewedUser = {};
+  private hash: string;
+  public s3: string = "https://s3.amazonaws.com/rev-grouptwo/images/";
 
-  constructor(private client: HttpClient) { 
+  constructor(private client: HttpClient, private currUser: CurrentUserService) { 
     if(window.location.pathname == '/profile') {
       this.leftTabPage = 'Home';
     } else if(window.location.pathname == '/home') {
@@ -35,6 +38,8 @@ export class ProfileHeaderComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.hash = this.currUser.getCurrentUser().imgHash;
+
     this.client.get('http://localhost:8080/SocialMedia/allUsers', { withCredentials: true }).subscribe(
       (succ: any) => {
         this.allUsers = succ;
@@ -76,6 +81,7 @@ export class ProfileHeaderComponent implements OnInit {
   }
 
   logout(){
+    this.currUser.setUser(null);
     window.location.href = 'http://localhost:8080/SocialMedia/logout';
   }
 

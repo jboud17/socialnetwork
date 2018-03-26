@@ -238,14 +238,14 @@ public class UserDAOClass implements UserDAO{
 	
 	// user wants to put up a profile picture
 	
-	public void changePic(int user_id) {
+	public void changePic(int user_id, String imgHash) {
 		
-		String hql = "UPDATE User SET PROFILE_PIC = :np WHERE USER_ID = :id";
+		String hql = "UPDATE User SET IMG_HASH = :imgHash WHERE USER_ID = :id";
 		
 		Session session = HibernateUtil.getSession();
 		Query query = session.createQuery(hql);
 
-		query.setParameter("np", null);			//*******************FIX****************************
+		query.setParameter("imgHash", imgHash);
 		query.setParameter("id", user_id);
 
 		int result = query.executeUpdate();

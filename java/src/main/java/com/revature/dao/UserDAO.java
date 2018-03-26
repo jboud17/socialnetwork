@@ -23,7 +23,7 @@ public interface UserDAO {
 	public void updateDetails(int userID, String first_name, String last_name, String email);
 	public void resetPassword(int userID, String newPassword, String emailPassword);
 	public void emailUser(String email, String emailPassword, String newPassword);
-	public void changePic(int user_id);
+	public void changePic(int user_id, String imgHash);
 	public User viewMyProfile(String username);
 	public User viewAProfile(String fname, String lname);
 	public List<Post> viewFeed();

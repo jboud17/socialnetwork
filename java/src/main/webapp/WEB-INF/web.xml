@@ -132,4 +132,12 @@
     <servlet-name>NewPostServlet</servlet-name>
     <url-pattern>/NewPostServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>ProfilePictureServlet</servlet-name>
+    <servlet-class>com.revature.servlet.ProfilePictureServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProfilePictureServlet</servlet-name>
+    <url-pattern>/profilePic</url-pattern>
+  </servlet-mapping>
 </web-app>
