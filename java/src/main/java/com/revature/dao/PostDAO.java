@@ -1,14 +1,17 @@
 package com.revature.dao;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import com.revature.beans.Post;
+import com.revature.beans.PostLikes;
 
 public interface PostDAO {
 	public List<Post> getAllPosts();
 	public List<Post> getPostsByUserID(int userId);
 	public List<Post> getPostsOfLoggedInUser(HttpSession httpSession);
-	public int postLikes(int postId);
+	public List<Object> getPostLikes();
 }

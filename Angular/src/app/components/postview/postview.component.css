@@ -139,3 +139,9 @@ p {
 .btn-like {
     font-size: 14px;
 }
+.fa-thumbs-up {
+    padding: 5px;
+    background-color: green;
+    border-radius: 16px;
+    color: white;
+}

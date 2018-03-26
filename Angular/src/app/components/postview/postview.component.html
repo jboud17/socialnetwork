@@ -15,9 +15,12 @@
                 <p>{{ p.post_text }}</p>
             </div>
             <div class="panel-footer clearfix">
-                <button (click)="likeBtnClick(u.id, p.post_id)" class="btn btn-success btn-sm btn-hover btn-like pull-left">
-                    Like <span class="fa fa-thumbs-up"></span>
-                </button>
+                <div>
+                    <span class="fa fa-thumbs-up"></span> {{ p.post_likes }}
+                    <button (click)="likeBtnClick(u.id, p.post_id)" class="btn btn-success btn-sm btn-hover btn-like pull-left">
+                        Like
+                    </button>
+                </div>
                 <!-- add commenting functionality if we have time? -->
                 <!-- <a class="btn comsys btn-danger btn-sm btn-hover pull-left" style="margin-left: 5px;">Cmt
                     <span class="fa fa-comment"></span>
