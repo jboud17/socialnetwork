@@ -4,7 +4,7 @@
             <div class="panel-heading text-center">
                 <h2 class="post-title">{{ p.title }}
                     <span *ngIf="path=='/home'">by
-                        <a [href]="'/SocialMedia/profile/'+p.user.username">{{ p.user.username }}</a>
+                        <a [href]="'/profile/'+p.user.username">{{ p.user.username }}</a>
                     </span>
                 </h2>
             </div>
@@ -13,12 +13,12 @@
             </div>
             <div class="panel-body">
                 <p>{{ p.post_text }}</p>
-                <p>{{u.username}}</p>
             </div>
             <div class="panel-footer clearfix">
-                <button (click)="likeBtnClick(u.username)" class="btn btn-success btn-sm btn-hover btn-like pull-left">Like
-                    <span class="fa fa-thumbs-up"></span>
+                <button (click)="likeBtnClick(u.id, p.post_id)" class="btn btn-success btn-sm btn-hover btn-like pull-left">
+                    Like <span class="fa fa-thumbs-up"></span>
                 </button>
+                <!-- add commenting functionality if we have time? -->
                 <!-- <a class="btn comsys btn-danger btn-sm btn-hover pull-left" style="margin-left: 5px;">Cmt
                     <span class="fa fa-comment"></span>
                 </a> -->

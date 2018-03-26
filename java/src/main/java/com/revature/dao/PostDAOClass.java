@@ -99,18 +99,24 @@ public class PostDAOClass implements PostDAO{
 		return true;
 	}
 	
-	public int postLikes() { 
-		//this should probably take in an int for post id to count how many likes a post has
+	public int postLikes(int postId) { 
+		//create hql statement
+		String hql = "SELECT COUNT(*) FROM Post p WHERE p.post_id = :id";
 		
-		String hql = "SELECT COUNT(user_id) FROM PostLikes p WHERE p.user_id = :id";
-		
+		//create session object and execute query
 		Session session = HibernateUtil.getSession();
-		Query query = session.createQuery(hql);
+		int likes = ((Long) session.createQuery(hql)
+						.setParameter("id", postId)
+						.iterate()
+						.next()).intValue();
 		
-		int result = query.executeUpdate();
+		// close session and print out post id with likes
 		session.close();
+		System.out.println("Post with post_id: " + postId + " has " + likes + " likes");
 		
-		return result;
+		//return the number of likes for the post
+		return likes;
 	}
+
 
 }

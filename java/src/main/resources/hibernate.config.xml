@@ -16,5 +16,6 @@
     
 		<mapping class="com.revature.beans.Post"></mapping>
 		<mapping class="com.revature.beans.User"></mapping>
+		<mapping class="com.revature.beans.PostLikes"></mapping>
 	</session-factory>
 </hibernate-configuration>

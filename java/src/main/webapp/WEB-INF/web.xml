@@ -100,7 +100,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>ResetUserPasswordServlet</servlet-name>
-    <url-pattern>/ResetUserPasswordServlet</url-pattern>
+    <url-pattern>/resetPassword</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
