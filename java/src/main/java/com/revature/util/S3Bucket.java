@@ -21,7 +21,7 @@ import com.revature.beans.Post;
 public class S3Bucket {
 	
 	private static String bucketName = "rev-grouptwo";
-	private static BasicAWSCredentials creds = new BasicAWSCredentials("AKIAJHTF5L4KYOB6WFHQ", "8dLIp29fkIcz58CniH75nK3wnTYdzxHmkCBtb/Xs");
+	private static BasicAWSCredentials creds = new BasicAWSCredentials("AKIAIFJR6G367GAT5EEA", "FRpmPHfDAVA/sZaNK6iP3kya+SzhWOS2bEN4MhH6");
 	private static AmazonS3 s3 = AmazonS3Client
 					.builder()
 					.withRegion("us-east-1")
