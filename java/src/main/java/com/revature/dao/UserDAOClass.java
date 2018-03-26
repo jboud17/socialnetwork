@@ -120,17 +120,17 @@ public class UserDAOClass implements UserDAO{
 	
 	// user wants to reset their password			***********CALL EMAIL METHOD AND EMAIL ALERT TO USER*************
 	
-	public void resetPassword(String username, String password) {
+	public void resetPassword(int userID, String newPassword, String emailPassword) {
 		
-		String hql = "UPDATE User SET PASS_WORD = :pswd WHERE USERNAME = :uname";
+		String hql = "UPDATE User SET PASSWORD = :pswd WHERE USER_ID = :uid";
 		
 		Session session = HibernateUtil.getSession();
 		Transaction tx = session.beginTransaction();
 		
 		Query query = session.createQuery(hql);
 
-		query.setParameter("uname", username);
-		query.setParameter("pswd", password);
+		query.setParameter("uid", userID);
+		query.setParameter("pswd", newPassword);
 
 		int result = query.executeUpdate();
 		tx.commit();
@@ -144,15 +144,15 @@ public class UserDAOClass implements UserDAO{
 			
 			System.out.println("Password has been reset");
 			
-			hql = "SELECT EMAIL FROM User WHERE USERNAME = :uname";
+			hql = "SELECT email FROM User WHERE user_id = :uid";
 
 			session = HibernateUtil.getSession();
 			Query query2 = session.createQuery(hql);
 
-			query2.setParameter("uname", username);
+			query2.setParameter("uid", userID);
 			List<String> email_list = query2.list();
 			String email = email_list.get(0);
-			emailUser(email, password);
+			emailUser(email, emailPassword);
 		}
 		session.close();
 	}
