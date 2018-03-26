@@ -152,7 +152,7 @@ public class UserDAOClass implements UserDAO{
 			query2.setParameter("uid", userID);
 			List<String> email_list = query2.list();
 			String email = email_list.get(0);
-			emailUser(email, emailPassword);
+			emailUser(email, emailPassword, newPassword);
 		}
 		session.close();
 	}
@@ -160,7 +160,7 @@ public class UserDAOClass implements UserDAO{
 	
 	// user must be emailed once they reset their password
 	
-	public void emailUser(final String email, final String password) {
+	public void emailUser(final String email, final String emailPassword, String newPassword) {
 		 //test1 works with SSL encryption!
 		Properties props = new Properties();
 		props.put("mail.smtp.host", "smtp.gmail.com");
@@ -173,7 +173,7 @@ public class UserDAOClass implements UserDAO{
 		javax.mail.Session session = javax.mail.Session.getDefaultInstance(props,
 			new javax.mail.Authenticator() {
 				protected PasswordAuthentication getPasswordAuthentication() {
-					return new PasswordAuthentication(email,password);
+					return new PasswordAuthentication(email,emailPassword);
 				}
 			});
 
@@ -185,7 +185,7 @@ public class UserDAOClass implements UserDAO{
 					InternetAddress.parse("to@no-spam.com"));
 			message.setSubject("Password has been reset.");
 			message.setText("Hi User!" +
-					"\n\n Your password has been reset to "+password+". "
+					"\n\n Your password has been reset to "+newPassword+". "
 							+ "Let us know if you did not make this change!");
 
 			Transport.send(message);

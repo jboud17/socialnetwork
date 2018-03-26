@@ -124,16 +124,6 @@
   </servlet-mapping>
   <servlet>
     <description></description>
-    <display-name>EmailUser</display-name>
-    <servlet-name>EmailUser</servlet-name>
-    <servlet-class>com.revature.servlet.EmailUser</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>EmailUser</servlet-name>
-    <url-pattern>/EmailUser</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description></description>
     <display-name>NewPostServlet</display-name>
     <servlet-name>NewPostServlet</servlet-name>
     <servlet-class>com.revature.servlet.NewPostServlet</servlet-class>
