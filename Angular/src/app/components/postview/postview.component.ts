@@ -68,8 +68,8 @@ export class PostviewComponent implements OnInit {
       });
     }
 
-    likeBtnClick(postId) {
-      console.log(postId);
+    likeBtnClick(postId, userId) {
+      console.log(postId + " " + userId);
     }
 
 }
