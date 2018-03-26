@@ -152,7 +152,7 @@ public class UserDAOClass implements UserDAO{
 			query2.setParameter("uid", userID);
 			List<String> email_list = query2.list();
 			String email = email_list.get(0);
-//			emailUser(email, password);				***********Fix later, but screw emailing for now
+//			emailUser(email, password);				//***********Fix later, but screw emailing for now
 		}
 		session.close();
 	}
