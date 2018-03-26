@@ -1,20 +1,25 @@
 package com.revature.dao;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+/**
+ * 
+ * Post related methods are implemented here.
+ * 
+ * Group 2 - Trevor Fortner, Josh Bordeau, Pooja Suresh, Sonam Sherpa, JR
+ * 
+ */
 import java.util.List;
-
 import javax.servlet.http.HttpSession;
-
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
-
 import com.revature.beans.Post;
-import com.revature.beans.PostLikes;
 import com.revature.util.HibernateUtil;
 
 public class PostDAOClass implements PostDAO{
 
+	private static final Logger logger = LogManager.getLogger(PostDAOClass.class);
+	
 	// get all users posts
 	
 	public List<Post> getAllPosts() {
@@ -111,6 +116,4 @@ public class PostDAOClass implements PostDAO{
 		//return the number of likes for the post
 		return list;
 	}
-
-
 }

@@ -1,5 +1,14 @@
 package com.revature.beans;
 
+/**
+ * 
+ * User bean has an id, hash, first name, last name, username, password, email and birthdate field
+ * Users table is created in the database
+ * 
+ * Group 2 - Trevor Fortner, Josh Bordeau, Pooja Suresh, Sonam Sherpa, JR
+ * 
+ */
+
 import java.sql.Timestamp;
 
 import javax.persistence.Column;

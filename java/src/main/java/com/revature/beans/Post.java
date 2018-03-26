@@ -1,5 +1,14 @@
 package com.revature.beans;
 
+/**
+ * 
+ * Post bean has an id, test, hash and title field
+ * Posts table created in database
+ * 
+ * Group 2 - Trevor Fortner, Josh Bordeau, Pooja Suresh, Sonam Sherpa, JR
+ * 
+ */
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

@@ -1,13 +1,15 @@
 package com.revature.dao;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
+/**
+ * 
+ * Post interface including all post related methods
+ * 
+ * Group 2 - Trevor Fortner, Josh Bordeau, Pooja Suresh, Sonam Sherpa, JR
+ * 
+ */
 import java.util.List;
-
 import javax.servlet.http.HttpSession;
-
 import com.revature.beans.Post;
-import com.revature.beans.PostLikes;
 
 public interface PostDAO {
 	public List<Post> getAllPosts();
