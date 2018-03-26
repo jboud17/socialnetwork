@@ -7,16 +7,12 @@ package com.revature.dao;
  * Group 2 - Trevor Fortner, Josh Bordeau, Pooja Suresh, Sonam Sherpa, JR
  * 
  */
-import java.util.Iterator;
 import java.util.List;
-
 import javax.servlet.http.HttpSession;
-
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
-
 import com.revature.beans.Post;
 import com.revature.util.HibernateUtil;
 
@@ -28,11 +24,8 @@ public class PostDAOClass implements PostDAO{
 	
 	public List<Post> getAllPosts() {
 		String hql = "FROM Post ORDER BY post_id DESC";
-		
 		Session session = HibernateUtil.getSession();
 		Query query = session.createQuery(hql);
-
-//        List list = query.list();
 		List<Post> list = query.list();
         
 		if(list.isEmpty()) {
@@ -110,22 +103,17 @@ public class PostDAOClass implements PostDAO{
 		return true;
 	}
 	
-	public int postLikes(int postId) { 
+	public List<Object> getPostLikes() { 
 		//create hql statement
-		String hql = "SELECT COUNT(*) FROM Post p WHERE p.post_id = :id";
+		String hql = "SELECT post_id, COUNT(*) as likes FROM PostLikes GROUP BY post_id";
 		
-		//create session object and execute query
+		//session and query
 		Session session = HibernateUtil.getSession();
-		int likes = ((Long) session.createQuery(hql)
-						.setParameter("id", postId)
-						.iterate()
-						.next()).intValue();
-		
-		// close session and print out post id with likes
+		Query query = session.createQuery(hql);
+		List<Object> list = query.list();
 		session.close();
-		System.out.println("Post with post_id: " + postId + " has " + likes + " likes");
 		
 		//return the number of likes for the post
-		return likes;
+		return list;
 	}
 }

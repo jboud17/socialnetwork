@@ -45,7 +45,6 @@ export class ProfileHeaderComponent implements OnInit {
         this.allUsers = succ;
         console.log(this.allUsers);
         this.textBoxPlaceholder = "Search users"; //once it's done loading, change the placeholder text in the search bar
-
         if(window.location.pathname.substring(8) != ""){  //if there's more than just "/profile"
           for(var i=0; i<this.allUsers.length; i++){
             if(this.allUsers[i].username == window.location.pathname.substring(9)){
