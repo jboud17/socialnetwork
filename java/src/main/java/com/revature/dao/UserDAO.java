@@ -1,5 +1,13 @@
 package com.revature.dao;
 
+/**
+ * 
+ * User interface including all user related methods
+ * 
+ * Group 2 - Trevor Fortner, Josh Bordeau, Pooja Suresh, Sonam Sherpa, JR
+ * 
+ */
+
 import java.sql.Timestamp;
 import java.util.List;
 

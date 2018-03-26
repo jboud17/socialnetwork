@@ -1,5 +1,14 @@
 package com.revature.beans;
 
+/**
+ * 
+ * PostLikes is a lookup table having a post_id and user_id field
+ * Each post that gets a like from the user will be recorded as an entry in PostLikes
+ * 
+ * Group 2 - Trevor Fortner, Josh Bordeau, Pooja Suresh, Sonam Sherpa, JR
+ * 
+ */
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

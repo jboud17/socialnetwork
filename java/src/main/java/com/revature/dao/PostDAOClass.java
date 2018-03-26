@@ -1,10 +1,20 @@
 package com.revature.dao;
 
+/**
+ * 
+ * Post related methods are implemented here.
+ * 
+ * Group 2 - Trevor Fortner, Josh Bordeau, Pooja Suresh, Sonam Sherpa, JR
+ * 
+ */
+
 import java.sql.Blob;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -13,6 +23,8 @@ import com.revature.util.HibernateUtil;
 
 public class PostDAOClass implements PostDAO{
 
+	private static final Logger logger = LogManager.getLogger(PostDAOClass.class);
+	
 	// get all users posts
 	
 	public List<Post> getAllPosts() {
@@ -112,5 +124,4 @@ public class PostDAOClass implements PostDAO{
 		
 		return result;
 	}
-
 }

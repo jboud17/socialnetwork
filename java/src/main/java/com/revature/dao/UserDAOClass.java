@@ -1,5 +1,13 @@
 package com.revature.dao;
 
+/**
+ * 
+ * User related methods are implemented here.
+ * 
+ * Group 2 - Trevor Fortner, Josh Bordeau, Pooja Suresh, Sonam Sherpa, JR
+ * 
+ */
+
 import javax.mail.*;
 import javax.mail.internet.*;
 import java.util.Properties;
@@ -10,6 +18,8 @@ import javax.mail.Transport;
 import java.sql.Timestamp;
 import java.util.List;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -20,6 +30,8 @@ import com.revature.util.HibernateUtil;
 
 public class UserDAOClass implements UserDAO{
 
+	private static final Logger logger = LogManager.getLogger(UserDAOClass.class);
+	
 	// new user registration  ***************FIX PROFILE PIC AND BIRTHDATE************************
 	
 	@SuppressWarnings("deprecation")
