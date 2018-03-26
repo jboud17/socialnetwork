@@ -36,14 +36,15 @@ public class ResetUserPasswordServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		int userID = (Integer) session.getAttribute("uid");
-		String password = request.getParameter("password");
+		String newPass = request.getParameter("newPassword");
+		String emailPass = request.getParameter("emailPassword");
 		
 		UserDAOClass a = new UserDAOClass();
-		a.resetPassword(userID, password);
+		a.resetPassword(userID, newPass, emailPass);
 		
 		try {
 
-			response.sendRedirect("http://localhost:4200/home");	//*************************************
+			response.sendRedirect("http://localhost:4200/home");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

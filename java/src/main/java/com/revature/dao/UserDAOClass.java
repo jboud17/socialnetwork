@@ -120,7 +120,7 @@ public class UserDAOClass implements UserDAO{
 	
 	// user wants to reset their password			***********CALL EMAIL METHOD AND EMAIL ALERT TO USER*************
 	
-	public void resetPassword(int userID, String password) {
+	public void resetPassword(int userID, String newPassword, String emailPassword) {
 		
 		String hql = "UPDATE User SET PASSWORD = :pswd WHERE USER_ID = :uid";
 		
@@ -130,7 +130,7 @@ public class UserDAOClass implements UserDAO{
 		Query query = session.createQuery(hql);
 
 		query.setParameter("uid", userID);
-		query.setParameter("pswd", password);
+		query.setParameter("pswd", newPassword);
 
 		int result = query.executeUpdate();
 		tx.commit();
@@ -152,7 +152,7 @@ public class UserDAOClass implements UserDAO{
 			query2.setParameter("uid", userID);
 			List<String> email_list = query2.list();
 			String email = email_list.get(0);
-//			emailUser(email, password);				//***********Fix later, but screw emailing for now
+			emailUser(email, emailPassword);
 		}
 		session.close();
 	}
