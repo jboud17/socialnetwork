@@ -15,14 +15,14 @@ public class PostDAOClass implements PostDAO{
 
 	// get all users posts
 	
-	public List<Object> getAllPosts() {
-		String hql = "SELECT p.post_id, p.title, p.hash, p.post_text, u.first_name, u.last_name, u.username "
-				   + "FROM Post p LEFT JOIN p.user u";
+	public List<Post> getAllPosts() {
+		String hql = "FROM Post ORDER BY post_id DESC";
 		
 		Session session = HibernateUtil.getSession();
 		Query query = session.createQuery(hql);
 
-        List list = query.list();
+//        List list = query.list();
+		List<Post> list = query.list();
         
 		if(list.isEmpty()) {
 			session.close();
@@ -39,7 +39,7 @@ public class PostDAOClass implements PostDAO{
 	
 	public List<Post> getPostsByUserID(int userId) {
 		String hql = "from Post"
-				+ " WHERE USER_ID = :uid";
+				+ " WHERE USER_ID = :uid ORDER BY post_id DESC";
 		
 		Session session = HibernateUtil.getSession();
 		Query query = session.createQuery(hql);
@@ -55,7 +55,7 @@ public class PostDAOClass implements PostDAO{
 	
 	public List<Post> getPostsOfLoggedInUser(HttpSession httpSession) {
 		String hql = "from Post"
-				+ " WHERE USER_ID = :uid";
+				+ " WHERE USER_ID = :uid ORDER BY post_id DESC";
 		
 		int userID = (Integer) httpSession.getAttribute("uid");
 		

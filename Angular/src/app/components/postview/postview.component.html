@@ -2,28 +2,27 @@
     <div class="col-xs-12 col-md-offset-2 col-lg-offset-2 col-md-8 col-lg-8">
         <div class="panel panel-default">
             <div class="panel-heading text-center">
-                <h2 class="post-title">{{ p.title ? p.title : p[1] }} <span *ngIf="p[6]">by <a [href]="'/SocialMedia/profile/'+p[6]">{{ p[6] }}</a></span></h2>
+                <h2 class="post-title">{{ p.title }}
+                    <span *ngIf="path=='/home'">by
+                        <a [href]="'/SocialMedia/profile/'+p.user.username">{{ p.user.username }}</a>
+                    </span>
+                </h2>
             </div>
             <div class="panel-image">
-                <img [src]="p.hash?s3+p.hash:s3+p[2]" class="panel-image-preview" />
+                <img [src]="s3+p.hash" class="panel-image-preview" />
             </div>
             <div class="panel-body">
-                <p>{{ p.post_text ? p.post_text : p[3] }}</p>
+                <p>{{ p.post_text }}</p>
+                <p>{{u.username}}</p>
             </div>
-            <!-- <div class="panel-footer clearfix">
-                <a href="#download" class="btn btn-primary btn-sm btn-hover pull-left">Save
-                    <span class="fa fa-bookmark"></span>
-                </a>
-                <a href="#facebook" class="btn btn-success btn-sm btn-hover pull-left" style="margin-left: 5px;">Shr
-                    <span class="glyphicon glyphicon-send"></span>
-                </a>
-                <a class="btn comsys btn-danger btn-sm btn-hover pull-left" style="margin-left: 5px;">Cmt
-                    <span class="fa fa-comment"></span>
-                </a>
-                <a href="#share" class="btn btn-warning btn-sm btn-hover pull-left" style="margin-left: 5px;">Like
+            <div class="panel-footer clearfix">
+                <button (click)="likeBtnClick(u.username)" class="btn btn-success btn-sm btn-hover btn-like pull-left">Like
                     <span class="fa fa-thumbs-up"></span>
-                </a>
-            </div> -->
+                </button>
+                <!-- <a class="btn comsys btn-danger btn-sm btn-hover pull-left" style="margin-left: 5px;">Cmt
+                    <span class="fa fa-comment"></span>
+                </a> -->
+            </div>
         </div>
     </div>
 </div>

@@ -15,10 +15,13 @@ export class PostviewComponent implements OnInit {
   private viewedUser;
   private postsToDisplay;
   public s3: string = "https://s3.amazonaws.com/rev-grouptwo/images/";
+  public path: string = location.pathname;
+  public u: User = null;
 
-  constructor(private client: HttpClient, private currUser: CurrentUserService) { }
+  constructor(private client: HttpClient, private currUser: CurrentUserService) {}
 
   ngOnInit() {
+    this.u = this.currUser.getCurrentUser();
     this.currentPath = window.location.pathname.substring(8);
 
     console.log(this.viewedUser);
@@ -63,5 +66,10 @@ export class PostviewComponent implements OnInit {
           )
         }
       });
-  }
+    }
+
+    likeBtnClick(postId) {
+      console.log(postId);
+    }
+
 }

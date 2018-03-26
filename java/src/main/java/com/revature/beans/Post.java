@@ -29,24 +29,21 @@ public class Post {
 	@Column(name="TITLE")
 	String title;
 	
-	@Column(name="USER_ID")
-	int user_id;	// who made this post
-	
-	@ManyToOne(targetEntity=User.class)
-    @JoinColumn(name="user_id", referencedColumnName="user_id")
-    private User user;
+	@ManyToOne
+    @JoinColumn(name="USER_ID", referencedColumnName="USER_ID")
+    User user;
 
 	public Post() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Post(String title, String imgHash, String post_text, int user_id) {
+	public Post(String title, String imgHash, String post_text, User user) {
 		super();
 		this.title = title;
 		this.hash = imgHash;
 		this.post_text = post_text;
-		this.user_id = user_id;
+		this.user = user;
 	}
 
 	public String getTitle() {
@@ -79,14 +76,6 @@ public class Post {
 
 	public void setPost_text(String post_text) {
 		this.post_text = post_text;
-	}
-
-	public int getUser_id() {
-		return user_id;
-	}
-
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
 	}
 
 	public User getUser() {
