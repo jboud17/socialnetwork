@@ -1,6 +1,5 @@
 package com.revature.dao;
 
-<<<<<<< HEAD
 /**
  * 
  * Post related methods are implemented here.
@@ -8,11 +7,7 @@ package com.revature.dao;
  * Group 2 - Trevor Fortner, Josh Bordeau, Pooja Suresh, Sonam Sherpa, JR
  * 
  */
-
-import java.sql.Blob;
-=======
 import java.util.Iterator;
->>>>>>> df5c73526b5fa0b6322dfd7ddf17bf60dc2bbde1
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -133,9 +128,4 @@ public class PostDAOClass implements PostDAO{
 		//return the number of likes for the post
 		return likes;
 	}
-<<<<<<< HEAD
-=======
-
-
->>>>>>> df5c73526b5fa0b6322dfd7ddf17bf60dc2bbde1
 }
