@@ -7,7 +7,6 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login-page/login.component';
 import { PostviewComponent } from './components/postview/postview.component';
 import { NewpostComponent } from './components/newpost/newpost.component';
-import { SettingsComponent } from './components/settings/settings.component';
 import { UpdateprofileComponent } from './components/updateprofile/updateprofile.component';
 import { ProfilepageComponent } from './components/profile-page/profilepage.component';
 import { HomeComponent } from './components/home-page/home.component';
@@ -23,7 +22,6 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     LoginComponent,
     PostviewComponent,
     NewpostComponent,
-    SettingsComponent,
     UpdateprofileComponent,
     ProfilepageComponent,
     HomeComponent,
