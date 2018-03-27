@@ -132,4 +132,14 @@
     <servlet-name>NewPostServlet</servlet-name>
     <url-pattern>/NewPostServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LikePostServlet</display-name>
+    <servlet-name>LikePostServlet</servlet-name>
+    <servlet-class>com.revature.servlet.LikePostServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LikePostServlet</servlet-name>
+    <url-pattern>/likePost</url-pattern>
+  </servlet-mapping>
 </web-app>

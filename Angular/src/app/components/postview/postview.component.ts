@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { CurrentUserService } from '../../services/current-user.service';
 import { Title } from '@angular/platform-browser';
 import { User } from '../../models/User';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpModule } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-postview',
@@ -14,14 +17,13 @@ export class PostviewComponent implements OnInit {
   private currentPath: string = "";
   private viewedUser;
   private postsToDisplay;
+  private postUrl: string = 'http://localhost:8080/SocialMedia/likePost';
   public s3: string = "https://s3.amazonaws.com/rev-grouptwo/images/";
   public path: string = location.pathname;
-  public u: User = null;
 
   constructor(private client: HttpClient, private currUser: CurrentUserService) {}
 
   ngOnInit() {
-    this.u = this.currUser.getCurrentUser();
     this.currentPath = window.location.pathname.substring(8);
 
     console.log(this.viewedUser);
@@ -70,6 +72,9 @@ export class PostviewComponent implements OnInit {
 
     likeBtnClick(postId, userId) {
       console.log(postId + " " + userId);
+      // const myheader = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+      // const postbody = new HttpParams().set('postId', postId).set('userId', userId);
+      // this.client.post(this.postUrl, postbody, { headers: myheader }).subscribe();
     }
 
 }
