@@ -27,8 +27,6 @@ export class PostviewComponent implements OnInit {
 
   ngOnInit() {
     this.currentPath = window.location.pathname.substring(8);
-
-    console.log(this.viewedUser);
       
     this.client.get('http://localhost:8080/SocialMedia/allUsers', { withCredentials: true }).subscribe(
       (succ: any) => {
@@ -77,10 +75,47 @@ export class PostviewComponent implements OnInit {
     }
 
     likeBtnClick(postId, userId) {
-      console.log(postId + " " + userId);
-      // const myheader = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
-      // const postbody = new HttpParams().set('postId', postId).set('userId', userId);
-      // this.client.post(this.postUrl, postbody, { headers: myheader }).subscribe();
+
+      console.log("postId: " + postId + " userId: " + userId);
+      
+      const myheader = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+      const postbody = new HttpParams().set('postId', postId).set('userId', userId);
+      this.client.post(this.postUrl, postbody, { headers: myheader }).subscribe(
+        (succ: any) => {
+          var r = succ[0];
+          if(r.status == "green") {
+            var id = "likes-count-"+postId;
+            var html = document.getElementById(id).innerHTML;
+            var countLikes = parseInt(html);
+            countLikes++;
+            console.log(countLikes);
+            var str = String(countLikes);
+            document.getElementById(id).textContent = str;
+          }
+            var iconId = "thumb-up-"+postId;
+            var el = document.getElementById(iconId);   
+            var padding = 5;
+            var interval = setInterval(expand, 100);
+            var count = 0;
+            function expand() {
+              count++;
+              if (count < 5) {
+                padding += .5; 
+                el.style.padding = padding + 'px';
+              } else if (count < 9) {
+                padding -= .5; 
+                el.style.padding = padding + 'px';
+              } else {
+                clearInterval(interval);
+              }
+            }
+
+        },
+        err => {
+            alert('Error sending post request');
+        }
+      );
+      
     }
 
 }

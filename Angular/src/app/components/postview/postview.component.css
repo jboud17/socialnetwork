@@ -131,17 +131,31 @@ p {
 }
 .panel-heading {
     background-color: #F6F7F9;
-    color: #3B5C99;
+    color: #72A4C2;
 }
 .col-padding {
     padding: 0;
 }
 .btn-like {
     font-size: 14px;
+    margin-right: 8px;
 }
 .fa-thumbs-up {
     padding: 5px;
     background-color: green;
     border-radius: 16px;
     color: white;
+}
+.fa-thumbs-up:hover {
+    cursor: default !important;
+}
+.likes-span {
+    position: relative;
+    top: 2px;
+}
+.likes-count {
+    font-size: 14px;
+    font-weight: 500;
+    position: relative;
+    top: 1px;
 }
