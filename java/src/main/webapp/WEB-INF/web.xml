@@ -133,8 +133,14 @@
     <url-pattern>/NewPostServlet</url-pattern>
   </servlet-mapping>
   <servlet>
-    <description></description>
-    <display-name>LikePostServlet</display-name>
+    <servlet-name>ProfilePictureServlet</servlet-name>
+    <servlet-class>com.revature.servlet.ProfilePictureServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ProfilePictureServlet</servlet-name>
+    <url-pattern>/profilePic</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>LikePostServlet</servlet-name>
     <servlet-class>com.revature.servlet.LikePostServlet</servlet-class>
   </servlet>

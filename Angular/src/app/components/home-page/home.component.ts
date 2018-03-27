@@ -12,7 +12,7 @@ import { User } from '../../models/User';
 })
 export class HomeComponent implements OnInit {
 
-  private displayModal: boolean = false;
+  private hasProfilePic: boolean = true;
 
   constructor(private client: HttpClient, private router: Router, private currUser: CurrentUserService, private title: Title) { }
 
@@ -25,13 +25,13 @@ export class HomeComponent implements OnInit {
           alert("You must be logged in to view this page");
         }
         else{
-          sessionStorage.removeItem("user");
+          sessionStorage.removeItem("user");  //remove whichever user is currently stored
           
           const user = new User(succ.uid, succ.firstname, succ.lastname, succ.email, succ.imgHash);
           this.currUser.setUser(user);
 
           if(succ.imgHash == null){
-            this.displayModal = true;
+            this.hasProfilePic = false;
           }
            
           return succ;
@@ -41,17 +41,4 @@ export class HomeComponent implements OnInit {
         alert('failed to retrieve sessionID');
     });
   }
-
-  onClick() {
-    document.getElementById("modal01").style.display = "block";
-  }
-
-  escPress(e: KeyboardEvent){
-    console.log(e.keyCode);
-    if(e.keyCode == 27){
-      document.getElementById("modal01").style.display = 'none';
-    }
-  }
-
-
 }

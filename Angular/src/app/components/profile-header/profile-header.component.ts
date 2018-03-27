@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../../models/User';
+import { CurrentUserService } from '../../services/current-user.service';
 
 @Component({
   selector: 'app-profile-header',
@@ -15,8 +16,10 @@ export class ProfileHeaderComponent implements OnInit {
   private usersForSearch: any = [];
   private textBoxPlaceholder: string = 'Loading...';
   private viewedUser = {};
+  private hash: string;
+  public s3: string = "https://s3.amazonaws.com/rev-grouptwo/images/";
 
-  constructor(private client: HttpClient) { 
+  constructor(private client: HttpClient, private currUser: CurrentUserService) { 
     if(window.location.pathname == '/profile') {
       this.leftTabPage = 'Home';
     } else if(window.location.pathname == '/home') {
@@ -35,16 +38,24 @@ export class ProfileHeaderComponent implements OnInit {
   }
 
   ngOnInit() {
+    if(window.location.pathname.substring(8) == "" || window.location.pathname == '/updateInfo'){
+      this.hash = this.currUser.getCurrentUser().imgHash;
+      this.viewedUser = undefined;
+    }
+
     this.client.get('http://localhost:8080/SocialMedia/allUsers', { withCredentials: true }).subscribe(
       (succ: any) => {
         this.allUsers = succ;
         console.log(this.allUsers);
         this.textBoxPlaceholder = "Search users"; //once it's done loading, change the placeholder text in the search bar
-
+        console.log(window.location.pathname);
         if(window.location.pathname.substring(8) != ""){  //if there's more than just "/profile"
           for(var i=0; i<this.allUsers.length; i++){
             if(this.allUsers[i].username == window.location.pathname.substring(9)){
               this.viewedUser = this.allUsers[i];
+              if(this.allUsers[i].hash != null){
+                this.hash = this.allUsers[i].hash;
+              }
             }
           }
         }
@@ -77,6 +88,7 @@ export class ProfileHeaderComponent implements OnInit {
 
   logout(){
     window.location.href = 'http://localhost:8080/SocialMedia/logout';
+    this.currUser.setUser(null);
   }
 
   filterSearch(){

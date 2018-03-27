@@ -20,6 +20,8 @@ export class PostviewComponent implements OnInit {
   private postUrl: string = 'http://localhost:8080/SocialMedia/likePost';
   public s3: string = "https://s3.amazonaws.com/rev-grouptwo/images/";
   public path: string = location.pathname;
+  public u: User = null;
+  private headerString: string = "";
 
   constructor(private client: HttpClient, private currUser: CurrentUserService) {}
 
@@ -41,6 +43,10 @@ export class PostviewComponent implements OnInit {
                 (succ: any) => {
                   console.log(succ);
                   this.postsToDisplay = succ;
+                  if(succ.length == 0){
+                    console.log('sup bitch');
+                    this.headerString = 'This user has no posts to display.';
+                  }
                 },
                 err => {
                     alert("Error loading that user's post list");
