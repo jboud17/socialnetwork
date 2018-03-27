@@ -90,7 +90,7 @@
 	- Stores all information needed for a user in the front-end:
 		- id number, first name, last name, email, and image hash (for the S3 bucket)
 
-## Service
+## Services
 
 - CurrentUserService:
 	- Stores a user object that will indicate the currently logged-in user
