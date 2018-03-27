@@ -43,6 +43,7 @@
 - ProfileHeaderComponent:
 	- Displays the profile header at the top of all pages but /login and /register
 	- Uses CurrentUserService to determine the logged-in user
+	- Uses AllUsersService to set and use the list of all users
 	- On all pages but the specific user profile page (/profile/{{username}}), displays the logged-in user's name and profile picture
 	- On the specific user profile page, displays the currently-viewed user's name and profile picture
 	- Button row (right button is always Logout):
@@ -92,5 +93,9 @@
 ## Service
 
 - CurrentUserService:
-	- Stores a user object that will indicate the currently logged-in user, to avoid pinging the server every time
+	- Stores a user object that will indicate the currently logged-in user
+	- Used to avoid pinging the server every time
 	- Accessible in the components that have it injected
+- AllUsersService:
+	- Stores a list of users that will indicate all the users in the database
+	- Used to avoid pinging the server every time in the components where it's injected (namely ProfileHeaderComponent)
