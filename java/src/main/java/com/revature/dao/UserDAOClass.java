@@ -241,10 +241,12 @@ public class UserDAOClass implements UserDAO{
 	public void changePic(int user_id, String imgHash) {
 		
 		String hql = "UPDATE User SET IMG_HASH = :imgHash WHERE USER_ID = :id";
-		
+				
 		Session session = HibernateUtil.getSession();
+		Transaction tx = session.beginTransaction();
 		Query query = session.createQuery(hql);
 
+		System.out.println(imgHash);
 		query.setParameter("imgHash", imgHash);
 		query.setParameter("id", user_id);
 
@@ -256,6 +258,7 @@ public class UserDAOClass implements UserDAO{
 			return;
 		}
 		
+		tx.commit();
 		session.close();
 		System.out.println("The pic has been changed");
 	}

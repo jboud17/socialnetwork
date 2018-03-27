@@ -55,6 +55,7 @@ public class ProfilePictureServlet extends HttpServlet {
 			S3Bucket s3 = new S3Bucket();
 			imgHash = s3.uploadToS3(fileByteArray);
 		}
+		System.out.println(imgHash);
 		
 		UserDAO userDao = new UserDAOClass();
 		userDao.changePic(userID, imgHash);
