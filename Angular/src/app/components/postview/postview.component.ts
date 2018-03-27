@@ -42,7 +42,6 @@ export class PostviewComponent implements OnInit {
                   console.log(succ);
                   this.postsToDisplay = succ;
                   if(succ.length == 0){
-                    console.log('sup bitch');
                     this.headerString = 'This user has no posts to display.';
                   }
                 },
@@ -57,7 +56,9 @@ export class PostviewComponent implements OnInit {
             (succ: any) => {
               console.log(succ);
               this.postsToDisplay = succ;
-              console.log(this.viewedUser);
+              if(succ.length == 0){
+                this.headerString = 'You have no posts to display.';
+              }
             },
             err => {
                 alert('Error loading your post list');
@@ -68,6 +69,9 @@ export class PostviewComponent implements OnInit {
             (succ: any) => {
               console.log(succ);
               this.postsToDisplay = succ;
+              if(succ.length == 0){
+                this.headerString = 'There are no posts in the database.';
+              }
             }
           )
         }

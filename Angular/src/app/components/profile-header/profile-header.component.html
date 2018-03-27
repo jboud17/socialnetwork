@@ -12,8 +12,8 @@
             <img *ngIf="hash != undefined" [src]="s3+hash" id="profilePicIcon"/>
           </div>
           <div class="display-name">
-            <p *ngIf="viewedUser == undefined">{{this.currUser.getCurrentUser().firstName}} {{this.currUser.getCurrentUser().lastName}}</p>
-            <p *ngIf="viewedUser != undefined">{{this.viewedUser.first_name}} {{this.viewedUser.last_name}}</p>
+            <a class="navbar-brand">{{this.nameOfUser}}</a>
+            <a class="navbar-brand" *ngIf="viewedUser != undefined">{{this.viewedUser.first_name}} {{this.viewedUser.last_name}}</a>
           </div>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
