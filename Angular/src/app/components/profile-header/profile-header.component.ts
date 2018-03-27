@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../../models/User';
 import { CurrentUserService } from '../../services/current-user.service';
+import { AllUsersService } from '../../services/all-users.service';
 
 @Component({
   selector: 'app-profile-header',
@@ -17,9 +18,10 @@ export class ProfileHeaderComponent implements OnInit {
   private textBoxPlaceholder: string = 'Loading...';
   private viewedUser = {};
   private hash: string;
-  public s3: string = "https://s3.amazonaws.com/rev-grouptwo/images/";
+  private s3: string = "https://s3.amazonaws.com/rev-grouptwo/images/";
+  private nameOfUser: string = ""; 
 
-  constructor(private client: HttpClient, private currUser: CurrentUserService) { 
+  constructor(private client: HttpClient, private currUser: CurrentUserService, private allUsersService: AllUsersService) { 
     if(window.location.pathname == '/profile') {
       this.leftTabPage = 'Home';
     } else if(window.location.pathname == '/home') {
@@ -38,31 +40,50 @@ export class ProfileHeaderComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(window.location.pathname.substring(8) == "" || window.location.pathname == '/updateInfo'){
+    if((window.location.pathname.substring(8) == "" || window.location.pathname == '/updateInfo') && this.currUser.getCurrentUser() != null){
+      this.nameOfUser = this.currUser.getCurrentUser().firstName + " " + this.currUser.getCurrentUser().lastName;
       this.hash = this.currUser.getCurrentUser().imgHash;
       this.viewedUser = undefined;
     }
 
-    this.client.get('http://localhost:8080/SocialMedia/allUsers', { withCredentials: true }).subscribe(
-      (succ: any) => {
-        this.allUsers = succ;
-        console.log(this.allUsers);
-        this.textBoxPlaceholder = "Search users"; //once it's done loading, change the placeholder text in the search bar
-        console.log(window.location.pathname);
-        if(window.location.pathname.substring(8) != ""){  //if there's more than just "/profile"
-          for(var i=0; i<this.allUsers.length; i++){
-            if(this.allUsers[i].username == window.location.pathname.substring(9)){
-              this.viewedUser = this.allUsers[i];
-              if(this.allUsers[i].hash != null){
-                this.hash = this.allUsers[i].hash;
+    if(this.allUsersService.getAllUsers() == null){
+      this.client.get('http://localhost:8080/SocialMedia/allUsers', { withCredentials: true }).subscribe(
+        (succ: any) => {
+          this.allUsers = succ;
+          this.allUsersService.setUsers(succ);
+          this.hash = this.currUser.getCurrentUser().imgHash;
+          this.nameOfUser = this.currUser.getCurrentUser().firstName + " " + this.currUser.getCurrentUser().lastName;
+          console.log(this.nameOfUser);
+          this.textBoxPlaceholder = "Search users"; //once it's done loading, change the placeholder text in the search bar
+          if(window.location.pathname.substring(8) != ""){  //if there's more than just "/profile"
+            for(var i=0; i<this.allUsers.length; i++){
+              if(this.allUsers[i].username == window.location.pathname.substring(9)){
+                this.viewedUser = this.allUsers[i];
+                if(this.allUsers[i].hash != null){
+                  this.hash = this.allUsers[i].hash;
+                }
               }
             }
           }
+        },
+      err => {
+          alert('failed to retrieve user list');
+      });
+    }
+    else{
+      this.textBoxPlaceholder = "Search users"; //once it's done loading, change the placeholder text in the search bar
+      this.allUsers = this.allUsersService.getAllUsers();
+      if(window.location.pathname.substring(8) != ""){  //if there's more than just "/profile"
+        for(var i=0; i<this.allUsers.length; i++){
+          if(this.allUsers[i].username == window.location.pathname.substring(9)){
+            this.viewedUser = this.allUsers[i];
+            if(this.allUsers[i].hash != null){
+              this.hash = this.allUsers[i].hash;
+            }
+          }
         }
-      },
-    err => {
-        alert('failed to retrieve user list');
-    });
+      }
+    }
   }
 
   leftTabClick(){
@@ -88,7 +109,7 @@ export class ProfileHeaderComponent implements OnInit {
 
   logout(){
     window.location.href = 'http://localhost:8080/SocialMedia/logout';
-    this.currUser.setUser(null);
+    sessionStorage.clear();
   }
 
   filterSearch(){
