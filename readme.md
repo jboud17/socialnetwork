@@ -18,3 +18,16 @@ mvn install:install-file -Dfile={Path/to/your/ojdbc8.jar} -DgroupId=com.oracle -
 6. Open the /Angular directory in VS Code
 7. Run "npm install" to get node_modules and everything else needed to run the angular
 8. Run using "ng serve"
+
+## Default values to use
+- User (id 2):
+	- username: joe
+	- password: @@
+	- name: Sam Mendez
+	- email: sammymendino@gmail.com
+	- email password (if you want to check that emails are sent): 3mailpass
+- User (id 21):
+	- username: jim
+	- password: @!
+	- name: Jim Jam
+	- email: non-existant email (stored as jimjam@email.com, not an actual email)
