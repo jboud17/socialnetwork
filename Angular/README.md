@@ -37,6 +37,8 @@
 		- A post description uploaded from NewPostComponent
 		- A like button, with a count for the current amount of likes for that post
 	- Uses CurrentUserService to determine the logged-in user
+	- Uses AllUsersService to get the list of all users (for specific profile pages, to match the user's username)
+	- Uses AllPostsService to set and use the list of all posts to determine which to display in a much more timely manner
 	- If appropriate, displays a heading stating that the page doesn't have posts to display (ex. if the logged-in user has no posts and is on the base profile page)
 	- Handles all post like functionality via the like button (sending to server to insert into post_likes database table)
 
@@ -99,3 +101,6 @@
 - AllUsersService:
 	- Stores a list of users that will indicate all the users in the database
 	- Used to avoid pinging the server every time in the components where it's injected (namely ProfileHeaderComponent)
+- AllPostsService:
+	- Stores a list of JSONs that will indicate all the posts in the database
+	- Used to avoid pinging the server every time in the components where it's injected (namely PostViewComponent)

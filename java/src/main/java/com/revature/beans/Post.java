@@ -27,20 +27,20 @@ public class Post {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="postSeq")
 	@SequenceGenerator(allocationSize=1, name="postSeq", sequenceName="POST_SEQ")
 	@Column(name="POST_ID")
-	int post_id;
+	private int post_id;
 	
 	@Column(name="IMG_HASH")
-	String hash;
+	private String hash;
 	
 	@Column(name="POST_TEXT")
-	String post_text;	// what is the text of the post
+	private String post_text;	// what is the text of the post
 	
 	@Column(name="TITLE")
-	String title;
+	private String title;
 	
 	@ManyToOne
     @JoinColumn(name="USER_ID", referencedColumnName="USER_ID")
-    User user;
+	private User user;
 
 	public Post() {
 		super();

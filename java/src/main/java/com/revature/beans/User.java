@@ -27,28 +27,28 @@ public class User {
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="userSeq")
 	@SequenceGenerator(allocationSize=1, name="userSeq", sequenceName="USER_SEQ")
 	@Column(name="USER_ID")
-	int user_id;
+	private int user_id;
 
 	@Column(name="IMG_HASH")
-	String hash;
+	private String hash;
 	
 	@Column(name="FIRST_NAME")
-    String first_name;
+	private String first_name;
 	
 	@Column(name="LAST_NAME")
-    String last_name;
+	private String last_name;
 	
 	@Column(name="USERNAME")
-    String username;
+	private String username;
 	
 	@Column(name="PASSWORD")
-    String password;
+	private transient String password;
 	
 	@Column(name="EMAIL")
-    String email;
+	private String email;
 	
 	@Column(name="BIRTHDATE")
-    Timestamp birthdate; //timestamp
+	private Timestamp birthdate; //timestamp
 
 	public User() {
 		super();
