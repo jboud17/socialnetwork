@@ -30,10 +30,12 @@ public class PostDAOClass implements PostDAO{
         
 		if(list.isEmpty()) {
 			session.close();
+			logger.assertLog(true, "Error. The posts could not be collected.");
 			return null;
 		}
 		
 		session.close();
+		logger.assertLog(true, "All posts made by users have been collected.");
 		
 		return list;
 	}
@@ -53,6 +55,7 @@ public class PostDAOClass implements PostDAO{
 		List<Post> listToReturn = query.list();
 
 		session.close();
+		logger.assertLog(true, "All posts by a user with id "+userId+" have been collected");
 		
 		return listToReturn;
 	}
@@ -71,6 +74,7 @@ public class PostDAOClass implements PostDAO{
 		List<Post> listToReturn = query.list();
 
 		session.close();
+		logger.assertLog(true, "All posts by logged in user have been collected.");
 		
 		return listToReturn;
 	}
@@ -95,11 +99,11 @@ public class PostDAOClass implements PostDAO{
 		
 		if(result == 0) {
 			
-			System.out.println("Error. Was not able to create post.");
+			logger.assertLog(true,"Error. Was not able to create post.");
 			return false;
 		}
 		
-		System.out.println("Post was created successfully.");
+		logger.assertLog(true, "Post was created successfully.");
 		return true;
 	}
 	
@@ -111,7 +115,9 @@ public class PostDAOClass implements PostDAO{
 		Session session = HibernateUtil.getSession();
 		Query query = session.createQuery(hql);
 		List<Object> list = query.list();
+		
 		session.close();
+		logger.assertLog(true, "Likes have been counted of all posts in the database.");
 		
 		//return the number of likes for the post
 		return list;

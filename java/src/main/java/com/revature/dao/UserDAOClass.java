@@ -55,11 +55,11 @@ public class UserDAOClass implements UserDAO{
 		
 		if(result == 0) {
 			
-			System.out.println("Error. Was not able to register user.");
+			logger.assertLog(true, "Error. Was not able to register user.");
 			return false;
 		}
 		
-		System.out.println("Registered user successfully.");
+		logger.assertLog(true, "Registered user successfully.");
 		return true;
 	}
 		
@@ -82,14 +82,14 @@ public class UserDAOClass implements UserDAO{
 		
 		if(list.isEmpty()) {
 			
-			System.out.println("Error. User was not able to login.");
+			logger.assertLog(true, "Error. User was not able to login.");
 			session.close();
 			return null;
 		}
 		
 		User a = list.get(0);
 
-		System.out.println("User is logged in.");
+		logger.assertLog(true, "User is logged in.");
 		session.close();
 		
 		return a;
@@ -121,11 +121,11 @@ public class UserDAOClass implements UserDAO{
 		tx.commit();
 		
 		if(result == 0) {
-			System.out.println("Update failed.");
+			logger.assertLog(true, "Update failed.");
 			session.close();
 			return;
 		}else
-			System.out.println("Update successful");
+			logger.assertLog(true, "Update successful");
 		session.close();
 	}
 	
@@ -149,12 +149,12 @@ public class UserDAOClass implements UserDAO{
 		
 		if(result == 0) {
 			
-			System.out.println("Error. Password has not been reset.");
+			logger.assertLog(true, "Error. Password has not been reset.");
 			session.close();
 			return;
 		} else {
 			
-			System.out.println("Password has been reset");
+			logger.assertLog(true, "Password has been reset");
 			
 			hql = "SELECT email FROM User WHERE user_id = :uid";
 
@@ -173,6 +173,7 @@ public class UserDAOClass implements UserDAO{
 	// user must be emailed once they reset their password
 	
 	public void emailUser(final String email, final String emailPassword, String newPassword) {
+		
 		 //test1 works with SSL encryption!
 		Properties props = new Properties();
 		props.put("mail.smtp.host", "smtp.gmail.com");
@@ -191,10 +192,10 @@ public class UserDAOClass implements UserDAO{
 
 		try {
 
-			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress("NigelTheBird@findingNemo.com"));
-			message.setRecipients(Message.RecipientType.TO,
-					InternetAddress.parse("to@no-spam.com"));
+			MimeMessage message = new MimeMessage(session);
+			message.setFrom(new InternetAddress("mineminemineminemine73@gmail.com"));
+			message.addRecipient(Message.RecipientType.TO,
+					new InternetAddress("to@no-spam.com"));
 			message.setSubject("Password has been reset.");
 			message.setText("Hi User!" +
 					"\n\n Your password has been reset to "+newPassword+". "
@@ -202,9 +203,10 @@ public class UserDAOClass implements UserDAO{
 
 			Transport.send(message);
 
-			System.out.println("User has been emailed.");
+			logger.assertLog(true, "User has been emailed.");
 
 		} catch (MessagingException e) {
+			logger.error(e);
 			throw new RuntimeException(e);
 		}
 	}
@@ -224,12 +226,12 @@ public class UserDAOClass implements UserDAO{
 		
 		if(list.isEmpty()) {
 			
-			System.out.println("Error. Users have not been assembled.");
+			logger.assertLog(true, "Error. Users have not been assembled.");
 			session.close();
 			return null;
 		}
 
-		System.out.println("Users are listed!");
+		logger.assertLog(true, "Users are listed!");
 		session.close();
 		
 		return list;
@@ -253,14 +255,14 @@ public class UserDAOClass implements UserDAO{
 		int result = query.executeUpdate();
 
 		if(result == 0) {
-			System.out.println("Error. The pic has not been changed");
+			logger.assertLog(true, "Error. The pic has not been changed");
 			session.close();
 			return;
 		}
 		
 		tx.commit();
 		session.close();
-		System.out.println("The pic has been changed");
+		logger.assertLog(true, "The pic has been changed");
 	}
 		
 	
@@ -277,14 +279,14 @@ public class UserDAOClass implements UserDAO{
 		List<User> list = query.list();
 			
 		if(list.isEmpty()) {
-			System.out.println("Error. User was not able to view their profile.");
+			logger.assertLog(true, "Error. User was not able to view their profile.");
 			session.close();
 			return null;
 		}
 			
 		User a = list.get(0);
 		
-		System.out.println("User is logged in.");
+		logger.assertLog(true, "User is logged in.");
 		session.close();
 		
 		return a;
@@ -307,14 +309,14 @@ public class UserDAOClass implements UserDAO{
 			
 		if(list.isEmpty()) {
 				
-			System.out.println("Error. User was not able to login.");
+			logger.assertLog(true, "Error. User was not able to login.");
 			session.close();
 			return null;
 		}
 		 		
 		User a = list.get(0);
 		
-		System.out.println("User is logged in.");
+		logger.assertLog(true, "User is logged in.");
 		session.close();
 		 		
 		return a;
@@ -333,12 +335,12 @@ public class UserDAOClass implements UserDAO{
 			
 		if(list.isEmpty()) {
 			
-			System.out.println("Error. Posts could not assemble.");
+			logger.assertLog(true, "Error. Posts could not assemble.");
 			session.close();
 			return null;
 		}
 			
-		System.out.println("Posts have been gathered together!!");
+		logger.assertLog(true, "Posts have been gathered together!!");
 		session.close();
 		return list;
 	}
@@ -353,10 +355,11 @@ public class UserDAOClass implements UserDAO{
 		session.close();
 
 		if(list.isEmpty()) {
-			System.out.println("Error finding user");
+			logger.assertLog(true, "Error finding user");
 			return null;
 		}
 		
+		logger.assertLog(true, "User was found in the database.");
 		return list.get(0);
 	}
 	
