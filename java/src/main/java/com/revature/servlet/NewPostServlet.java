@@ -81,6 +81,6 @@ public class NewPostServlet extends HttpServlet {
 		hibSession.close();
 		
 		log.info("User "+userID+" created a new post with text "+posttext);
-		resp.sendRedirect("http://localhost:4200/profile");	
+		resp.sendRedirect("http://localhost:4200/home");	
 	}
 }

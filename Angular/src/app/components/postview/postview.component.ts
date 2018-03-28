@@ -6,6 +6,8 @@ import { User } from '../../models/User';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { AllUsersService } from '../../services/all-users.service';
+import { AllPostsService } from '../../services/all-posts.service';
 
 @Component({
   selector: 'app-postview',
@@ -16,67 +18,69 @@ export class PostviewComponent implements OnInit {
 
   private currentPath: string = "";
   private viewedUser;
-  private postsToDisplay;
+  private postsToDisplay: any[] = [];
   private postUrl: string = 'http://localhost:8080/SocialMedia/likePost';
   public s3: string = "https://s3.amazonaws.com/rev-grouptwo/images/";
   public path: string = location.pathname;
   public u: User = null;
+  private allUsers: any;
+  private allPosts: any[] = [];
   private headerString: string = "";
 
-  constructor(private client: HttpClient, private currUser: CurrentUserService) {}
+  constructor(private client: HttpClient, private currUser: CurrentUserService, private allUsersService: AllUsersService, private allPostsService: AllPostsService) {}
 
   ngOnInit() {
     this.currentPath = window.location.pathname.substring(8);
       
-    this.client.get('http://localhost:8080/SocialMedia/allUsers', { withCredentials: true }).subscribe(
-      (succ: any) => {
-        if(this.currentPath != ""){
-          for(var i=0; i<succ.length; i++){
-            if(succ[i].username == this.currentPath.substring(1)){
-              var viewedUser = succ[i]; //not using this.viewedUser to not have to cast it
-              this.viewedUser = succ[i];
-              var u : User = new User(viewedUser.user_id, viewedUser.first_name, viewedUser.last_name, viewedUser.email, viewedUser.imgHash);
+    this.allUsers = this.allUsersService.getAllUsers();
+    this.allPosts = this.allPostsService.getAllPosts();
+    this.headerString = "";
+    
+    if(this.currentPath != ""){
+      for(var i=0; i<this.allUsers.length; i++){
+        if(this.allUsers[i].username == this.currentPath.substring(1)){
+          var viewedUser = this.allUsers[i]; //not using this.viewedUser to not have to cast it
+          this.viewedUser = this.allUsers[i];
+          var u : User = new User(viewedUser.user_id, viewedUser.first_name, viewedUser.last_name, viewedUser.email, viewedUser.imgHash);
 
-              this.client.get('http://localhost:8080/SocialMedia/postsById?'+u.id, { withCredentials: true }).subscribe(
-                (succ: any) => {
-                  console.log(succ);
-                  this.postsToDisplay = succ;
-                  if(succ.length == 0){
-                    this.headerString = 'This user has no posts to display.';
-                  }
-                },
-                err => {
-                    alert("Error loading that user's post list");
-                });
+          for(var j=0; j<this.allPosts.length; j++){
+            if(this.allPosts[j].user.username == this.currentPath.substring(1)){
+              this.postsToDisplay.push(this.allPosts[j]);
             }
           }
+
+          if(this.postsToDisplay.length == 0){
+            this.headerString = 'This user has no posts to display.';
+          }
         }
-        else if(window.location.pathname == '/profile'){
-          this.client.get('http://localhost:8080/SocialMedia/currUserPosts', { withCredentials: true }).subscribe(
-            (succ: any) => {
-              console.log(succ);
-              this.postsToDisplay = succ;
-              if(succ.length == 0){
-                this.headerString = 'You have no posts to display.';
-              }
-            },
-            err => {
-                alert('Error loading your post list');
-            });
-        }
-        else if(window.location.pathname == '/home'){
-          this.client.get('http://localhost:8080/SocialMedia/allPosts', {withCredentials:true}).subscribe(
-            (succ: any) => {
-              console.log(succ);
-              this.postsToDisplay = succ;
-              if(succ.length == 0){
-                this.headerString = 'There are no posts in the database.';
-              }
-            }
-          )
-        }
-      });
+      }
     }
+    else if(window.location.pathname == '/profile'){
+      for(var i=0; i<this.allPosts.length; i++){
+        if(this.allPosts[i].user.user_id == this.currUser.getCurrentUser().id){
+          this.postsToDisplay.push(this.allPosts[i]);
+        }
+      }
+
+      if(this.postsToDisplay.length == 0){
+        this.headerString = 'This user has no posts to display.';
+      }
+    }
+    else if(window.location.pathname == '/home'){
+      this.postsToDisplay = this.allPosts;
+
+      this.client.get('http://localhost:8080/SocialMedia/allPosts', {withCredentials:true}).subscribe(
+        (succ: any) => {
+          this.allPostsService.setPosts(succ);
+          console.log(succ);
+          this.postsToDisplay = succ;
+          if(succ.length == 0){
+            this.headerString = 'There are no posts in the database.';
+          }
+        }
+      )
+    }
+  }
 
     likeBtnClick(postId, userId) {
 

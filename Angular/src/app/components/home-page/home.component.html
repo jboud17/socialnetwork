@@ -11,7 +11,8 @@
         <form action="http://localhost:8080/SocialMedia/profilePic" method="post" enctype="multipart/form-data">
             
             <div class="form-group">
-                <input type="file" name="profilepic" id="profilepic">
+                <input type="file" name="profilepic" id="profilepic" onchange="loadFileTwo(event)">
+                <img  class="img-responsive" id="imgPreview">
             </div>
 
             <button type="submit" class="log-btn">Submit new profile pic</button>

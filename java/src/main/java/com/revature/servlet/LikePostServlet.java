@@ -17,11 +17,6 @@ public class LikePostServlet extends HttpServlet {
 		FrontController.addHeader(resp);
 		resp.setContentType("application/json");
 		
-//		resp.addHeader("Access-Control-Allow-Origin", "*");
-//      resp.addHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE, HEAD");
-//      resp.addHeader("Access-Control-Allow-Headers", "X-PINGOTHER, Origin, X-Requested-With, Content-Type, Accept");
-//      resp.addHeader("Access-Control-Max-Age", "1728000");
-		
 		int userId = Integer.parseInt(req.getParameter("userId"));
 		int postId = Integer.parseInt(req.getParameter("postId"));
 		

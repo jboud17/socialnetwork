@@ -8,7 +8,6 @@ export class AllUsersService {
 
   setUsers(users: User[]){ 
     this.allUsers = users;
-    //this.user.next(user);
 
     sessionStorage.setItem("allUsers", JSON.stringify(this.allUsers));
   }
