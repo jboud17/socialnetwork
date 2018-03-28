@@ -23,10 +23,10 @@ public class PostLikes {
 	
 	@Id
 	@Column(name="POST_ID")
-	int post_id;
+	private int post_id;
 
 	@Column(name="USER_ID")
-	int user_id;
+	private int user_id;
 	
 	public PostLikes(int post_id, int user_id) {
 		super();
