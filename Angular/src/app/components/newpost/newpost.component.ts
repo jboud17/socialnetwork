@@ -12,8 +12,4 @@ export class NewpostComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSubmit(){
-    console.log("hi");
-  }
-
 }
